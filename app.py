@@ -18,7 +18,7 @@ http_session = requests.Session()
 
 @app.route('/')
 def home():
-    return "Quotex Tiger Sniper Bot Engine v152.0 [R-A Trading Community] Running 24/7!"
+    return "Quotex Tiger Sniper Bot Engine v153.0 [R-A Trading Community] Running 24/7!"
 
 @app.route('/ping')
 def ping():
@@ -28,7 +28,6 @@ def ping():
 def get_signal():
     try:
         current_time = time.time()
-        # Truly dynamic signal generation to prevent one-sided sticking
         base_signal = "UP" if (int(current_time * 1000) % 2 == 0 and random.choice([True, False])) else "DOWN"
         signal_conf = int(88 + (random.randint(0, 9)))
         res = jsonify({
@@ -62,12 +61,12 @@ def bot_script():
                 var s = d.createElement('style');
                 s.id = 'tiger_global_style';
                 s.innerHTML = '@keyframes tigerGlow {' +
-                              '0% { border-color: #ff6600; box-shadow: 0 0 25px rgba(255,102,0,0.9); }' +
-                              '50% { border-color: #ff3300; box-shadow: 0 0 35px rgba(255,51,0,1); }' +
-                              '100% { border-color: #ff6600; box-shadow: 0 0 25px rgba(255,102,0,0.9); }' +
+                              '0% { border-color: #ffffff; box-shadow: 0 0 20px rgba(255,255,255,0.9), inset 0 0 10px rgba(255,255,255,0.5); }' +
+                              '50% { border-color: #ff6600; box-shadow: 0 0 30px rgba(255,102,0,1), inset 0 0 15px rgba(255,102,0,0.8); }' +
+                              '100% { border-color: #ffffff; box-shadow: 0 0 20px rgba(255,255,255,0.9), inset 0 0 10px rgba(255,255,255,0.5); }' +
                               '}' +
-                              '@keyframes roarPulse {0%{transform:scale(1);}50%{transform:scale(1.06);}100%{transform:scale(1);}}' +
-                              '@keyframes panelPop {0%{opacity:0;transform:translate(-50%, -48%) scale(0.9);fi}100%{opacity:1;transform:translate(-50%, -50%) scale(1);}}' +
+                              '@keyframes roarPulse {0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);}}' +
+                              '@keyframes panelPop {0%{opacity:0;transform:translate(-50%, -48%) scale(0.9);}100%{opacity:1;transform:translate(-50%, -50%) scale(1);}}' +
                               '@keyframes spinAnim {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}';
                 d.head.appendChild(s);
             }
@@ -88,7 +87,7 @@ def bot_script():
                 var header = d.createElement('div');
                 header.style.cssText = 'background:#080502;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #332005;';
                 header.innerHTML = '<div style="display:flex;align-items:center;gap:10px;">' +
-                                   '<img src="https://i.postimg.cc/JzRR8g6M/IMG-20261102-WA0003.jpg" style="width:26px;height:26px;border-radius:50%;object-fit:cover;border:2px solid #ff6600;" />' +
+                                   '<img src="https://i.postimg.cc/tCRkzVFn/IMG-20261103-230250.jpg" style="width:26px;height:26px;object-fit:contain;border:2px solid #ff6600;border-radius:4px;" />' +
                                    '<div>' +
                                    '<div style="font-size:11px;font-weight:900;color:#ff6600;letter-spacing:1px;">TIGER SNIPER BOT</div>' +
                                    '<div style="font-size:6px;color:#cc8833;">MAJESTIC TIGER SYSTEM</div>' +
@@ -101,7 +100,7 @@ def bot_script():
 
                 var licenseBox = d.createElement('div');
                 licenseBox.style.cssText = 'padding:16px;background:transparent;text-align:center;';
-                licenseBox.innerHTML = '<div style="margin-bottom:10px;"><img src="https://i.postimg.cc/JzRR8g6M/IMG-20261102-WA0003.jpg" style="width:55px;height:55px;border-radius:50%;object-fit:cover;border:3px solid #ff6600;animation:tigerGlow 4s infinite linear;" /></div>' +
+                licenseBox.innerHTML = '<div style="margin-bottom:10px;"><img src="https://i.postimg.cc/tCRkzVFn/IMG-20261103-230250.jpg" style="width:55px;height:55px;object-fit:contain;border:2px solid #ff6600;border-radius:6px;animation:tigerGlow 4s infinite linear;" /></div>' +
                                        '<div style="font-size:8px;color:#ffcc66;margin-bottom:8px;font-weight:bold;">ENTER PASSWORD TO UNLEASH THE TIGER</div>' +
                                        '<input type="password" id="license-input" placeholder="Password" style="width:100%;box-sizing:border-box;background:#140d05;border:1.5px solid #ff6600;padding:8px;border-radius:6px;color:#fff;font-size:9px;outline:none;margin-bottom:10px;text-align:center;" />' +
                                        '<button id="verify-btn" style="width:100%;background:linear-gradient(90deg, #ff6600, #ff3300);border:none;padding:8px;border-radius:6px;font-weight:900;font-size:9px;color:#000;cursor:pointer;box-shadow:0 0 15px rgba(255,102,0,0.6);">ACTIVATE TIGER BOT</button>' +
@@ -140,8 +139,8 @@ def bot_script():
                 
                 var b = d.createElement('div');
                 b.id = 'tiger_target_btn';
-                b.style.cssText = 'width:68px;height:68px;border-radius:50%;background:radial-gradient(circle, #ff6600 0%, #1a0800 80%);display:flex;align-items:center;justify-content:center;border:3.5px solid #ff6600;animation:tigerGlow 3s infinite linear, roarPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 25px rgba(255,102,0,0.8);';
-                b.innerHTML = '<img src="https://i.postimg.cc/JzRR8g6M/IMG-20261102-WA0003.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
+                b.style.cssText = 'width:58px;height:58px;border-radius:12px;background:#0d0905;display:flex;align-items:center;justify-content:center;border:2.5px solid #ffffff;animation:tigerGlow 3s infinite linear, roarPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 20px rgba(255,255,255,0.8);';
+                b.innerHTML = '<img src="https://i.postimg.cc/tCRkzVFn/IMG-20261103-230250.jpg" style="width:100%;height:100%;object-fit:contain;" />';
                 wrap.appendChild(b);
 
                 var lbl = d.createElement('div');
@@ -180,19 +179,17 @@ def bot_script():
                 var existingPanel = d.getElementById('tiger_control_panel');
                 if(existingPanel) { existingPanel.remove(); wrap.style.display = 'flex'; return; }
 
-                // Hide floating tiger bot when panel opens
                 wrap.style.display = 'none';
 
                 var panel = d.createElement('div');
                 panel.id = 'tiger_control_panel';
                 
-                // Perfectly centered on screen
                 panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:290px;background:linear-gradient(135deg, #0d0905 0%, #1a1005 100%);border:3px solid #ff6600;border-radius:14px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 15px 40px rgba(0,0,0,0.9);overflow:hidden;animation:panelPop 0.25s ease-out forwards, tigerGlow 5s infinite linear;';
 
                 var header = d.createElement('div');
                 header.style.cssText = 'background:#080502;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #332005;';
                 header.innerHTML = '<div style="display:flex;align-items:center;gap:8px;">' +
-                                   '<img src="https://i.postimg.cc/JzRR8g6M/IMG-20261102-WA0003.jpg" style="width:22px;height:22px;border-radius:50%;object-fit:cover;border:2px solid #ff6600;" />' +
+                                   '<img src="https://i.postimg.cc/tCRkzVFn/IMG-20261103-230250.jpg" style="width:22px;height:22px;object-fit:contain;border:2px solid #ff6600;border-radius:3px;" />' +
                                    '<span style="font-size:10px;font-weight:900;color:#ff6600;letter-spacing:0.5px;">TIGER CONTROL PANEL</span>' +
                                    '</div>' +
                                    '<div style="display:flex;gap:5px;">' +
