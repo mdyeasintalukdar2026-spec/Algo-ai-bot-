@@ -7,9 +7,6 @@ import os
 
 app = Flask(__name__, static_folder=None)
 
-# ==========================================
-# MASTER API KEYS & CONFIGURATIONS
-# ==========================================
 TWELVE_DATA_KEY = "8f5d4d4fce7f44e5bda54420591411c8"
 GROQ_API_KEY = "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"
 FINNHUB_API_KEY = "dbcaa19r01qqr3s0pf60dbcaa19r01qqr3s0pf6g"
@@ -56,7 +53,7 @@ def bot_script():
             var d = document;
             
             // Remove old elements if any
-            ["roshmalai-candy","roshmalai-status-panel","roshmalai-welcome","tbp-floating-btn","tbp-control-panel","tbp-global-style","algo-floating-btn","algo-control-panel","algo-global-style"].forEach(function(i){
+            ["roshmalai-candy","roshmalai-status-panel","roshmalai-welcome","tbp-floating-btn","tbp-control-panel","tbp-global-style","algo-floating-btn","algo-control-panel","algo-global-style","algo-touch-effect"].forEach(function(i){
                 var e = d.getElementById(i);
                 if(e) e.remove();
             });
@@ -69,24 +66,31 @@ def bot_script():
                           '100% { border-color: #a855f7; box-shadow: 0 0 25px rgba(168,85,247,0.8), inset 0 0 12px rgba(168,85,247,0.5); }' +
                           '}' +
                           '@keyframes algoPulse {0%{transform:scale(1);}50%{transform:scale(1.06);}100%{transform:scale(1);}}' +
-                          '@keyframes panelPop {0%{opacity:0;transform:translate(-50%, -48%) scale(0.9);}100%{opacity:1;transform:translate(-50%, -50%) scale(1);}}';
+                          '@keyframes panelPop {0%{opacity:0;transform:translate(-50%, -48%) scale(0.85);}100%{opacity:1;transform:translate(-50%, -50%) scale(0.95);}}' +
+                          '@keyframes touchRipple {0% {transform: scale(0.5); opacity: 1;} 100% {transform: scale(2.2); opacity: 0;}}';
             d.head.appendChild(s);
 
-            // Web Speech API for Hindi Female AI Voice
+            // Touch Ripple Effect for Clicks
+            document.addEventListener('click', function(e) {
+                var ripple = d.createElement('div');
+                ripple.style.cssText = 'position:fixed;top:' + (e.clientY - 15) + 'px;left:' + (e.clientX - 15) + 'px;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle, rgba(168,85,247,0.9) 0%, rgba(236,72,153,0.4) 70%, transparent 100%);pointer-events:none;z-index:2147483647;animation:touchRipple 0.4s ease-out forwards;border:2px solid #fff;';
+                d.body.appendChild(ripple);
+                setTimeout(function(){ ripple.remove(); }, 400);
+            }, true);
+
             function speakHindi(text, callback) {
                 if ('speechSynthesis' in window) {
                     window.speechSynthesis.cancel();
                     var utterance = new SpeechSynthesisUtterance(text);
                     utterance.lang = 'hi-IN';
                     utterance.rate = 1.05; 
-                    utterance.pitch = 1.4; // Sweet female high-pitch
+                    utterance.pitch = 1.4; 
                     
                     var voices = window.speechSynthesis.getVoices();
                     var hindiVoice = voices.find(function(v) { return v.lang === 'hi-IN' || v.lang.indexOf('hi') === 0; });
                     if (hindiVoice) {
                         utterance.voice = hindiVoice;
                     }
-                    
                     if(callback) {
                         utterance.onend = callback;
                     }
@@ -132,8 +136,6 @@ def bot_script():
                 wrap.onclick = function(){
                     if(hasMoved) return;
                     wrap.style.display = 'none';
-                    
-                    // Voice activation & Active badge creation
                     speakHindi("Bot active ho gaya hai.", function(){});
                     showActiveBadge(wrap);
                     openTimeFramePanel(wrap);
@@ -161,27 +163,28 @@ def bot_script():
                 d.body.appendChild(activeBadge);
             }
 
-            // Step 1: Time Frame Selection Panel (Matches Screenshot #1)
+            // Step 1: Time Frame Panel (5% smaller, Unique distinct borders)[span_2](start_span)[span_2](end_span)
             function openTimeFramePanel(wrap){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
-                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:310px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,0.95);padding:16px;animation:panelPop 0.3s ease-out forwards;';
+                // 5% smaller size and distinct styled borders
+                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:295px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:15px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,0.95);padding:14px;animation:panelPop 0.3s ease-out forwards;';
 
-                panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border-bottom:1px solid #3b0764;padding-bottom:8px;">' +
-                                  '<div style="display:flex;align-items:center;gap:8px;">' +
-                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:26px;height:26px;border-radius:50%;border:1px solid #a855f7;" />' +
-                                  '<div><div style="font-size:10px;font-weight:bold;color:#c084fc;">ALGO X</div><div style="font-size:6px;color:#38bdf8;">AI ENGINE ONLINE</div></div>' +
+                panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid #3b0764;padding-bottom:6px;">' +
+                                  '<div style="display:flex;align-items:center;gap:6px;">' +
+                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:24px;height:24px;border-radius:50%;border:1px solid #a855f7;" />' +
+                                  '<div><div style="font-size:9px;font-weight:bold;color:#c084fc;">ALGO X</div><div style="font-size:5px;color:#38bdf8;">AI ENGINE ONLINE</div></div>' +
                                   '</div>' +
-                                  '<div style="display:flex;gap:6px;"><span style="background:#14532d;color:#22c55e;font-size:7px;padding:2px 6px;border-radius:4px;border:1px solid #22c55e;">01 TIME</span><span style="background:#713f12;color:#facc15;font-size:7px;padding:2px 6px;border-radius:4px;border:1px solid #facc15;">02 TRADES</span></div>' +
+                                  '<div style="display:flex;gap:4px;"><span style="background:#14532d;color:#22c55e;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #22c55e;">01 TIME</span><span style="background:#713f12;color:#facc15;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #facc15;">02 TRADES</span></div>' +
                                   '</div>' +
-                                  '<div style="font-size:15px;font-weight:bold;margin-bottom:14px;color:#e2e8f0;">Trade time select karein</div>' +
-                                  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">' +
-                                  '<button class="algo-time-btn" data-time="5" style="background:#180830;border:1px solid #4c1d95;border-radius:10px;padding:12px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:14px;font-weight:bold;color:#facc15;">5 SEC</div><div style="font-size:7px;color:#94a3b8;">TURBO</div></button>' +
-                                  '<button class="algo-time-btn" data-time="15" style="background:#180830;border:1px solid #4c1d95;border-radius:10px;padding:12px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:14px;font-weight:bold;color:#38bdf8;">15 SEC</div><div style="font-size:7px;color:#94a3b8;">RAPID</div></button>' +
-                                  '<button class="algo-time-btn" data-time="30" style="background:#180830;border:1px solid #4c1d95;border-radius:10px;padding:12px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:14px;font-weight:bold;color:#f472b6;">30 SEC</div><div style="font-size:7px;color:#94a3b8;">BALANCED</div></button>' +
-                                  '<button class="algo-time-btn" data-time="60" style="background:#180830;border:1px solid #4c1d95;border-radius:10px;padding:12px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:14px;font-weight:bold;color:#4ade80;">1 MIN</div><div style="font-size:7px;color:#94a3b8;">PRECISION</div></button>' +
+                                  '<div style="font-size:14px;font-weight:bold;margin-bottom:12px;color:#e2e8f0;">Trade time select karein</div>' +
+                                  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">' +
+                                  '<button class="algo-time-btn" data-time="5" style="background:#180830;border:2px solid #facc15;border-radius:9px;padding:10px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:13px;font-weight:bold;color:#facc15;">5 SEC</div><div style="font-size:6px;color:#94a3b8;">TURBO</div></button>' +
+                                  '<button class="algo-time-btn" data-time="15" style="background:#180830;border:2px solid #38bdf8;border-radius:9px;padding:10px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:13px;font-weight:bold;color:#38bdf8;">15 SEC</div><div style="font-size:6px;color:#94a3b8;">RAPID</div></button>' +
+                                  '<button class="algo-time-btn" data-time="30" style="background:#180830;border:2px solid #f472b6;border-radius:9px;padding:10px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:13px;font-weight:bold;color:#f472b6;">30 SEC</div><div style="font-size:6px;color:#94a3b8;">BALANCED</div></button>' +
+                                  '<button class="algo-time-btn" data-time="60" style="background:#180830;border:2px solid #4ade80;border-radius:9px;padding:10px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:13px;font-weight:bold;color:#4ade80;">1 MIN</div><div style="font-size:6px;color:#94a3b8;">PRECISION</div></button>' +
                                   '</div>' +
-                                  '<button id="algo-cancel-1" style="background:transparent;border:1px solid #ef4444;color:#ef4444;width:100%;padding:8px;border-radius:8px;font-weight:bold;font-size:10px;cursor:pointer;">CANCEL</button>';
+                                  '<button id="algo-cancel-1" style="background:transparent;border:1px solid #ef4444;color:#ef4444;width:100%;padding:7px;border-radius:7px;font-weight:bold;font-size:9px;cursor:pointer;">CANCEL</button>';
 
                 d.body.appendChild(panel);
 
@@ -204,27 +207,27 @@ def bot_script():
                 };
             }
 
-            // Step 2: Trades Count Selection Panel (Matches Screenshot #2, #3)
+            // Step 2: Trades Count Panel (5% smaller, Unique distinct borders for each option)[span_3](start_span)[span_3](end_span)
             function openTradesCountPanel(wrap, selectedTime){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
-                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:310px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,0.95);padding:16px;animation:panelPop 0.3s ease-out forwards;';
+                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:295px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:15px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,0.95);padding:14px;animation:panelPop 0.3s ease-out forwards;';
 
-                panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border-bottom:1px solid #3b0764;padding-bottom:8px;">' +
-                                  '<div style="display:flex;align-items:center;gap:8px;">' +
-                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:26px;height:26px;border-radius:50%;border:1px solid #a855f7;" />' +
-                                  '<div><div style="font-size:10px;font-weight:bold;color:#c084fc;">ALGO X</div><div style="font-size:6px;color:#38bdf8;">AI ENGINE ONLINE</div></div>' +
+                panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid #3b0764;padding-bottom:6px;">' +
+                                  '<div style="display:flex;align-items:center;gap:6px;">' +
+                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:24px;height:24px;border-radius:50%;border:1px solid #a855f7;" />' +
+                                  '<div><div style="font-size:9px;font-weight:bold;color:#c084fc;">ALGO X</div><div style="font-size:5px;color:#38bdf8;">AI ENGINE ONLINE</div></div>' +
                                   '</div>' +
-                                  '<div style="display:flex;gap:6px;"><span style="background:#14532d;color:#22c55e;font-size:7px;padding:2px 6px;border-radius:4px;border:1px solid #22c55e;">01 TIME</span><span style="background:#713f12;color:#facc15;font-size:7px;padding:2px 6px;border-radius:4px;border:1px solid #facc15;">02 TRADES</span></div>' +
+                                  '<div style="display:flex;gap:4px;"><span style="background:#14532d;color:#22c55e;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #22c55e;">01 TIME</span><span style="background:#713f12;color:#facc15;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #facc15;">02 TRADES</span></div>' +
                                   '</div>' +
-                                  '<div style="font-size:15px;font-weight:bold;margin-bottom:14px;color:#e2e8f0;">Kitni trades lagani hain?</div>' +
-                                  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">' +
-                                  '<button class="algo-trade-btn" data-trades="1" style="background:#180830;border:1px solid #4c1d95;border-radius:10px;padding:10px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:14px;font-weight:bold;color:#facc15;">1</div><div style="font-size:7px;color:#94a3b8;">SINGLE</div></button>' +
-                                  '<button class="algo-trade-btn" data-trades="2" style="background:#180830;border:1px solid #4c1d95;border-radius:10px;padding:10px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:14px;font-weight:bold;color:#38bdf8;">2</div><div style="font-size:7px;color:#94a3b8;">DOUBLE</div></button>' +
-                                  '<button class="algo-trade-btn" data-trades="3" style="background:#180830;border:1px solid #4c1d95;border-radius:10px;padding:10px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:14px;font-weight:bold;color:#f472b6;">3</div><div style="font-size:7px;color:#94a3b8;">TRIPLE</div></button>' +
-                                  '<button class="algo-trade-btn" data-trades="4" style="background:#180830;border:1px solid #4c1d95;border-radius:10px;padding:10px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:14px;font-weight:bold;color:#4ade80;">4</div><div style="font-size:7px;color:#94a3b8;">MAX</div></button>' +
+                                  '<div style="font-size:14px;font-weight:bold;margin-bottom:12px;color:#e2e8f0;">Kitni trades lagani hain?</div>' +
+                                  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">' +
+                                  '<button class="algo-trade-btn" data-trades="1" style="background:#180830;border:2px solid #facc15;border-radius:9px;padding:9px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:13px;font-weight:bold;color:#facc15;">1</div><div style="font-size:6px;color:#94a3b8;">SINGLE</div></button>' +
+                                  '<button class="algo-trade-btn" data-trades="2" style="background:#180830;border:2px solid #38bdf8;border-radius:9px;padding:9px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:13px;font-weight:bold;color:#38bdf8;">2</div><div style="font-size:6px;color:#94a3b8;">DOUBLE</div></button>' +
+                                  '<button class="algo-trade-btn" data-trades="3" style="background:#180830;border:2px solid #f472b6;border-radius:9px;padding:9px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:13px;font-weight:bold;color:#f472b6;">3</div><div style="font-size:6px;color:#94a3b8;">TRIPLE</div></button>' +
+                                  '<button class="algo-trade-btn" data-trades="4" style="background:#180830;border:2px solid #4ade80;border-radius:9px;padding:9px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:13px;font-weight:bold;color:#4ade80;">4</div><div style="font-size:6px;color:#94a3b8;">MAX</div></button>' +
                                   '</div>' +
-                                  '<button id="algo-cancel-2" style="background:transparent;border:1px solid #ef4444;color:#ef4444;width:100%;padding:8px;border-radius:8px;font-weight:bold;font-size:10px;cursor:pointer;">CANCEL</button>';
+                                  '<button id="algo-cancel-2" style="background:transparent;border:1px solid #ef4444;color:#ef4444;width:100%;padding:7px;border-radius:7px;font-weight:bold;font-size:9px;cursor:pointer;">CANCEL</button>';
 
                 d.body.appendChild(panel);
 
@@ -234,8 +237,8 @@ def bot_script():
                         var selectedTrades = btn.getAttribute('data-trades');
                         panel.remove();
                         
-                        // Step 3: Neural Market Intelligence Scanning Screen (Matches Screenshot #4 and Video)
-                        speakHindi("Chaliye sir, market ka pura check shuru karti hu. Support aur resistance level check ho rahe hain.", function(){
+                        var hindiTradeText = selectedTrades == "1" ? "Ek trade select ho chuka hai." : selectedTrades + " trades select ho chuke hain.";
+                        speakHindi(hindiTradeText + " Chaliye sir, market ka pura check shuru karti hu. Support aur resistance level check ho rahe hain.", function(){
                             startNeuralScan(wrap, selectedTime, selectedTrades);
                         });
                     };
@@ -249,24 +252,32 @@ def bot_script():
                 };
             }
 
-            // Step 3: Neural Scan & Signal Execution (Matches Screenshot #5, #7)
+            // Step 3: Neural Scan & Signal Execution with Animated Candle Flow
             function startNeuralScan(wrap, selectedTime, selectedTrades){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
-                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:315px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,0.95);padding:14px;animation:panelPop 0.3s ease-out forwards;';
+                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:300px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:15px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,0.95);padding:14px;animation:panelPop 0.3s ease-out forwards;';
 
-                panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">' +
+                panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
-                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:22px;height:22px;border-radius:50%;border:1px solid #a855f7;" />' +
-                                  '<span style="font-size:9px;font-weight:bold;color:#c084fc;">ALGO X</span>' +
+                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:20px;height:20px;border-radius:50%;border:1px solid #a855f7;" />' +
+                                  '<span style="font-size:8px;font-weight:bold;color:#c084fc;">ALGO X</span>' +
                                   '</div>' +
-                                  '<span style="font-size:7px;color:#94a3b8;">MARKET SCAN / 01</span>' +
+                                  '<span style="font-size:6px;color:#94a3b8;">MARKET SCAN / 01</span>' +
                                   '</div>' +
-                                  '<div style="font-size:14px;font-weight:bold;margin-bottom:8px;color:#fff;">Neural market intelligence</div>' +
-                                  '<div style="font-size:8px;color:#94a3b8;margin-bottom:8px;display:flex;justify-content:space-between;"><span>SUPPORT / RESIST</span><span style="color:#22c55e;">88%</span></div>' +
-                                  '<div style="font-size:8px;color:#94a3b8;margin-bottom:8px;display:flex;justify-content:space-between;"><span>VOLUME FLOW</span><span style="color:#38bdf8;">92%</span></div>' +
-                                  '<div style="font-size:8px;color:#94a3b8;margin-bottom:12px;display:flex;justify-content:space-between;"><span>TREND SYNC</span><span style="color:#facc15;">95%</span></div>' +
-                                  '<div id="algo-scan-status" style="text-align:center;font-size:10px;font-weight:bold;color:#38bdf8;background:#080112;padding:8px;border-radius:8px;border:1px solid #3b0764;">Scanning Market Data...</div>';
+                                  '<div style="font-size:13px;font-weight:bold;margin-bottom:6px;color:#fff;">Neural market intelligence</div>' +
+                                  '<div style="font-size:7px;color:#94a3b8;margin-bottom:4px;display:flex;justify-content:space-between;"><span>SUPPORT / RESIST</span><span style="color:#22c55e;">88%</span></div>' +
+                                  '<div style="font-size:7px;color:#94a3b8;margin-bottom:4px;display:flex;justify-content:space-between;"><span>VOLUME FLOW</span><span style="color:#38bdf8;">92%</span></div>' +
+                                  '<div style="font-size:7px;color:#94a3b8;margin-bottom:8px;display:flex;justify-content:space-between;"><span>TREND SYNC</span><span style="color:#facc15;">95%</span></div>' +
+                                  // Animated Mini Live Candles Preview Box
+                                  '<div style="background:#080112;border:1px solid #3b0764;border-radius:6px;height:35px;display:flex;align-items:center;justify-content:space-around;padding:0 8px;margin-bottom:8px;overflow:hidden;">' +
+                                  '<div style="width:4px;height:20px;background:#22c55e;border-radius:2px;animation:algoPulse 1s infinite alternate;"></div>' +
+                                  '<div style="width:4px;height:28px;background:#ef4444;border-radius:2px;animation:algoPulse 0.8s infinite alternate;"></div>' +
+                                  '<div style="width:4px;height:15px;background:#22c55e;border-radius:2px;animation:algoPulse 1.2s infinite alternate;"></div>' +
+                                  '<div style="width:4px;height:24px;background:#ef4444;border-radius:2px;animation:algoPulse 0.7s infinite alternate;"></div>' +
+                                  '<div style="width:4px;height:30px;background:#22c55e;border-radius:2px;animation:algoPulse 0.9s infinite alternate;"></div>' +
+                                  '</div>' +
+                                  '<div id="algo-scan-status" style="text-align:center;font-size:9px;font-weight:bold;color:#38bdf8;background:#080112;padding:6px;border-radius:6px;border:1px solid #3b0764;">Scanning Market Patterns...</div>';
 
                 d.body.appendChild(panel);
 
@@ -288,28 +299,34 @@ def bot_script():
                         speakHindi("Market scanning successful ho chuka hai. Meri saari analysis pe trade laga diya hai. Inshallah profit ho jaega.", function(){
                             panel.remove();
                             showExecutionPanel(wrap, directionText, selectedTrades);
-                            triggerActualTrade(isCall);
+                            for (var i = 0; i < parseInt(selectedTrades); i++) {
+                                (function(idx){
+                                    setTimeout(function(){
+                                        triggerActualTrade(isCall);
+                                    }, idx * 600);
+                                })(i);
+                            }
                         });
                     });
-                }, 4000);
+                }, 3500);
             }
 
-            // Step 4: Final Execution Display Panel (Matches Screenshot #7)
+            // Step 4: Final Execution Display Panel
             function showExecutionPanel(wrap, directionText, selectedTrades){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
-                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:315px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,0.95);padding:14px;animation:panelPop 0.3s ease-out forwards;';
+                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:300px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:15px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,0.95);padding:14px;animation:panelPop 0.3s ease-out forwards;';
 
                 panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
-                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:22px;height:22px;border-radius:50%;border:1px solid #a855f7;" />' +
-                                  '<span style="font-size:9px;font-weight:bold;color:#c084fc;">ALGO X</span>' +
+                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:20px;height:20px;border-radius:50%;border:1px solid #a855f7;" />' +
+                                  '<span style="font-size:8px;font-weight:bold;color:#c084fc;">ALGO X</span>' +
                                   '</div>' +
-                                  '<span style="font-size:7px;color:#22c55e;">EXECUTION SEQUENCE</span>' +
+                                  '<span style="font-size:6px;color:#22c55e;">EXECUTION SEQUENCE</span>' +
                                   '</div>' +
-                                  '<div style="font-size:16px;font-weight:900;color:' + (directionText === 'CALL' ? '#22c55e' : '#ef4444') + ';text-align:center;margin:10px 0;">' + directionText + '</div>' +
-                                  '<div style="font-size:8px;color:#94a3b8;text-align:center;margin-bottom:10px;">Trades Placed: ' + selectedTrades + ' | Status: Success</div>' +
-                                  '<button id="algo-close-exec" style="background:#a855f7;color:#000;width:100%;padding:8px;border-radius:8px;font-weight:bold;font-size:10px;cursor:pointer;border:none;">OK / CLOSE</button>';
+                                  '<div style="font-size:15px;font-weight:900;color:' + (directionText === 'CALL' ? '#22c55e' : '#ef4444') + ';text-align:center;margin:8px 0;">' + directionText + '</div>' +
+                                  '<div style="font-size:7px;color:#94a3b8;text-align:center;margin-bottom:8px;">Trades Placed: ' + selectedTrades + ' | Status: Success</div>' +
+                                  '<button id="algo-close-exec" style="background:#a855f7;color:#000;width:100%;padding:7px;border-radius:7px;font-weight:bold;font-size:9px;cursor:pointer;border:none;">OK / CLOSE</button>';
 
                 d.body.appendChild(panel);
 
