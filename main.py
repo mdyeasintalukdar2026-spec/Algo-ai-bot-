@@ -8,7 +8,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s [%(levelname)s] %(name)s: %(message)s'
 )
-logger = logging.getLogger("SniperBotMasterRunner")
+logger = logging.getLogger("TigerBotMasterRunner")
 
 async def main():
     start_server()
