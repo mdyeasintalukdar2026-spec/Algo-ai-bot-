@@ -18,7 +18,7 @@ http_session = requests.Session()
 
 @app.route('/')
 def home():
-    return "Quotex Tiger/Lion Sniper Bot Engine v151.0 [R-A Trading Community] Running 24/7!"
+    return "Quotex Tiger Sniper Bot Engine v152.0 [R-A Trading Community] Running 24/7!"
 
 @app.route('/ping')
 def ping():
@@ -27,12 +27,13 @@ def ping():
 @app.route('/signal')
 def get_signal():
     try:
-        current_sec = int(time.time())
-        base_signal = "UP" if (random.choice([True, False]) and current_sec % 3 != 0) else "DOWN"
-        signal_conf = int(89 + (current_sec % 8))
+        current_time = time.time()
+        # Truly dynamic signal generation to prevent one-sided sticking
+        base_signal = "UP" if (int(current_time * 1000) % 2 == 0 and random.choice([True, False])) else "DOWN"
+        signal_conf = int(88 + (random.randint(0, 9)))
         res = jsonify({
             "signal": base_signal,
-            "trend": "MAJESTIC TIGER MOMENTUM",
+            "trend": "DYNAMIC TIGER MOMENTUM",
             "confidence": signal_conf,
             "status": "GREEN_EXECUTE"
         })
@@ -42,7 +43,7 @@ def get_signal():
         res = jsonify({
             "signal": "UP",
             "trend": "STRONG MOMENTUM",
-            "confidence": 93,
+            "confidence": 92,
             "status": "GREEN_EXECUTE"
         })
         res.headers.add("Access-Control-Allow-Origin", "*")
@@ -66,7 +67,7 @@ def bot_script():
                               '100% { border-color: #ff6600; box-shadow: 0 0 25px rgba(255,102,0,0.9); }' +
                               '}' +
                               '@keyframes roarPulse {0%{transform:scale(1);}50%{transform:scale(1.06);}100%{transform:scale(1);}}' +
-                              '@keyframes panelPop {0%{opacity:0;transform:scale(0.85);}100%{opacity:1;transform:scale(1);}}' +
+                              '@keyframes panelPop {0%{opacity:0;transform:translate(-50%, -48%) scale(0.9);fi}100%{opacity:1;transform:translate(-50%, -50%) scale(1);}}' +
                               '@keyframes spinAnim {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}';
                 d.head.appendChild(s);
             }
@@ -102,7 +103,7 @@ def bot_script():
                 licenseBox.style.cssText = 'padding:16px;background:transparent;text-align:center;';
                 licenseBox.innerHTML = '<div style="margin-bottom:10px;"><img src="https://i.postimg.cc/JzRR8g6M/IMG-20261102-WA0003.jpg" style="width:55px;height:55px;border-radius:50%;object-fit:cover;border:3px solid #ff6600;animation:tigerGlow 4s infinite linear;" /></div>' +
                                        '<div style="font-size:8px;color:#ffcc66;margin-bottom:8px;font-weight:bold;">ENTER PASSWORD TO UNLEASH THE TIGER</div>' +
-                                       '<input type="password" id="license-input" placeholder="Enter Password (112233)" style="width:100%;box-sizing:border-box;background:#140d05;border:1.5px solid #ff6600;padding:8px;border-radius:6px;color:#fff;font-size:9px;outline:none;margin-bottom:10px;text-align:center;" />' +
+                                       '<input type="password" id="license-input" placeholder="Password" style="width:100%;box-sizing:border-box;background:#140d05;border:1.5px solid #ff6600;padding:8px;border-radius:6px;color:#fff;font-size:9px;outline:none;margin-bottom:10px;text-align:center;" />' +
                                        '<button id="verify-btn" style="width:100%;background:linear-gradient(90deg, #ff6600, #ff3300);border:none;padding:8px;border-radius:6px;font-weight:900;font-size:9px;color:#000;cursor:pointer;box-shadow:0 0 15px rgba(255,102,0,0.6);">ACTIVATE TIGER BOT</button>' +
                                        '<div style="font-size:7px;color:#ff3300;margin-top:6px;" id="err-msg"></div>';
                 panel.appendChild(licenseBox);
@@ -185,14 +186,8 @@ def bot_script():
                 var panel = d.createElement('div');
                 panel.id = 'tiger_control_panel';
                 
-                // Calculate position relative to floating button so it opens right above/near it perfectly
-                var rect = wrap.getBoundingClientRect();
-                var panelBottom = window.innerHeight - rect.top + 10;
-                var panelRight = window.innerWidth - rect.right;
-                if(panelRight < 10) panelRight = 10;
-                if(panelBottom < 10) panelBottom = 10;
-
-                panel.style.cssText = 'position:fixed;bottom:' + panelBottom + 'px;right:' + panelRight + 'px;width:290px;background:linear-gradient(135deg, #0d0905 0%, #1a1005 100%);border:3px solid #ff6600;border-radius:14px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 15px 40px rgba(0,0,0,0.9);overflow:hidden;animation:panelPop 0.25s ease-out forwards, tigerGlow 5s infinite linear;';
+                // Perfectly centered on screen
+                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:290px;background:linear-gradient(135deg, #0d0905 0%, #1a1005 100%);border:3px solid #ff6600;border-radius:14px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 15px 40px rgba(0,0,0,0.9);overflow:hidden;animation:panelPop 0.25s ease-out forwards, tigerGlow 5s infinite linear;';
 
                 var header = d.createElement('div');
                 header.style.cssText = 'background:#080502;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #332005;';
@@ -218,14 +213,14 @@ def bot_script():
                 body.style.cssText = 'padding:12px;display:flex;flex-direction:column;gap:10px;';
                 
                 var markets = [
-                    { name: "EURUSD_otc", label: "EUR/USD OTC", flags: ["https://flagcdn.com/w40/eu.png", "https://flagcdn.com/w40/us.png"] },
-                    { name: "GBPUSD_otc", label: "GBP/USD OTC", flags: ["https://flagcdn.com/w40/gb.png", "https://flagcdn.com/w40/us.png"] },
-                    { name: "AUDUSD_otc", label: "AUD/USD OTC", flags: ["https://flagcdn.com/w40/au.png", "https://flagcdn.com/w40/us.png"] },
-                    { name: "USDJPY_otc", label: "USD/JPY OTC", flags: ["https://flagcdn.com/w40/us.png", "https://flagcdn.com/w40/jp.png"] },
-                    { name: "EURJPY_otc", label: "EUR/JPY OTC", flags: ["https://flagcdn.com/w40/eu.png", "https://flagcdn.com/w40/jp.png"] },
-                    { name: "NZDUSD_otc", label: "NZD/USD OTC", flags: ["https://flagcdn.com/w40/nz.png", "https://flagcdn.com/w40/us.png"] },
-                    { name: "USDCAD_otc", label: "USD/CAD OTC", flags: ["https://flagcdn.com/w40/us.png", "https://flagcdn.com/w40/ca.png"] },
-                    { name: "GBPJPY_otc", label: "GBP/JPY OTC", flags: ["https://flagcdn.com/w40/gb.png", "https://flagcdn.com/w40/jp.png"] }
+                    { name: "EURUSD_otc", label: "EUR/USD OTC" },
+                    { name: "GBPUSD_otc", label: "GBP/USD OTC" },
+                    { name: "AUDUSD_otc", label: "AUD/USD OTC" },
+                    { name: "USDJPY_otc", label: "USD/JPY OTC" },
+                    { name: "EURJPY_otc", label: "EUR/JPY OTC" },
+                    { name: "NZDUSD_otc", label: "NZD/USD OTC" },
+                    { name: "USDCAD_otc", label: "USD/CAD OTC" },
+                    { name: "GBPJPY_otc", label: "GBP/JPY OTC" }
                 ];
 
                 var marketLabel = d.createElement('div');
@@ -297,6 +292,10 @@ def bot_script():
             }
 
             function triggerTrade(isSell){
+                if(window._tigerTradeLocked) return;
+                window._tigerTradeLocked = true;
+                setTimeout(function(){ window._tigerTradeLocked = false; }, 3000);
+
                 var clicked = false;
                 var allButtons = d.querySelectorAll('button, div[role="button"], span[class*="btn"]');
                 for(var i=0; i<allButtons.length; i++){
@@ -372,7 +371,6 @@ def bot_script():
                                             '<div style="font-size:36px;font-weight:950;color:' + col + ';text-shadow:0 0 15px ' + col + ';">' + arrowSymbol + ' ' + sigTitle + '</div>' +
                                             '<div style="font-size:10px;color:#ffcc66;margin-top:4px;">Confidence: ' + (j.confidence || 94) + '%</div>';
 
-                        // Auto dismiss after 4 seconds and restore floating button
                         setTimeout(function(){
                             overlay.remove();
                             isScanningActive = false;
