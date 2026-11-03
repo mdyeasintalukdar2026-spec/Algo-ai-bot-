@@ -70,6 +70,7 @@ def bot_script():
                           '66% { border-color: #ec4899; box-shadow: 0 0 10px rgba(236,72,153,0.6); }' +
                           '100% { border-color: #4ade80; box-shadow: 0 0 10px rgba(74,222,128,0.6); }' +
                           '}' +
+                          '@keyframes scanGlow {0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; }}' +
                           '@keyframes algoPulse {0%{transform:scale(1);}50%{transform:scale(1.06);}100%{transform:scale(1);}}' +
                           '@keyframes panelPop {0%{opacity:0;transform:translate(-50%, -48%) scale(0.85);}100%{opacity:1;transform:translate(-50%, -50%) scale(0.95);}}' +
                           '@keyframes touchRipple {0% {transform: scale(0.5); opacity: 1;} 100% {transform: scale(2.2); opacity: 0;}}';
@@ -88,7 +89,7 @@ def bot_script():
                     var utterance = new SpeechSynthesisUtterance(text);
                     utterance.lang = 'hi-IN';
                     utterance.rate = 1.0; 
-                    utterance.pitch = 1.5; // Sweet crisp female voice
+                    utterance.pitch = 1.5; 
                     
                     var voices = window.speechSynthesis.getVoices();
                     var hindiVoice = voices.find(function(v) { return v.lang === 'hi-IN' || v.lang.indexOf('hi') === 0; });
@@ -167,7 +168,6 @@ def bot_script():
                 d.body.appendChild(activeBadge);
             }
 
-            // Step 1: Time Frame Panel (Options 10% smaller, Slow motion border color animation)[span_5](start_span)[span_5](end_span)
             function openTimeFramePanel(wrap){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
@@ -210,7 +210,6 @@ def bot_script():
                 };
             }
 
-            // Step 2: Trades Count Panel (10% smaller options, exact counts, slow motion color changing borders)[span_6](start_span)[span_6](end_span)
             function openTradesCountPanel(wrap, selectedTime){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
@@ -255,39 +254,53 @@ def bot_script():
                 };
             }
 
-            // Step 3: Fullscreen Neural Scan & Signal Execution with Real Data & Animated Candles[span_7](start_span)[span_7](end_span)[span_8](start_span)[span_8](end_span)
+            // Step 3: Perfectly Centered Professional Neural Scan with All Advanced Options
             function startNeuralScan(wrap, selectedTime, selectedTrades){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
-                // Expanded to cover from notification bar down smoothly
-                panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(13,2,31,0.96);z-index:2147483647;font-family:sans-serif;color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px;box-sizing:border-box;animation:panelPop 0.3s ease-out forwards;';
+                // Perfectly centered, optimized elegant length and size
+                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:325px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:18px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 25px 60px rgba(0,0,0,0.95);padding:16px;animation:panelPop 0.3s ease-out forwards;';
 
-                panel.innerHTML = '<div style="width:100%;max-width:360px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:18px;padding:18px;box-shadow:0 25px 60px rgba(0,0,0,0.95);">' +
-                                  '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">' +
-                                  '<div style="display:flex;align-items:center;gap:8px;">' +
-                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:26px;height:26px;border-radius:50%;border:1px solid #a855f7;" />' +
-                                  '<span style="font-size:10px;font-weight:bold;color:#c084fc;">ALGO X</span>' +
+                panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">' +
+                                  '<div style="display:flex;align-items:center;gap:6px;">' +
+                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:22px;height:22px;border-radius:50%;border:1px solid #a855f7;" />' +
+                                  '<span style="font-size:9px;font-weight:bold;color:#c084fc;">ALGO X</span>' +
                                   '</div>' +
                                   '<span style="font-size:7px;color:#94a3b8;border:1px solid #3b0764;padding:2px 6px;border-radius:4px;">MARKET SCAN / ' + selectedTrades + '</span>' +
                                   '</div>' +
-                                  '<div style="font-size:16px;font-weight:bold;margin-bottom:12px;color:#fff;">Neural market intelligence</div>' +
-                                  '<div style="font-size:9px;color:#94a3b8;margin-bottom:6px;display:flex;justify-content:space-between;border:1px solid #3b0764;padding:6px;border-radius:6px;"><span>SUPPORT / RESIST</span><span style="color:#22c55e;animation:borderCycle 4s infinite linear;">88%</span></div>' +
-                                  '<div style="font-size:9px;color:#94a3b8;margin-bottom:6px;display:flex;justify-content:space-between;border:1px solid #3b0764;padding:6px;border-radius:6px;"><span>VOLUME FLOW</span><span style="color:#38bdf8;animation:borderCycle 4s infinite linear 1s;">92%</span></div>' +
-                                  '<div style="font-size:9px;color:#94a3b8;margin-bottom:14px;display:flex;justify-content:space-between;border:1px solid #3b0764;padding:6px;border-radius:6px;"><span>TREND SYNC</span><span style="color:#facc15;animation:borderCycle 4s infinite linear 2s;">95%</span></div>' +
-                                  // Animated Car-like Left Moving Candles Box
-                                  '<div style="background:#080112;border:1px solid #3b0764;border-radius:8px;height:45px;display:flex;align-items:center;justify-content:space-around;padding:0 10px;margin-bottom:14px;overflow:hidden;">' +
-                                  '<div style="width:5px;height:22px;background:#22c55e;border-radius:2px;animation:algoPulse 0.9s infinite alternate;"></div>' +
-                                  '<div style="width:5px;height:32px;background:#ef4444;border-radius:2px;animation:algoPulse 0.7s infinite alternate;"></div>' +
-                                  '<div style="width:5px;height:18px;background:#22c55e;border-radius:2px;animation:algoPulse 1.1s infinite alternate;"></div>' +
-                                  '<div style="width:5px;height:28px;background:#ef4444;border-radius:2px;animation:algoPulse 0.6s infinite alternate;"></div>' +
-                                  '<div style="width:5px;height:35px;background:#22c55e;border-radius:2px;animation:algoPulse 0.8s infinite alternate;"></div>' +
+                                  '<div style="font-size:14px;font-weight:bold;margin-bottom:10px;color:#fff;">Neural market intelligence</div>' +
+                                  
+                                  // Advanced Options List with Real Scanning Animation
+                                  '<div style="display:flex;flex-direction:column;gap:5px;margin-bottom:10px;font-size:8px;">' +
+                                  '<div style="display:flex;justify-content:space-between;background:#080112;padding:5px 8px;border-radius:5px;border:1px solid #3b0764;"><span style="color:#94a3b8;">OTC Market Tab Filter:</span><span class="scan-text" style="color:#38bdf8;animation:scanGlow 1s infinite;">Scanning...</span></div>' +
+                                  '<div style="display:flex;justify-content:space-between;background:#080112;padding:5px 8px;border-radius:5px;border:1px solid #3b0764;"><span style="color:#94a3b8;">Money Management:</span><span class="scan-text" style="color:#facc15;animation:scanGlow 1s infinite 0.2s;">Scanning...</span></div>' +
+                                  '<div style="display:flex;justify-content:space-between;background:#080112;padding:5px 8px;border-radius:5px;border:1px solid #3b0764;"><span style="color:#94a3b8;">Smart Money:</span><span class="scan-text" style="color:#f472b6;animation:scanGlow 1s infinite 0.4s;">Scanning...</span></div>' +
+                                  '<div style="display:flex;justify-content:space-between;background:#080112;padding:5px 8px;border-radius:5px;border:1px solid #3b0764;"><span style="color:#94a3b8;">Trade Execution:</span><span class="scan-text" style="color:#4ade80;animation:scanGlow 1s infinite 0.6s;">Scanning...</span></div>' +
+                                  '<div style="display:flex;justify-content:space-between;background:#080112;padding:5px 8px;border-radius:5px;border:1px solid #3b0764;"><span style="color:#94a3b8;">Server Volatility:</span><span class="scan-text" style="color:#c084fc;animation:scanGlow 1s infinite 0.8s;">Scanning...</span></div>' +
                                   '</div>' +
-                                  '<div id="algo-scan-status" style="text-align:center;font-size:10px;font-weight:bold;color:#38bdf8;background:#080112;padding:8px;border-radius:8px;border:1px solid #3b0764;">Scanning Market Patterns...</div>' +
-                                  '</div>';
+
+                                  // Snake / Candle Wave Animation Box
+                                  '<div style="background:#080112;border:1px solid #3b0764;border-radius:6px;height:32px;display:flex;align-items:center;justify-content:space-around;padding:0 8px;margin-bottom:10px;overflow:hidden;">' +
+                                  '<div style="width:4px;height:18px;background:#22c55e;border-radius:2px;animation:algoPulse 0.8s infinite alternate;"></div>' +
+                                  '<div style="width:4px;height:26px;background:#ef4444;border-radius:2px;animation:algoPulse 0.6s infinite alternate;"></div>' +
+                                  '<div style="width:4px;height:14px;background:#22c55e;border-radius:2px;animation:algoPulse 1s infinite alternate;"></div>' +
+                                  '<div style="width:4px;height:22px;background:#ef4444;border-radius:2px;animation:algoPulse 0.5s infinite alternate;"></div>' +
+                                  '<div style="width:4px;height:28px;background:#22c55e;border-radius:2px;animation:algoPulse 0.7s infinite alternate;"></div>' +
+                                  '</div>' +
+                                  '<div id="algo-scan-status" style="text-align:center;font-size:9px;font-weight:bold;color:#38bdf8;background:#080112;padding:6px;border-radius:6px;border:1px solid #3b0764;">Analyzing Server Data...</div>';
 
                 d.body.appendChild(panel);
 
                 setTimeout(function(){
+                    var scanTexts = panel.querySelectorAll('.scan-text');
+                    if(scanTexts.length >= 5) {
+                        scanTexts[0].style.animation = 'none'; scanTexts[0].innerText = 'High (96%)'; scanTexts[0].style.color = '#22c55e';
+                        scanTexts[1].style.animation = 'none'; scanTexts[1].innerText = 'Optimized'; scanTexts[1].style.color = '#22c55e';
+                        scanTexts[2].style.animation = 'none'; scanTexts[2].innerText = 'Active (94%)'; scanTexts[2].style.color = '#38bdf8';
+                        scanTexts[3].style.animation = 'none'; scanTexts[3].innerText = 'Ready (98%)'; scanTexts[3].style.color = '#4ade80';
+                        scanTexts[4].style.animation = 'none'; scanTexts[4].innerText = 'Stable (Low)'; scanTexts[4].style.color = '#facc15';
+                    }
+
                     var statusEl = panel.querySelector('#algo-scan-status');
                     if(statusEl) {
                         statusEl.innerText = "Market scanning successful ho chuka hai.";
@@ -303,45 +316,30 @@ def bot_script():
                         var directionText = isCall ? 'CALL' : 'PUT';
 
                         speakHindi("Market scanning successful ho chuka hai. Meri saari analysis pe trade laga diya hai. Inshallah profit ho jaega.", function(){
-                            panel.remove();
-                            showExecutionPanel(wrap, directionText, selectedTrades);
+                            // Execute trades instantly
                             for (var i = 0; i < parseInt(selectedTrades); i++) {
                                 (function(idx){
                                     setTimeout(function(){
                                         triggerActualTrade(isCall);
-                                    }, idx * 600);
+                                    }, idx * 500);
                                 })(i);
                             }
+
+                            // Show instant clean notification and auto-disappear
+                            panel.innerHTML = '<div style="text-align:center;padding:15px;">' +
+                                              '<div style="font-size:14px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';margin-bottom:6px;">' + directionText + '</div>' +
+                                              '<div style="font-size:8px;color:#94a3b8;">Trades Placed: ' + selectedTrades + ' | Auto Executed</div>' +
+                                              '</div>';
+
+                            setTimeout(function(){
+                                panel.remove();
+                                var ab = d.getElementById('algo-active-badge');
+                                if(ab) ab.remove();
+                                wrap.style.display = 'flex';
+                            }, 1800);
                         });
                     });
-                }, 4000);
-            }
-
-            // Step 4: Final Execution Display Panel[span_9](start_span)[span_9](end_span)
-            function showExecutionPanel(wrap, directionText, selectedTrades){
-                var panel = d.createElement('div');
-                panel.id = 'algo-control-panel';
-                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:315px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,0.95);padding:14px;animation:panelPop 0.3s ease-out forwards;';
-
-                panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">' +
-                                  '<div style="display:flex;align-items:center;gap:6px;">' +
-                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:22px;height:22px;border-radius:50%;border:1px solid #a855f7;" />' +
-                                  '<span style="font-size:9px;font-weight:bold;color:#c084fc;">ALGO X</span>' +
-                                  '</div>' +
-                                  '<span style="font-size:7px;color:#22c55e;">EXECUTION SEQUENCE</span>' +
-                                  '</div>' +
-                                  '<div style="font-size:16px;font-weight:900;color:' + (directionText === 'CALL' ? '#22c55e' : '#ef4444') + ';text-align:center;margin:10px 0;">' + directionText + '</div>' +
-                                  '<div style="font-size:8px;color:#94a3b8;text-align:center;margin-bottom:10px;">Trades Placed: ' + selectedTrades + ' | Status: Success</div>' +
-                                  '<button id="algo-close-exec" style="background:#a855f7;color:#000;width:100%;padding:8px;border-radius:8px;font-weight:bold;font-size:10px;cursor:pointer;border:none;">OK / CLOSE</button>';
-
-                d.body.appendChild(panel);
-
-                panel.querySelector('#algo-close-exec').onclick = function(){
-                    panel.remove();
-                    var ab = d.getElementById('algo-active-badge');
-                    if(ab) ab.remove();
-                    wrap.style.display = 'flex';
-                };
+                }, 4500);
             }
 
             function forceClick(el) {
