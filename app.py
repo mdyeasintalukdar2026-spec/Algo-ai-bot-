@@ -18,7 +18,7 @@ http_session = requests.Session()
 
 @app.route('/')
 def home():
-    return "Quotex Tiger/Lion Sniper Bot Engine v150.0 [R-A Trading Community] Running 24/7!"
+    return "Quotex Tiger/Lion Sniper Bot Engine v151.0 [R-A Trading Community] Running 24/7!"
 
 @app.route('/ping')
 def ping():
@@ -32,7 +32,7 @@ def get_signal():
         signal_conf = int(89 + (current_sec % 8))
         res = jsonify({
             "signal": base_signal,
-            "trend": "TIGER MOMENTUM",
+            "trend": "MAJESTIC TIGER MOMENTUM",
             "confidence": signal_conf,
             "status": "GREEN_EXECUTE"
         })
@@ -61,12 +61,12 @@ def bot_script():
                 var s = d.createElement('style');
                 s.id = 'tiger_global_style';
                 s.innerHTML = '@keyframes tigerGlow {' +
-                              '0% { border-color: #ff9900; box-shadow: 0 0 25px rgba(255,153,0,0.8); }' +
-                              '50% { border-color: #ff3300; box-shadow: 0 0 35px rgba(255,51,0,0.9); }' +
-                              '100% { border-color: #ff9900; box-shadow: 0 0 25px rgba(255,153,0,0.8); }' +
+                              '0% { border-color: #ff6600; box-shadow: 0 0 25px rgba(255,102,0,0.9); }' +
+                              '50% { border-color: #ff3300; box-shadow: 0 0 35px rgba(255,51,0,1); }' +
+                              '100% { border-color: #ff6600; box-shadow: 0 0 25px rgba(255,102,0,0.9); }' +
                               '}' +
-                              '@keyframes roarPulse {0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);}}' +
-                              '@keyframes panelPop {0%{opacity:0;transform:translate(-50%, -45%) scale(0.85);}100%{opacity:1;transform:translate(-50%, -50%) scale(1);}}' +
+                              '@keyframes roarPulse {0%{transform:scale(1);}50%{transform:scale(1.06);}100%{transform:scale(1);}}' +
+                              '@keyframes panelPop {0%{opacity:0;transform:scale(0.85);}100%{opacity:1;transform:scale(1);}}' +
                               '@keyframes spinAnim {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}';
                 d.head.appendChild(s);
             }
@@ -82,28 +82,28 @@ def bot_script():
             function createLicensePanel(){
                 var panel = d.createElement('div');
                 panel.id = 'tiger_license_panel';
-                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:280px;background:linear-gradient(135deg, #0d0905 0%, #1a1005 100%);border:3px solid #ff9900;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,0.95);overflow:hidden;animation:panelPop 0.3s ease-out forwards, tigerGlow 4s infinite linear;';
+                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:280px;background:linear-gradient(135deg, #0d0905 0%, #1a1005 100%);border:3px solid #ff6600;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,0.95);overflow:hidden;animation:panelPop 0.3s ease-out forwards, tigerGlow 4s infinite linear;';
                 
                 var header = d.createElement('div');
                 header.style.cssText = 'background:#080502;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #332005;';
                 header.innerHTML = '<div style="display:flex;align-items:center;gap:10px;">' +
-                                   '<img src="https://i.postimg.cc/JzRR8g6M/IMG-20261102-WA0003.jpg" style="width:26px;height:26px;border-radius:50%;object-fit:cover;border:2px solid #ff9900;" />' +
+                                   '<img src="https://i.postimg.cc/JzRR8g6M/IMG-20261102-WA0003.jpg" style="width:26px;height:26px;border-radius:50%;object-fit:cover;border:2px solid #ff6600;" />' +
                                    '<div>' +
-                                   '<div style="font-size:11px;font-weight:900;color:#ff9900;letter-spacing:1px;">TIGER SNIPER BOT</div>' +
-                                   '<div style="font-size:6px;color:#cc8833;">MAJESTIC TRADING SYSTEM</div>' +
+                                   '<div style="font-size:11px;font-weight:900;color:#ff6600;letter-spacing:1px;">TIGER SNIPER BOT</div>' +
+                                   '<div style="font-size:6px;color:#cc8833;">MAJESTIC TIGER SYSTEM</div>' +
                                    '</div>' +
                                    '</div>' +
-                                   '<button id="close-license" style="background:#1a1005;border:1px solid #ff9900;color:#ff9900;width:22px;height:22px;border-radius:4px;cursor:pointer;font-weight:bold;font-size:12px;">×</button>';
+                                   '<button id="close-license" style="background:#1a1005;border:1px solid #ff6600;color:#ff6600;width:22px;height:22px;border-radius:4px;cursor:pointer;font-weight:bold;font-size:12px;">×</button>';
                 panel.appendChild(header);
                 
                 header.querySelector('#close-license').onclick = function(){ panel.remove(); };
 
                 var licenseBox = d.createElement('div');
                 licenseBox.style.cssText = 'padding:16px;background:transparent;text-align:center;';
-                licenseBox.innerHTML = '<div style="margin-bottom:10px;"><img src="https://i.postimg.cc/JzRR8g6M/IMG-20261102-WA0003.jpg" style="width:55px;height:55px;border-radius:50%;object-fit:cover;border:3px solid #ff9900;animation:tigerGlow 4s infinite linear;" /></div>' +
+                licenseBox.innerHTML = '<div style="margin-bottom:10px;"><img src="https://i.postimg.cc/JzRR8g6M/IMG-20261102-WA0003.jpg" style="width:55px;height:55px;border-radius:50%;object-fit:cover;border:3px solid #ff6600;animation:tigerGlow 4s infinite linear;" /></div>' +
                                        '<div style="font-size:8px;color:#ffcc66;margin-bottom:8px;font-weight:bold;">ENTER PASSWORD TO UNLEASH THE TIGER</div>' +
-                                       '<input type="password" id="license-input" placeholder="Enter Password (e.g. 112233)" style="width:100%;box-sizing:border-box;background:#140d05;border:1.5px solid #ff9900;padding:8px;border-radius:6px;color:#fff;font-size:9px;outline:none;margin-bottom:10px;text-align:center;" />' +
-                                       '<button id="verify-btn" style="width:100%;background:linear-gradient(90deg, #ff9900, #ff3300);border:none;padding:8px;border-radius:6px;font-weight:900;font-size:9px;color:#000;cursor:pointer;box-shadow:0 0 15px rgba(255,153,0,0.6);">ACTIVATE TIGER BOT</button>' +
+                                       '<input type="password" id="license-input" placeholder="Enter Password (112233)" style="width:100%;box-sizing:border-box;background:#140d05;border:1.5px solid #ff6600;padding:8px;border-radius:6px;color:#fff;font-size:9px;outline:none;margin-bottom:10px;text-align:center;" />' +
+                                       '<button id="verify-btn" style="width:100%;background:linear-gradient(90deg, #ff6600, #ff3300);border:none;padding:8px;border-radius:6px;font-weight:900;font-size:9px;color:#000;cursor:pointer;box-shadow:0 0 15px rgba(255,102,0,0.6);">ACTIVATE TIGER BOT</button>' +
                                        '<div style="font-size:7px;color:#ff3300;margin-top:6px;" id="err-msg"></div>';
                 panel.appendChild(licenseBox);
 
@@ -139,13 +139,13 @@ def bot_script():
                 
                 var b = d.createElement('div');
                 b.id = 'tiger_target_btn';
-                b.style.cssText = 'width:68px;height:68px;border-radius:50%;background:#080502;display:flex;align-items:center;justify-content:center;border:3px solid #ff9900;animation:tigerGlow 4s infinite linear, roarPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 20px rgba(255,153,0,0.7);';
+                b.style.cssText = 'width:68px;height:68px;border-radius:50%;background:radial-gradient(circle, #ff6600 0%, #1a0800 80%);display:flex;align-items:center;justify-content:center;border:3.5px solid #ff6600;animation:tigerGlow 3s infinite linear, roarPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 25px rgba(255,102,0,0.8);';
                 b.innerHTML = '<img src="https://i.postimg.cc/JzRR8g6M/IMG-20261102-WA0003.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
                 wrap.appendChild(b);
 
                 var lbl = d.createElement('div');
-                lbl.style.cssText = 'margin-top:4px;font-size:7px;font-weight:900;color:#ff9900;font-family:sans-serif;background:rgba(8,5,2,0.95);padding:2px 8px;border-radius:4px;border:1.5px solid #ff9900;white-space:nowrap;box-shadow:0 0 8px rgba(255,153,0,0.5);';
-                lbl.innerText = 'TIGER SNIPER';
+                lbl.style.cssText = 'margin-top:4px;font-size:7px;font-weight:900;color:#ff6600;font-family:sans-serif;background:rgba(8,5,2,0.95);padding:2px 8px;border-radius:4px;border:1.5px solid #ff6600;white-space:nowrap;box-shadow:0 0 8px rgba(255,102,0,0.5);';
+                lbl.innerText = '🦁 TIGER BOT';
                 wrap.appendChild(lbl);
 
                 d.body.appendChild(wrap);
@@ -171,32 +171,52 @@ def bot_script():
                 
                 wrap.onclick = function(){
                     if(hasMoved) return;
-                    openControlPanel();
+                    openControlPanel(wrap);
                 };
             }
 
-            function openControlPanel(){
+            function openControlPanel(wrap){
                 var existingPanel = d.getElementById('tiger_control_panel');
-                if(existingPanel) { existingPanel.remove(); return; }
+                if(existingPanel) { existingPanel.remove(); wrap.style.display = 'flex'; return; }
+
+                // Hide floating tiger bot when panel opens
+                wrap.style.display = 'none';
 
                 var panel = d.createElement('div');
                 panel.id = 'tiger_control_panel';
-                panel.style.cssText = 'position:fixed;bottom:150px;right:20px;width:290px;background:linear-gradient(135deg, #0d0905 0%, #1a1005 100%);border:3px solid #ff9900;border-radius:14px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 15px 40px rgba(0,0,0,0.9);overflow:hidden;animation:panelPop 0.25s ease-out forwards, tigerGlow 5s infinite linear;';
+                
+                // Calculate position relative to floating button so it opens right above/near it perfectly
+                var rect = wrap.getBoundingClientRect();
+                var panelBottom = window.innerHeight - rect.top + 10;
+                var panelRight = window.innerWidth - rect.right;
+                if(panelRight < 10) panelRight = 10;
+                if(panelBottom < 10) panelBottom = 10;
+
+                panel.style.cssText = 'position:fixed;bottom:' + panelBottom + 'px;right:' + panelRight + 'px;width:290px;background:linear-gradient(135deg, #0d0905 0%, #1a1005 100%);border:3px solid #ff6600;border-radius:14px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 15px 40px rgba(0,0,0,0.9);overflow:hidden;animation:panelPop 0.25s ease-out forwards, tigerGlow 5s infinite linear;';
 
                 var header = d.createElement('div');
                 header.style.cssText = 'background:#080502;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #332005;';
                 header.innerHTML = '<div style="display:flex;align-items:center;gap:8px;">' +
-                                   '<img src="https://i.postimg.cc/JzRR8g6M/IMG-20261102-WA0003.jpg" style="width:22px;height:22px;border-radius:50%;object-fit:cover;border:2px solid #ff9900;" />' +
-                                   '<span style="font-size:10px;font-weight:900;color:#ff9900;letter-spacing:0.5px;">TIGER CONTROL PANEL</span>' +
+                                   '<img src="https://i.postimg.cc/JzRR8g6M/IMG-20261102-WA0003.jpg" style="width:22px;height:22px;border-radius:50%;object-fit:cover;border:2px solid #ff6600;" />' +
+                                   '<span style="font-size:10px;font-weight:900;color:#ff6600;letter-spacing:0.5px;">TIGER CONTROL PANEL</span>' +
                                    '</div>' +
-                                   '<button id="close-ctrl" style="background:#1a1005;border:1px solid #ff9900;color:#ff9900;width:20px;height:20px;border-radius:4px;cursor:pointer;font-weight:bold;font-size:10px;">×</button>';
+                                   '<div style="display:flex;gap:5px;">' +
+                                   '<button id="minimize-ctrl" style="background:#1a1005;border:1px solid #ff6600;color:#ff6600;width:20px;height:20px;border-radius:4px;cursor:pointer;font-weight:bold;font-size:12px;" title="Minimize">_</button>' +
+                                   '<button id="close-ctrl" style="background:#1a1005;border:1px solid #ff6600;color:#ff6600;width:20px;height:20px;border-radius:4px;cursor:pointer;font-weight:bold;font-size:10px;" title="Close">×</button>' +
+                                   '</div>';
                 panel.appendChild(header);
-                header.querySelector('#close-ctrl').onclick = function(){ panel.remove(); };
+
+                var closePanelFunc = function(){
+                    panel.remove();
+                    wrap.style.display = 'flex';
+                };
+
+                header.querySelector('#minimize-ctrl').onclick = closePanelFunc;
+                header.querySelector('#close-ctrl').onclick = closePanelFunc;
 
                 var body = d.createElement('div');
                 body.style.cssText = 'padding:12px;display:flex;flex-direction:column;gap:10px;';
                 
-                // Market Pair Selection with Flags
                 var markets = [
                     { name: "EURUSD_otc", label: "EUR/USD OTC", flags: ["https://flagcdn.com/w40/eu.png", "https://flagcdn.com/w40/us.png"] },
                     { name: "GBPUSD_otc", label: "GBP/USD OTC", flags: ["https://flagcdn.com/w40/gb.png", "https://flagcdn.com/w40/us.png"] },
@@ -215,7 +235,7 @@ def bot_script():
 
                 var marketSelect = d.createElement('select');
                 marketSelect.id = 'tiger_market_select';
-                marketSelect.style.cssText = 'width:100%;background:#140d05;border:1.5px solid #ff9900;color:#fff;padding:6px;border-radius:5px;font-size:8px;outline:none;cursor:pointer;';
+                marketSelect.style.cssText = 'width:100%;background:#140d05;border:1.5px solid #ff6600;color:#fff;padding:6px;border-radius:5px;font-size:8px;outline:none;cursor:pointer;';
                 markets.forEach(function(m){
                     var opt = d.createElement('option');
                     opt.value = m.name;
@@ -224,7 +244,6 @@ def bot_script():
                 });
                 body.appendChild(marketSelect);
 
-                // Timeframe Selection
                 var tfLabel = d.createElement('div');
                 tfLabel.style.cssText = 'font-size:7px;color:#ffcc66;font-weight:bold;margin-top:2px;';
                 tfLabel.innerText = 'SELECT TIME FRAME:';
@@ -236,23 +255,22 @@ def bot_script():
                     var tfBtn = d.createElement('button');
                     tfBtn.className = 'tiger_tf_btn';
                     tfBtn.innerText = tf;
-                    tfBtn.style.cssText = 'flex:1;background:' + (idx===3?'#ff9900':'#140d05') + ';border:1.5px solid #ff9900;color:' + (idx===3?'#000':'#fff') + ';padding:5px 0;border-radius:4px;font-size:7px;font-weight:bold;cursor:pointer;';
+                    tfBtn.style.cssText = 'flex:1;background:' + (idx===3?'#ff6600':'#140d05') + ';border:1.5px solid #ff6600;color:' + (idx===3?'#000':'#fff') + ';padding:5px 0;border-radius:4px;font-size:7px;font-weight:bold;cursor:pointer;';
                     tfBtn.onclick = function(){
                         d.querySelectorAll('.tiger_tf_btn').forEach(function(b){ b.style.background='#140d05'; b.style.color='#fff'; });
-                        tfBtn.style.background = '#ff9900';
+                        tfBtn.style.background = '#ff6600';
                         tfBtn.style.color = '#000';
                     };
                     tfContainer.appendChild(tfBtn);
                 });
                 body.appendChild(tfContainer);
 
-                // Get Signal Button
                 var getSignalBtn = d.createElement('button');
-                getSignalBtn.style.cssText = 'width:100%;margin-top:6px;background:linear-gradient(90deg, #ff9900, #ff3300);border:none;padding:9px;border-radius:6px;font-weight:900;font-size:10px;color:#000;cursor:pointer;box-shadow:0 0 15px rgba(255,153,0,0.7);letter-spacing:1px;';
+                getSignalBtn.style.cssText = 'width:100%;margin-top:6px;background:linear-gradient(90deg, #ff6600, #ff3300);border:none;padding:9px;border-radius:6px;font-weight:900;font-size:10px;color:#000;cursor:pointer;box-shadow:0 0 15px rgba(255,102,0,0.7);letter-spacing:1px;';
                 getSignalBtn.innerText = '🔥 GET TIGER SIGNAL 🔥';
                 
                 getSignalBtn.onclick = function(){
-                    runTigerScanAndTrade();
+                    runTigerScanAndTrade(wrap);
                 };
                 body.appendChild(getSignalBtn);
 
@@ -320,7 +338,7 @@ def bot_script():
 
             var isScanningActive = false;
 
-            function runTigerScanAndTrade(){
+            function runTigerScanAndTrade(wrap){
                 if(isScanningActive) return;
                 isScanningActive = true;
 
@@ -329,7 +347,7 @@ def bot_script():
                 overlay.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:2147483646;overflow:hidden;font-family:sans-serif;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);';
                 
                 var scanMsg = d.createElement('div');
-                scanMsg.style.cssText = 'background:linear-gradient(135deg, #0d0905 0%, #1a1005 100%);border:3px solid #ff9900;color:#ff9900;padding:15px 30px;border-radius:16px;font-weight:900;font-size:16px;box-shadow:0 0 30px rgba(255,153,0,0.8);text-align:center;animation:tigerGlow 2s infinite linear;';
+                scanMsg.style.cssText = 'background:linear-gradient(135deg, #0d0905 0%, #1a1005 100%);border:3px solid #ff6600;color:#ff6600;padding:15px 30px;border-radius:16px;font-weight:900;font-size:16px;box-shadow:0 0 30px rgba(255,102,0,0.8);text-align:center;animation:tigerGlow 2s infinite linear;';
                 scanMsg.innerHTML = '<div style="font-size:11px;color:#cc8833;margin-bottom:5px;">MAJESTIC TIGER SCANNING...</div><div style="font-size:18px;">🦁 ANALYZING MARKET 🦁</div>';
                 overlay.appendChild(scanMsg);
                 d.body.appendChild(overlay);
@@ -354,10 +372,13 @@ def bot_script():
                                             '<div style="font-size:36px;font-weight:950;color:' + col + ';text-shadow:0 0 15px ' + col + ';">' + arrowSymbol + ' ' + sigTitle + '</div>' +
                                             '<div style="font-size:10px;color:#ffcc66;margin-top:4px;">Confidence: ' + (j.confidence || 94) + '%</div>';
 
-                        // Auto dismiss after 4 seconds
+                        // Auto dismiss after 4 seconds and restore floating button
                         setTimeout(function(){
                             overlay.remove();
                             isScanningActive = false;
+                            var panel = d.getElementById('tiger_control_panel');
+                            if(panel) panel.remove();
+                            if(wrap) wrap.style.display = 'flex';
                         }, 4000);
                     });
                 }, 3000);
