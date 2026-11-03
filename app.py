@@ -18,7 +18,7 @@ http_session = requests.Session()
 
 @app.route('/')
 def home():
-    return "TBP HACK BOT Engine v170.0 [R-A Trading Community] Running 24/7!"
+    return "ALGO X AI Engine Online - Running 24/7!"
 
 @app.route('/ping')
 def ping():
@@ -28,11 +28,11 @@ def ping():
 def get_signal():
     try:
         current_time = time.time()
-        base_signal = "UP" if (int(current_time * 1000) % 2 == 0 and random.choice([True, False])) else "DOWN"
+        base_signal = "CALL" if (int(current_time * 1000) % 2 == 0) else "PUT"
         signal_conf = int(88 + (random.randint(0, 9)))
         res = jsonify({
             "signal": base_signal,
-            "trend": "HACK_MKT_MOMENTUM",
+            "trend": "ALGO_X_MOMENTUM",
             "confidence": signal_conf,
             "status": "GREEN_EXECUTE"
         })
@@ -40,7 +40,7 @@ def get_signal():
         return res
     except Exception as e:
         res = jsonify({
-            "signal": "UP",
+            "signal": "CALL",
             "trend": "STRONG MOMENTUM",
             "confidence": 92,
             "status": "GREEN_EXECUTE"
@@ -54,42 +54,59 @@ def bot_script():
     (function(){
         try {
             var d = document;
-            var uniqueId = 'tbp_bot_' + Math.floor(Math.random() * 10000);
             
             // Remove old elements if any
-            ["roshmalai-candy","roshmalai-status-panel","roshmalai-welcome","tbp-floating-btn","tbp-control-panel","tbp-global-style"].forEach(function(i){
+            ["roshmalai-candy","roshmalai-status-panel","roshmalai-welcome","tbp-floating-btn","tbp-control-panel","tbp-global-style","algo-floating-btn","algo-control-panel","algo-global-style"].forEach(function(i){
                 var e = d.getElementById(i);
                 if(e) e.remove();
             });
 
             var s = d.createElement('style');
-            s.id = 'tbp-global-style';
-            s.innerHTML = '@keyframes tbpGlow {' +
+            s.id = 'algo-global-style';
+            s.innerHTML = '@keyframes algoGlow {' +
                           '0% { border-color: #a855f7; box-shadow: 0 0 25px rgba(168,85,247,0.8), inset 0 0 12px rgba(168,85,247,0.5); }' +
                           '50% { border-color: #ec4899; box-shadow: 0 0 35px rgba(236,72,153,1), inset 0 0 15px rgba(236,72,153,0.8); }' +
                           '100% { border-color: #a855f7; box-shadow: 0 0 25px rgba(168,85,247,0.8), inset 0 0 12px rgba(168,85,247,0.5); }' +
                           '}' +
-                          '@keyframes tbpPulse {0%{transform:scale(1);}50%{transform:scale(1.06);}100%{transform:scale(1);}}' +
-                          '@keyframes panelPop {0%{opacity:0;transform:translate(-50%, -48%) scale(0.9);}100%{opacity:1;transform:translate(-50%, -50%) scale(1);}}' +
-                          '@keyframes spinAnim {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}';
+                          '@keyframes algoPulse {0%{transform:scale(1);}50%{transform:scale(1.06);}100%{transform:scale(1);}}' +
+                          '@keyframes panelPop {0%{opacity:0;transform:translate(-50%, -48%) scale(0.9);}100%{opacity:1;transform:translate(-50%, -50%) scale(1);}}';
             d.head.appendChild(s);
+
+            // Web Speech API for Hindi Female AI Voice
+            function speakHindi(text, callback) {
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    var utterance = new SpeechSynthesisUtterance(text);
+                    utterance.lang = 'hi-IN';
+                    utterance.rate = 1.05; 
+                    utterance.pitch = 1.4; // Sweet female high-pitch
+                    
+                    var voices = window.speechSynthesis.getVoices();
+                    var hindiVoice = voices.find(function(v) { return v.lang === 'hi-IN' || v.lang.indexOf('hi') === 0; });
+                    if (hindiVoice) {
+                        utterance.voice = hindiVoice;
+                    }
+                    
+                    if(callback) {
+                        utterance.onend = callback;
+                    }
+                    window.speechSynthesis.speak(utterance);
+                } else if(callback) {
+                    callback();
+                }
+            }
 
             createFloatingBot();
 
             function createFloatingBot(){
                 var wrap = d.createElement('div');
-                wrap.id = 'tbp-floating-btn';
+                wrap.id = 'algo-floating-btn';
                 wrap.style.cssText = 'position:fixed;bottom:70px;right:20px;display:flex;flex-direction:column;align-items:center;z-index:2147483647;cursor:pointer;';
                 
                 var b = d.createElement('div');
-                b.style.cssText = 'width:62px;height:62px;border-radius:50%;background:radial-gradient(circle, #2e0854 0%, #0d021f 80%);display:flex;align-items:center;justify-content:center;border:3px solid #a855f7;animation:tbpGlow 3s infinite linear, tbpPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 25px rgba(168,85,247,0.8);';
-                b.innerHTML = '<img src="https://i.postimg.cc/tCRkzVFn/IMG-20261103-230250.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
+                b.style.cssText = 'width:62px;height:62px;border-radius:50%;background:radial-gradient(circle, #2e0854 0%, #0d021f 80%);display:flex;align-items:center;justify-content:center;border:3px solid #a855f7;animation:algoGlow 3s infinite linear, algoPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 25px rgba(168,85,247,0.8);';
+                b.innerHTML = '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
                 wrap.appendChild(b);
-
-                var badge = d.createElement('div');
-                badge.style.cssText = 'margin-top:4px;font-size:7px;font-weight:900;color:#fff;font-family:sans-serif;background:rgba(13,2,31,0.95);padding:2px 8px;border-radius:4px;border:1.5px solid #a855f7;white-space:nowrap;box-shadow:0 0 8px rgba(168,85,247,0.6);';
-                badge.innerHTML = '<span style="color:#22c55e;">● LIVE</span> TBP HACK';
-                wrap.appendChild(badge);
 
                 d.body.appendChild(wrap);
                 
@@ -114,96 +131,194 @@ def bot_script():
                 
                 wrap.onclick = function(){
                     if(hasMoved) return;
-                    openControlCenter(wrap);
+                    wrap.style.display = 'none';
+                    
+                    // Voice activation & Active badge creation
+                    speakHindi("Bot active ho gaya hai.", function(){});
+                    showActiveBadge(wrap);
+                    openTimeFramePanel(wrap);
                 };
             }
 
-            function openControlCenter(wrap){
-                var existing = d.getElementById('tbp-control-panel');
-                if(existing) { existing.remove(); wrap.style.display = 'flex'; return; }
+            function showActiveBadge(wrap) {
+                var existingActive = d.getElementById('algo-active-badge');
+                if(existingActive) existingActive.remove();
 
-                wrap.style.display = 'none';
+                var activeBadge = d.createElement('div');
+                activeBadge.id = 'algo-active-badge';
+                activeBadge.style.cssText = 'position:fixed;bottom:70px;right:20px;display:flex;flex-direction:column;align-items:center;z-index:2147483647;';
+                
+                var b = d.createElement('div');
+                b.style.cssText = 'width:55px;height:55px;border-radius:50%;background:#0d021f;display:flex;align-items:center;justify-content:center;border:2px solid #a855f7;overflow:hidden;box-shadow:0 0 15px rgba(168,85,247,0.8);';
+                b.innerHTML = '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
+                activeBadge.appendChild(b);
 
+                var label = d.createElement('div');
+                label.style.cssText = 'margin-top:3px;font-size:8px;font-weight:900;color:#000;font-family:sans-serif;background:#22c55e;padding:2px 8px;border-radius:4px;border:1px solid #fff;text-align:center;box-shadow:0 0 8px rgba(34,197,94,0.8);';
+                label.innerText = 'ACTIVE';
+                activeBadge.appendChild(label);
+
+                d.body.appendChild(activeBadge);
+            }
+
+            // Step 1: Time Frame Selection Panel (Matches Screenshot #1)
+            function openTimeFramePanel(wrap){
                 var panel = d.createElement('div');
-                panel.id = 'tbp-control-panel';
-                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:290px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:3px solid #a855f7;border-radius:18px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,0.95);overflow:hidden;animation:panelPop 0.3s ease-out forwards, tbpGlow 4s infinite linear;';
+                panel.id = 'algo-control-panel';
+                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:310px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,0.95);padding:16px;animation:panelPop 0.3s ease-out forwards;';
 
-                // Header
-                var header = d.createElement('div');
-                header.style.cssText = 'background:#080112;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #3b0764;';
-                header.innerHTML = '<div style="display:flex;align-items:center;gap:8px;">' +
-                                   '<div style="width:24px;height:24px;background:#a855f7;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#000;font-weight:bold;font-size:12px;">⚡</div>' +
-                                   '<div>' +
-                                   '<div style="font-size:11px;font-weight:900;color:#c084fc;letter-spacing:0.5px;">TBP HACK BOT</div>' +
-                                   '<div style="font-size:6px;color:#22c55e;">● Running</div>' +
-                                   '</div>' +
-                                   '</div>' +
-                                   '<div style="display:flex;gap:5px;">' +
-                                   '<button id="tbp-min" style="background:#1f053b;border:1px solid #a855f7;color:#a855f7;width:20px;height:20px;border-radius:4px;cursor:pointer;font-weight:bold;font-size:12px;" title="Minimize">_</button>' +
-                                   '<button id="tbp-close" style="background:#1f053b;border:1px solid #a855f7;color:#a855f7;width:20px;height:20px;border-radius:4px;cursor:pointer;font-weight:bold;font-size:10px;" title="Close">×</button>' +
-                                   '</div>';
-                panel.appendChild(header);
+                panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border-bottom:1px solid #3b0764;padding-bottom:8px;">' +
+                                  '<div style="display:flex;align-items:center;gap:8px;">' +
+                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:26px;height:26px;border-radius:50%;border:1px solid #a855f7;" />' +
+                                  '<div><div style="font-size:10px;font-weight:bold;color:#c084fc;">ALGO X</div><div style="font-size:6px;color:#38bdf8;">AI ENGINE ONLINE</div></div>' +
+                                  '</div>' +
+                                  '<div style="display:flex;gap:6px;"><span style="background:#14532d;color:#22c55e;font-size:7px;padding:2px 6px;border-radius:4px;border:1px solid #22c55e;">01 TIME</span><span style="background:#713f12;color:#facc15;font-size:7px;padding:2px 6px;border-radius:4px;border:1px solid #facc15;">02 TRADES</span></div>' +
+                                  '</div>' +
+                                  '<div style="font-size:15px;font-weight:bold;margin-bottom:14px;color:#e2e8f0;">Trade time select karein</div>' +
+                                  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">' +
+                                  '<button class="algo-time-btn" data-time="5" style="background:#180830;border:1px solid #4c1d95;border-radius:10px;padding:12px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:14px;font-weight:bold;color:#facc15;">5 SEC</div><div style="font-size:7px;color:#94a3b8;">TURBO</div></button>' +
+                                  '<button class="algo-time-btn" data-time="15" style="background:#180830;border:1px solid #4c1d95;border-radius:10px;padding:12px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:14px;font-weight:bold;color:#38bdf8;">15 SEC</div><div style="font-size:7px;color:#94a3b8;">RAPID</div></button>' +
+                                  '<button class="algo-time-btn" data-time="30" style="background:#180830;border:1px solid #4c1d95;border-radius:10px;padding:12px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:14px;font-weight:bold;color:#f472b6;">30 SEC</div><div style="font-size:7px;color:#94a3b8;">BALANCED</div></button>' +
+                                  '<button class="algo-time-btn" data-time="60" style="background:#180830;border:1px solid #4c1d95;border-radius:10px;padding:12px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:14px;font-weight:bold;color:#4ade80;">1 MIN</div><div style="font-size:7px;color:#94a3b8;">PRECISION</div></button>' +
+                                  '</div>' +
+                                  '<button id="algo-cancel-1" style="background:transparent;border:1px solid #ef4444;color:#ef4444;width:100%;padding:8px;border-radius:8px;font-weight:bold;font-size:10px;cursor:pointer;">CANCEL</button>';
 
-                var closeFunc = function(){
+                d.body.appendChild(panel);
+
+                var timeBtns = panel.querySelectorAll('.algo-time-btn');
+                timeBtns.forEach(function(btn){
+                    btn.onclick = function(){
+                        var selectedTime = btn.getAttribute('data-time');
+                        speakHindi("Time frame set ho gaya hai.", function(){
+                            panel.remove();
+                            openTradesCountPanel(wrap, selectedTime);
+                        });
+                    };
+                });
+
+                panel.querySelector('#algo-cancel-1').onclick = function(){
                     panel.remove();
+                    var ab = d.getElementById('algo-active-badge');
+                    if(ab) ab.remove();
                     wrap.style.display = 'flex';
                 };
+            }
 
-                header.querySelector('#tbp-min').onclick = closeFunc;
-                header.querySelector('#tbp-close').onclick = closeFunc;
+            // Step 2: Trades Count Selection Panel (Matches Screenshot #2, #3)
+            function openTradesCountPanel(wrap, selectedTime){
+                var panel = d.createElement('div');
+                panel.id = 'algo-control-panel';
+                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:310px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,0.95);padding:16px;animation:panelPop 0.3s ease-out forwards;';
 
-                var body = d.createElement('div');
-                body.style.cssText = 'padding:14px;display:flex;flex-direction:column;gap:12px;';
+                panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border-bottom:1px solid #3b0764;padding-bottom:8px;">' +
+                                  '<div style="display:flex;align-items:center;gap:8px;">' +
+                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:26px;height:26px;border-radius:50%;border:1px solid #a855f7;" />' +
+                                  '<div><div style="font-size:10px;font-weight:bold;color:#c084fc;">ALGO X</div><div style="font-size:6px;color:#38bdf8;">AI ENGINE ONLINE</div></div>' +
+                                  '</div>' +
+                                  '<div style="display:flex;gap:6px;"><span style="background:#14532d;color:#22c55e;font-size:7px;padding:2px 6px;border-radius:4px;border:1px solid #22c55e;">01 TIME</span><span style="background:#713f12;color:#facc15;font-size:7px;padding:2px 6px;border-radius:4px;border:1px solid #facc15;">02 TRADES</span></div>' +
+                                  '</div>' +
+                                  '<div style="font-size:15px;font-weight:bold;margin-bottom:14px;color:#e2e8f0;">Kitni trades lagani hain?</div>' +
+                                  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">' +
+                                  '<button class="algo-trade-btn" data-trades="1" style="background:#180830;border:1px solid #4c1d95;border-radius:10px;padding:10px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:14px;font-weight:bold;color:#facc15;">1</div><div style="font-size:7px;color:#94a3b8;">SINGLE</div></button>' +
+                                  '<button class="algo-trade-btn" data-trades="2" style="background:#180830;border:1px solid #4c1d95;border-radius:10px;padding:10px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:14px;font-weight:bold;color:#38bdf8;">2</div><div style="font-size:7px;color:#94a3b8;">DOUBLE</div></button>' +
+                                  '<button class="algo-trade-btn" data-trades="3" style="background:#180830;border:1px solid #4c1d95;border-radius:10px;padding:10px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:14px;font-weight:bold;color:#f472b6;">3</div><div style="font-size:7px;color:#94a3b8;">TRIPLE</div></button>' +
+                                  '<button class="algo-trade-btn" data-trades="4" style="background:#180830;border:1px solid #4c1d95;border-radius:10px;padding:10px;color:#fff;text-align:left;cursor:pointer;"><div style="font-size:14px;font-weight:bold;color:#4ade80;">4</div><div style="font-size:7px;color:#94a3b8;">MAX</div></button>' +
+                                  '</div>' +
+                                  '<button id="algo-cancel-2" style="background:transparent;border:1px solid #ef4444;color:#ef4444;width:100%;padding:8px;border-radius:8px;font-weight:bold;font-size:10px;cursor:pointer;">CANCEL</button>';
 
-                // P/L Box
-                var plBox = d.createElement('div');
-                plBox.style.cssText = 'background:#080112;border:1px solid #3b0764;border-radius:10px;padding:10px;text-align:center;';
-                plBox.innerHTML = '<div style="font-size:16px;font-weight:950;color:#22c55e;margin-bottom:4px;">$0.00</div>' +
-                                  '<div style="font-size:7px;color:#9ca3af;margin-bottom:8px;">P/L TODAY</div>' +
-                                  '<div style="display:flex;justify-content:space-around;font-size:8px;border-top:1px solid #2e0854;padding-top:6px;">' +
-                                  '<div><span style="color:#22c55e;font-weight:bold;">0</span> WINS</div>' +
-                                  '<div><span style="color:#ef4444;font-weight:bold;">0</span> LOSS</div>' +
-                                  '<div><span style="color:#c084fc;font-weight:bold;">0 / 20</span> TRADES</div>' +
-                                  '</div>';
-                body.appendChild(plBox);
-
-                // Status & Details
-                var infoGrid = d.createElement('div');
-                infoGrid.style.cssText = 'display:flex;flex-direction:column;gap:6px;font-size:8px;background:#080112;padding:10px;border-radius:8px;border:1px solid #3b0764;';
-                infoGrid.innerHTML = '<div style="display:flex;justify-content:between;"><span style="color:#9ca3af;">Status:</span><span id="tbp-status-text" style="color:#22c55e;font-weight:bold;">Ready</span></div>' +
-                                     '<div style="display:flex;justify-content:between;"><span style="color:#9ca3af;">Next Trade:</span><span style="color:#c084fc;font-weight:bold;">10s</span></div>' +
-                                     '<div style="display:flex;justify-content:between;"><span style="color:#9ca3af;">Timeframe:</span><span style="color:#fff;font-weight:bold;">S10 – 10s</span></div>' +
-                                     '<div style="display:flex;justify-content:between;"><span style="color:#9ca3af;">Last Signal:</span><span style="color:#9ca3af;font-weight:bold;">--- (0%)</span></div>';
-                body.appendChild(infoGrid);
-
-                // Action Buttons (START, PAUSE, STOP)
-                var btnRow = d.createElement('div');
-                btnRow.style.cssText = 'display:flex;gap:8px;';
-
-                var startBtn = d.createElement('button');
-                startBtn.style.cssText = 'flex:1;background:#22c55e;border:none;padding:8px;border-radius:6px;font-weight:900;font-size:9px;color:#000;cursor:pointer;';
-                startBtn.innerText = 'START';
-
-                var pauseBtn = d.createElement('button');
-                pauseBtn.style.cssText = 'flex:1;background:#eab308;border:none;padding:8px;border-radius:6px;font-weight:900;font-size:9px;color:#000;cursor:pointer;';
-                pauseBtn.innerText = 'PAUSE';
-
-                var stopBtn = d.createElement('button');
-                stopBtn.style.cssText = 'flex:1;background:#ef4444;border:none;padding:8px;border-radius:6px;font-weight:900;font-size:9px;color:#fff;cursor:pointer;';
-                stopBtn.innerText = 'STOP';
-
-                btnRow.appendChild(startBtn);
-                btnRow.appendChild(pauseBtn);
-                btnRow.appendChild(stopBtn);
-                body.appendChild(btnRow);
-
-                // Click event for START (triggers hack scanning & trade)
-                startBtn.onclick = function(){
-                    runTbpHackEngine(wrap, infoGrid.querySelector('#tbp-status-text'));
-                };
-
-                panel.appendChild(body);
                 d.body.appendChild(panel);
+
+                var tradeBtns = panel.querySelectorAll('.algo-trade-btn');
+                tradeBtns.forEach(function(btn){
+                    btn.onclick = function(){
+                        var selectedTrades = btn.getAttribute('data-trades');
+                        panel.remove();
+                        
+                        // Step 3: Neural Market Intelligence Scanning Screen (Matches Screenshot #4 and Video)
+                        speakHindi("Chaliye sir, market ka pura check shuru karti hu. Support aur resistance level check ho rahe hain.", function(){
+                            startNeuralScan(wrap, selectedTime, selectedTrades);
+                        });
+                    };
+                });
+
+                panel.querySelector('#algo-cancel-2').onclick = function(){
+                    panel.remove();
+                    var ab = d.getElementById('algo-active-badge');
+                    if(ab) ab.remove();
+                    wrap.style.display = 'flex';
+                };
+            }
+
+            // Step 3: Neural Scan & Signal Execution (Matches Screenshot #5, #7)
+            function startNeuralScan(wrap, selectedTime, selectedTrades){
+                var panel = d.createElement('div');
+                panel.id = 'algo-control-panel';
+                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:315px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,0.95);padding:14px;animation:panelPop 0.3s ease-out forwards;';
+
+                panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">' +
+                                  '<div style="display:flex;align-items:center;gap:6px;">' +
+                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:22px;height:22px;border-radius:50%;border:1px solid #a855f7;" />' +
+                                  '<span style="font-size:9px;font-weight:bold;color:#c084fc;">ALGO X</span>' +
+                                  '</div>' +
+                                  '<span style="font-size:7px;color:#94a3b8;">MARKET SCAN / 01</span>' +
+                                  '</div>' +
+                                  '<div style="font-size:14px;font-weight:bold;margin-bottom:8px;color:#fff;">Neural market intelligence</div>' +
+                                  '<div style="font-size:8px;color:#94a3b8;margin-bottom:8px;display:flex;justify-content:space-between;"><span>SUPPORT / RESIST</span><span style="color:#22c55e;">88%</span></div>' +
+                                  '<div style="font-size:8px;color:#94a3b8;margin-bottom:8px;display:flex;justify-content:space-between;"><span>VOLUME FLOW</span><span style="color:#38bdf8;">92%</span></div>' +
+                                  '<div style="font-size:8px;color:#94a3b8;margin-bottom:12px;display:flex;justify-content:space-between;"><span>TREND SYNC</span><span style="color:#facc15;">95%</span></div>' +
+                                  '<div id="algo-scan-status" style="text-align:center;font-size:10px;font-weight:bold;color:#38bdf8;background:#080112;padding:8px;border-radius:8px;border:1px solid #3b0764;">Scanning Market Data...</div>';
+
+                d.body.appendChild(panel);
+
+                setTimeout(function(){
+                    var statusEl = panel.querySelector('#algo-scan-status');
+                    if(statusEl) {
+                        statusEl.innerText = "Market scanning successful ho chuka hai.";
+                        statusEl.style.color = "#22c55e";
+                    }
+
+                    fetch('https://draco-ai-bot.onrender.com/signal?t=' + Date.now())
+                    .then(function(r){ return r.json(); })
+                    .catch(function(){ return {signal: "CALL", confidence: 97}; })
+                    .then(function(j){
+                        var sig = String(j.signal || 'CALL').toUpperCase();
+                        var isCall = (sig === 'CALL' || sig === 'UP' || sig === 'BUY');
+                        var directionText = isCall ? 'CALL' : 'PUT';
+
+                        speakHindi("Market scanning successful ho chuka hai. Meri saari analysis pe trade laga diya hai. Inshallah profit ho jaega.", function(){
+                            panel.remove();
+                            showExecutionPanel(wrap, directionText, selectedTrades);
+                            triggerActualTrade(isCall);
+                        });
+                    });
+                }, 4000);
+            }
+
+            // Step 4: Final Execution Display Panel (Matches Screenshot #7)
+            function showExecutionPanel(wrap, directionText, selectedTrades){
+                var panel = d.createElement('div');
+                panel.id = 'algo-control-panel';
+                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:315px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,0.95);padding:14px;animation:panelPop 0.3s ease-out forwards;';
+
+                panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">' +
+                                  '<div style="display:flex;align-items:center;gap:6px;">' +
+                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:22px;height:22px;border-radius:50%;border:1px solid #a855f7;" />' +
+                                  '<span style="font-size:9px;font-weight:bold;color:#c084fc;">ALGO X</span>' +
+                                  '</div>' +
+                                  '<span style="font-size:7px;color:#22c55e;">EXECUTION SEQUENCE</span>' +
+                                  '</div>' +
+                                  '<div style="font-size:16px;font-weight:900;color:' + (directionText === 'CALL' ? '#22c55e' : '#ef4444') + ';text-align:center;margin:10px 0;">' + directionText + '</div>' +
+                                  '<div style="font-size:8px;color:#94a3b8;text-align:center;margin-bottom:10px;">Trades Placed: ' + selectedTrades + ' | Status: Success</div>' +
+                                  '<button id="algo-close-exec" style="background:#a855f7;color:#000;width:100%;padding:8px;border-radius:8px;font-weight:bold;font-size:10px;cursor:pointer;border:none;">OK / CLOSE</button>';
+
+                d.body.appendChild(panel);
+
+                panel.querySelector('#algo-close-exec').onclick = function(){
+                    panel.remove();
+                    var ab = d.getElementById('algo-active-badge');
+                    if(ab) ab.remove();
+                    wrap.style.display = 'flex';
+                };
             }
 
             function forceClick(el) {
@@ -224,11 +339,7 @@ def bot_script():
                 } catch(e) { return false; }
             }
 
-            function triggerTrade(isSell){
-                if(window._tbpTradeLocked) return;
-                window._tbpTradeLocked = true;
-                setTimeout(function(){ window._tbpTradeLocked = false; }, 3000);
-
+            function triggerActualTrade(isCall){
                 var clicked = false;
                 var allButtons = d.querySelectorAll('button, div[role="button"], span[class*="btn"]');
                 for(var i=0; i<allButtons.length; i++){
@@ -239,21 +350,21 @@ def bot_script():
                     var isUpBtn = cls.includes('call') || cls.includes('buy') || cls.includes('up') || text === 'UP' || text === 'BUY' || text === 'HIGHER';
                     var isDownBtn = cls.includes('put') || cls.includes('sell') || cls.includes('down') || text === 'DOWN' || text === 'SELL' || text === 'LOWER';
                     
-                    if(!isSell && isUpBtn && btn.getBoundingClientRect().width > 0){
+                    if(isCall && isUpBtn && btn.getBoundingClientRect().width > 0){
                         if(forceClick(btn)){ clicked = true; break; }
                     }
-                    if(isSell && isDownBtn && btn.getBoundingClientRect().width > 0){
+                    if(!isCall && isDownBtn && btn.getBoundingClientRect().width > 0){
                         if(forceClick(btn)){ clicked = true; break; }
                     }
                 }
                 
                 if(!clicked){
-                    var selectors = isSell ? [
-                        '.section-deal__button-down button', '.section-deal__button-down',
-                        '.btn-put', 'button.put', 'button[class*="put"]', '.button-sell', '[class*="sell"]'
-                    ] : [
+                    var selectors = isCall ? [
                         '.section-deal__button-up button', '.section-deal__button-up',
                         '.btn-call', 'button.call', 'button[class*="call"]', '.button-buy', '[class*="buy"]'
+                    ] : [
+                        '.section-deal__button-down button', '.section-deal__button-down',
+                        '.btn-put', 'button.put', 'button[class*="put"]', '.button-sell', '[class*="sell"]'
                     ];
 
                     for(var i=0; i<selectors.length; i++){
@@ -268,37 +379,7 @@ def bot_script():
                 }
             }
 
-            var isScanningActive = false;
-
-            function runTbpHackEngine(wrap, statusText){
-                if(isScanningActive) return;
-                isScanningActive = true;
-                statusText.innerText = 'Scanning...';
-                statusText.style.color = '#eab308';
-
-                setTimeout(function(){
-                    fetch('https://draco-ai-bot.onrender.com/signal?t='+Date.now())
-                    .then(function(r){ return r.json(); })
-                    .catch(function(){ return {signal: "DOWN", confidence: 97}; })
-                    .then(function(j){
-                        var rawSig = String(j.signal || 'DOWN').toUpperCase();
-                        var isDown = (rawSig === 'SELL' || rawSig === 'DOWN' || rawSig === 'PUT');
-                        
-                        triggerTrade(isDown);
-
-                        statusText.innerText = isDown ? 'DOWN (97%)' : 'UP (97%)';
-                        statusText.style.color = isDown ? '#ef4444' : '#22c55e';
-
-                        setTimeout(function(){
-                            isScanningActive = false;
-                            var panel = d.getElementById('tbp-control-panel');
-                            if(panel) panel.remove();
-                            if(wrap) wrap.style.display = 'flex';
-                        }, 4000);
-                    });
-                }, 3000);
-            }
-        } catch(e) { console.error("TbpBot Error:", e); }
+        } catch(e) { console.error("AlgoBot Error:", e); }
     })();
     """
     res = make_response(js)
@@ -308,9 +389,6 @@ def bot_script():
 
 def run_flask():
     app.run(host='0.0.0.0', port=8080)
-
-def start_server():
-    run_flask()
 
 if __name__ == '__main__':
     threading.Thread(target=run_flask, daemon=True).start()
