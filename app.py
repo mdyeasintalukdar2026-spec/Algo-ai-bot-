@@ -59,27 +59,23 @@ def bot_script():
 
             var s = d.createElement('style');
             s.id = 'algo-global-style';
-            s.innerHTML = '@keyframes electricFire {' +
-                          '0% { box-shadow: 0 0 15px #38bdf8, 0 0 30px #facc15, inset 0 0 10px #ec4899; border-color: #38bdf8; }' +
-                          '20% { box-shadow: 0 0 25px #ec4899, 0 0 40px #4ade80, inset 0 0 15px #facc15; border-color: #ec4899; }' +
-                          '40% { box-shadow: 0 0 20px #facc15, 0 0 35px #38bdf8, inset 0 0 10px #4ade80; border-color: #facc15; }' +
-                          '60% { box-shadow: 0 0 30px #4ade80, 0 0 45px #ec4899, inset 0 0 15px #38bdf8; border-color: #4ade80; }' +
-                          '80% { box-shadow: 0 0 25px #c084fc, 0 0 35px #f472b6, inset 0 0 10px #facc15; border-color: #c084fc; }' +
-                          '100% { box-shadow: 0 0 15px #38bdf8, 0 0 30px #facc15, inset 0 0 10px #ec4899; border-color: #38bdf8; }' +
+            s.innerHTML = '@keyframes wheelElectric {' +
+                          '0% { transform: rotate(0deg); box-shadow: 0 0 25px rgba(255,255,255,0.9), 0 0 50px #38bdf8; border-color: #38bdf8; }' +
+                          '33% { transform: rotate(120deg); box-shadow: 0 0 35px rgba(255,255,255,1), 0 0 60px #ec4899; border-color: #ec4899; }' +
+                          '66% { transform: rotate(240deg); box-shadow: 0 0 30px rgba(255,255,255,0.9), 0 0 55px #facc15; border-color: #facc15; }' +
+                          '100% { transform: rotate(360deg); box-shadow: 0 0 25px rgba(255,255,255,0.9), 0 0 50px #38bdf8; border-color: #38bdf8; }' +
                           '}' +
-                          '@keyframes fastColorCycle {' +
-                          '0% { border-color: #7928CA; box-shadow: 0 0 8px rgba(121,40,202,0.7); }' +
-                          '14% { border-color: #0070F3; box-shadow: 0 0 8px rgba(0,112,243,0.7); }' +
-                          '28% { border-color: #52057B; box-shadow: 0 0 8px rgba(82,5,123,0.7); }' +
-                          '42% { border-color: #E11D48; box-shadow: 0 0 8px rgba(225,29,72,0.7); }' +
-                          '57% { border-color: #10B981; box-shadow: 0 0 8px rgba(16,185,129,0.7); }' +
-                          '71% { border-color: #F59E0B; box-shadow: 0 0 8px rgba(245,158,11,0.7); }' +
-                          '85% { border-color: #6366F1; box-shadow: 0 0 8px rgba(99,102,241,0.7); }' +
-                          '100% { border-color: #7928CA; box-shadow: 0 0 8px rgba(121,40,202,0.7); }' +
+                          '@keyframes slowColorCycle {' +
+                          '0% { border-color: #7928CA; box-shadow: 0 0 10px rgba(121,40,202,0.6); }' +
+                          '20% { border-color: #0070F3; box-shadow: 0 0 10px rgba(0,112,243,0.6); }' +
+                          '40% { border-color: #E11D48; box-shadow: 0 0 10px rgba(225,29,72,0.6); }' +
+                          '60% { border-color: #10B981; box-shadow: 0 0 10px rgba(16,185,129,0.6); }' +
+                          '80% { border-color: #F59E0B; box-shadow: 0 0 10px rgba(245,158,11,0.6); }' +
+                          '100% { border-color: #7928CA; box-shadow: 0 0 10px rgba(121,40,202,0.6); }' +
                           '}' +
-                          '@keyframes scanGlow {0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; }}' +
-                          '@keyframes candleBlink {0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; }}' +
-                          '@keyframes algoPulse {0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);}}' +
+                          '@keyframes slowFadeText {0% { opacity: 0.2; } 50% { opacity: 1; } 100% { opacity: 0.2; }}' +
+                          '@keyframes candleSlowWave {0% { transform: translateY(0px); opacity: 0.5; } 50% { transform: translateY(-6px); opacity: 1; } 100% { transform: translateY(0px); opacity: 0.5; }}' +
+                          '@keyframes algoPulse {0%{transform:scale(1);}50%{transform:scale(1.04);}100%{transform:scale(1);}}' +
                           '@keyframes panelPop {0%{opacity:0;transform:translate(-50%, -48%) scale(0.85);}100%{opacity:1;transform:translate(-50%, -50%) scale(0.95);}}' +
                           '@keyframes touchRipple {0% {transform: scale(0.5); opacity: 1;} 100% {transform: scale(2.2); opacity: 0;}}';
             d.head.appendChild(s);
@@ -96,7 +92,7 @@ def bot_script():
                     window.speechSynthesis.cancel();
                     var utterance = new SpeechSynthesisUtterance(text);
                     utterance.lang = 'hi-IN';
-                    utterance.rate = 1.05; 
+                    utterance.rate = 1.0; 
                     utterance.pitch = 1.5; 
                     
                     var voices = window.speechSynthesis.getVoices();
@@ -120,9 +116,9 @@ def bot_script():
                 wrap.id = 'algo-floating-btn';
                 wrap.style.cssText = 'position:fixed;bottom:70px;right:20px;display:flex;flex-direction:column;align-items:center;z-index:2147483647;cursor:pointer;';
                 
+                // Larger size, permanent white background glow & rotating electric gear wheel effect
                 var b = d.createElement('div');
-                // Electric & fire lighting animated border, no standard solid glow
-                b.style.cssText = 'width:62px;height:62px;border-radius:50%;background:radial-gradient(circle, #1a0536 0%, #0d021f 80%);display:flex;align-items:center;justify-content:center;border:3px dashed #38bdf8;animation:electricFire 1.5s infinite linear, algoPulse 1.5s infinite ease-in-out;box-sizing:border-box;overflow:hidden;';
+                b.style.cssText = 'width:72px;height:72px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(13,2,31,0.9) 80%);display:flex;align-items:center;justify-content:center;border:3px dashed #38bdf8;animation:wheelElectric 6s infinite linear, algoPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 30px rgba(255,255,255,0.8), 0 0 50px #38bdf8;';
                 b.innerHTML = '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
                 wrap.appendChild(b);
 
@@ -165,7 +161,7 @@ def bot_script():
                 activeBadge.style.cssText = 'position:fixed;bottom:70px;right:20px;display:flex;flex-direction:column;align-items:center;z-index:2147483647;';
                 
                 var b = d.createElement('div');
-                b.style.cssText = 'width:55px;height:55px;border-radius:50%;background:#0d021f;display:flex;align-items:center;justify-content:center;border:2px dashed #38bdf8;animation:electricFire 1.5s infinite linear;overflow:hidden;';
+                b.style.cssText = 'width:62px;height:62px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(13,2,31,0.9) 80%);display:flex;align-items:center;justify-content:center;border:3px dashed #38bdf8;animation:wheelElectric 6s infinite linear;overflow:hidden;box-shadow:0 0 20px rgba(255,255,255,0.8);';
                 b.innerHTML = '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
                 activeBadge.appendChild(b);
 
@@ -177,25 +173,25 @@ def bot_script():
                 d.body.appendChild(activeBadge);
             }
 
-            // Step 1: Time Frame Panel (2-3% smaller options with fast animated distinct borders)
+            // Step 1: Time Frame Panel (Slightly taller panel, options 4-5% smaller, BD and Cortex time zones on top)
             function openTimeFramePanel(wrap){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
-                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:292px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:14px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,0.95);padding:13px;animation:panelPop 0.3s ease-out forwards;';
+                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:295px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:15px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,0.95);padding:14px;min-height:220px;animation:panelPop 0.3s ease-out forwards;';
 
                 panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid #3b0764;padding-bottom:6px;">' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
                                   '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:23px;height:23px;border-radius:50%;border:1px solid #a855f7;" />' +
-                                  '<div><div style="font-size:9px;font-weight:bold;color:#c084fc;">ALGO X</div><div style="font-size:5px;color:#38bdf8;">LIFETIME ZONE</div></div>' +
+                                  '<div><div style="font-size:9px;font-weight:bold;color:#c084fc;">ALGO X</div><div style="font-size:5px;color:#38bdf8;">AI ENGINE</div></div>' +
                                   '</div>' +
-                                  '<div style="display:flex;gap:4px;"><span style="background:#14532d;color:#22c55e;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #22c55e;">01 TIME</span><span style="background:#713f12;color:#facc15;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #facc15;">02 TRADES</span></div>' +
+                                  '<div style="display:flex;gap:4px;"><span style="background:#14532d;color:#22c55e;font-size:6px;padding:2px 4px;border-radius:3px;border:1px solid #22c55e;">BD TIME</span><span style="background:#713f12;color:#facc15;font-size:6px;padding:2px 4px;border-radius:3px;border:1px solid #facc15;">CORTEX LIVE</span></div>' +
                                   '</div>' +
-                                  '<div style="font-size:13px;font-weight:bold;margin-bottom:10px;color:#e2e8f0;">Trade time select karein</div>' +
-                                  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px;">' +
-                                  '<button class="algo-time-btn" data-time="5" style="background:#180830;border:2px solid #7928CA;border-radius:8px;padding:7px;color:#fff;text-align:left;cursor:pointer;animation:fastColorCycle 3s infinite linear;"><div style="font-size:11px;font-weight:bold;color:#facc15;">5 SEC</div><div style="font-size:5px;color:#94a3b8;">TURBO</div></button>' +
-                                  '<button class="algo-time-btn" data-time="15" style="background:#180830;border:2px solid #0070F3;border-radius:8px;padding:7px;color:#fff;text-align:left;cursor:pointer;animation:fastColorCycle 3s infinite linear 0.75s;"><div style="font-size:11px;font-weight:bold;color:#38bdf8;">15 SEC</div><div style="font-size:5px;color:#94a3b8;">RAPID</div></button>' +
-                                  '<button class="algo-time-btn" data-time="30" style="background:#180830;border:2px solid #E11D48;border-radius:8px;padding:7px;color:#fff;text-align:left;cursor:pointer;animation:fastColorCycle 3s infinite linear 1.5s;"><div style="font-size:11px;font-weight:bold;color:#f472b6;">30 SEC</div><div style="font-size:5px;color:#94a3b8;">BALANCED</div></button>' +
-                                  '<button class="algo-time-btn" data-time="60" style="background:#180830;border:2px solid #10B981;border-radius:8px;padding:7px;color:#fff;text-align:left;cursor:pointer;animation:fastColorCycle 3s infinite linear 2.25s;"><div style="font-size:11px;font-weight:bold;color:#4ade80;">1 MIN</div><div style="font-size:5px;color:#94a3b8;">PRECISION</div></button>' +
+                                  '<div style="font-size:13px;font-weight:bold;margin-bottom:12px;color:#e2e8f0;">Trade time select karein</div>' +
+                                  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px;">' +
+                                  '<button class="algo-time-btn" data-time="5" style="background:#180830;border:2px solid #7928CA;border-radius:8px;padding:7px;color:#fff;text-align:left;cursor:pointer;animation:slowColorCycle 5s infinite linear;"><div style="font-size:11px;font-weight:bold;color:#facc15;">5 SEC</div><div style="font-size:5px;color:#94a3b8;">TURBO</div></button>' +
+                                  '<button class="algo-time-btn" data-time="15" style="background:#180830;border:2px solid #0070F3;border-radius:8px;padding:7px;color:#fff;text-align:left;cursor:pointer;animation:slowColorCycle 5s infinite linear 1s;"><div style="font-size:11px;font-weight:bold;color:#38bdf8;">15 SEC</div><div style="font-size:5px;color:#94a3b8;">RAPID</div></button>' +
+                                  '<button class="algo-time-btn" data-time="30" style="background:#180830;border:2px solid #E11D48;border-radius:8px;padding:7px;color:#fff;text-align:left;cursor:pointer;animation:slowColorCycle 5s infinite linear 2s;"><div style="font-size:11px;font-weight:bold;color:#f472b6;">30 SEC</div><div style="font-size:5px;color:#94a3b8;">BALANCED</div></button>' +
+                                  '<button class="algo-time-btn" data-time="60" style="background:#180830;border:2px solid #10B981;border-radius:8px;padding:7px;color:#fff;text-align:left;cursor:pointer;animation:slowColorCycle 5s infinite linear 3s;"><div style="font-size:11px;font-weight:bold;color:#4ade80;">1 MIN</div><div style="font-size:5px;color:#94a3b8;">PRECISION</div></button>' +
                                   '</div>' +
                                   '<button id="algo-cancel-1" style="background:transparent;border:1px solid #ef4444;color:#ef4444;width:100%;padding:6px;border-radius:6px;font-weight:bold;font-size:8px;cursor:pointer;">CANCEL</button>';
 
@@ -220,25 +216,25 @@ def bot_script():
                 };
             }
 
-            // Step 2: Trades Count Panel (2-3% smaller options with unique fast animated borders)
+            // Step 2: Trades Count Panel (Slightly taller panel, options 4-5% smaller, BD and Cortex time zones on top)
             function openTradesCountPanel(wrap, selectedTime){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
-                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:292px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:14px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,0.95);padding:13px;animation:panelPop 0.3s ease-out forwards;';
+                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:295px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:15px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,0.95);padding:14px;min-height:220px;animation:panelPop 0.3s ease-out forwards;';
 
                 panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid #3b0764;padding-bottom:6px;">' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
                                   '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:23px;height:23px;border-radius:50%;border:1px solid #a855f7;" />' +
-                                  '<div><div style="font-size:9px;font-weight:bold;color:#c084fc;">ALGO X</div><div style="font-size:5px;color:#38bdf8;">LIFETIME ZONE</div></div>' +
+                                  '<div><div style="font-size:9px;font-weight:bold;color:#c084fc;">ALGO X</div><div style="font-size:5px;color:#38bdf8;">AI ENGINE</div></div>' +
                                   '</div>' +
-                                  '<div style="display:flex;gap:4px;"><span style="background:#14532d;color:#22c55e;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #22c55e;">01 TIME</span><span style="background:#713f12;color:#facc15;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #facc15;">02 TRADES</span></div>' +
+                                  '<div style="display:flex;gap:4px;"><span style="background:#14532d;color:#22c55e;font-size:6px;padding:2px 4px;border-radius:3px;border:1px solid #22c55e;">BD TIME</span><span style="background:#713f12;color:#facc15;font-size:6px;padding:2px 4px;border-radius:3px;border:1px solid #facc15;">CORTEX LIVE</span></div>' +
                                   '</div>' +
-                                  '<div style="font-size:13px;font-weight:bold;margin-bottom:10px;color:#e2e8f0;">Kitni trades lagani hain?</div>' +
-                                  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px;">' +
-                                  '<button class="algo-trade-btn" data-trades="1" style="background:#180830;border:2px solid #52057B;border-radius:8px;padding:7px;color:#fff;text-align:left;cursor:pointer;animation:fastColorCycle 3s infinite linear;"><div style="font-size:11px;font-weight:bold;color:#facc15;">1</div><div style="font-size:5px;color:#94a3b8;">SINGLE</div></button>' +
-                                  '<button class="algo-trade-btn" data-trades="2" style="background:#180830;border:2px solid #F59E0B;border-radius:8px;padding:7px;color:#fff;text-align:left;cursor:pointer;animation:fastColorCycle 3s infinite linear 0.75s;"><div style="font-size:11px;font-weight:bold;color:#38bdf8;">2</div><div style="font-size:5px;color:#94a3b8;">DOUBLE</div></button>' +
-                                  '<button class="algo-trade-btn" data-trades="3" style="background:#180830;border:2px solid #6366F1;border-radius:8px;padding:7px;color:#fff;text-align:left;cursor:pointer;animation:fastColorCycle 3s infinite linear 1.5s;"><div style="font-size:11px;font-weight:bold;color:#f472b6;">3</div><div style="font-size:5px;color:#94a3b8;">TRIPLE</div></button>' +
-                                  '<button class="algo-trade-btn" data-trades="4" style="background:#180830;border:2px solid #10B981;border-radius:8px;padding:7px;color:#fff;text-align:left;cursor:pointer;animation:fastColorCycle 3s infinite linear 2.25s;"><div style="font-size:11px;font-weight:bold;color:#4ade80;">4</div><div style="font-size:5px;color:#94a3b8;">MAX</div></button>' +
+                                  '<div style="font-size:13px;font-weight:bold;margin-bottom:12px;color:#e2e8f0;">Kitni trades lagani hain?</div>' +
+                                  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px;">' +
+                                  '<button class="algo-trade-btn" data-trades="1" style="background:#180830;border:2px solid #52057B;border-radius:8px;padding:7px;color:#fff;text-align:left;cursor:pointer;animation:slowColorCycle 5s infinite linear;"><div style="font-size:11px;font-weight:bold;color:#facc15;">1</div><div style="font-size:5px;color:#94a3b8;">SINGLE</div></button>' +
+                                  '<button class="algo-trade-btn" data-trades="2" style="background:#180830;border:2px solid #F59E0B;border-radius:8px;padding:7px;color:#fff;text-align:left;cursor:pointer;animation:slowColorCycle 5s infinite linear 1s;"><div style="font-size:11px;font-weight:bold;color:#38bdf8;">2</div><div style="font-size:5px;color:#94a3b8;">DOUBLE</div></button>' +
+                                  '<button class="algo-trade-btn" data-trades="3" style="background:#180830;border:2px solid #6366F1;border-radius:8px;padding:7px;color:#fff;text-align:left;cursor:pointer;animation:slowColorCycle 5s infinite linear 2s;"><div style="font-size:11px;font-weight:bold;color:#f472b6;">3</div><div style="font-size:5px;color:#94a3b8;">TRIPLE</div></button>' +
+                                  '<button class="algo-trade-btn" data-trades="4" style="background:#180830;border:2px solid #10B981;border-radius:8px;padding:7px;color:#fff;text-align:left;cursor:pointer;animation:slowColorCycle 5s infinite linear 3s;"><div style="font-size:11px;font-weight:bold;color:#4ade80;">4</div><div style="font-size:5px;color:#94a3b8;">MAX</div></button>' +
                                   '</div>' +
                                   '<button id="algo-cancel-2" style="background:transparent;border:1px solid #ef4444;color:#ef4444;width:100%;padding:6px;border-radius:6px;font-weight:bold;font-size:8px;cursor:pointer;">CANCEL</button>';
 
@@ -265,42 +261,39 @@ def bot_script():
                 };
             }
 
-            // Step 3: Centered Professional Neural Scan with Real Knowledge Back-end & Fast Candle Animations
+            // Step 3: Centered Neural Scan with Slow Fade Scanning Text & Smooth Flowing Candles
             function startNeuralScan(wrap, selectedTime, selectedTrades){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
-                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:320px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 25px 60px rgba(0,0,0,0.95);padding:14px;animation:panelPop 0.3s ease-out forwards;';
+                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:315px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 25px 60px rgba(0,0,0,0.95);padding:14px;animation:panelPop 0.3s ease-out forwards;';
 
                 panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
                                   '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:20px;height:20px;border-radius:50%;border:1px solid #a855f7;" />' +
                                   '<span style="font-size:8px;font-weight:bold;color:#c084fc;">ALGO X</span>' +
                                   '</div>' +
-                                  '<span style="font-size:6px;color:#94a3b8;border:1px solid #3b0764;padding:2px 5px;border-radius:4px;animation:fastColorCycle 3s infinite linear;">SCAN / ' + selectedTrades + '</span>' +
+                                  '<span style="font-size:6px;color:#94a3b8;border:1px solid #3b0764;padding:2px 5px;border-radius:4px;animation:slowColorCycle 5s infinite linear;">SCAN / ' + selectedTrades + '</span>' +
                                   '</div>' +
                                   '<div style="font-size:13px;font-weight:bold;margin-bottom:8px;color:#fff;">Neural market intelligence</div>' +
                                   
-                                  // Advanced Real Backend Options with Fast Blinking Metallic Borders
                                   '<div style="display:flex;flex-direction:column;gap:4px;margin-bottom:8px;font-size:7px;">' +
-                                  '<div style="display:flex;justify-content:space-between;background:#080112;padding:4px 7px;border-radius:5px;border:1.5px solid #7928CA;animation:fastColorCycle 3s infinite linear;"><span style="color:#94a3b8;">OTC Market Filter:</span><span class="scan-text" style="color:#38bdf8;animation:scanGlow 0.5s infinite;">Scanning...</span></div>' +
-                                  '<div style="display:flex;justify-content:space-between;background:#080112;padding:4px 7px;border-radius:5px;border:1.5px solid #0070F3;animation:fastColorCycle 3s infinite linear 0.5s;"><span style="color:#94a3b8;">Money Management:</span><span class="scan-text" style="color:#facc15;animation:scanGlow 0.5s infinite 0.1s;">Scanning...</span></div>' +
-                                  '<div style="display:flex;justify-content:space-between;background:#080112;padding:4px 7px;border-radius:5px;border:1.5px solid #E11D48;animation:fastColorCycle 3s infinite linear 1s;"><span style="color:#94a3b8;">Smart Money:</span><span class="scan-text" style="color:#f472b6;animation:scanGlow 0.5s infinite 0.2s;">Scanning...</span></div>' +
-                                  '<div style="display:flex;justify-content:space-between;background:#080112;padding:4px 7px;border-radius:5px;border:1.5px solid #10B981;animation:fastColorCycle 3s infinite linear 1.5s;"><span style="color:#94a3b8;">Trade Execution:</span><span class="scan-text" style="color:#4ade80;animation:scanGlow 0.5s infinite 0.3s;">Scanning...</span></div>' +
-                                  '<div style="display:flex;justify-content:space-between;background:#080112;padding:4px 7px;border-radius:5px;border:1.5px solid #F59E0B;animation:fastColorCycle 3s infinite linear 2s;"><span style="color:#94a3b8;">Server Volatility:</span><span class="scan-text" style="color:#c084fc;animation:scanGlow 0.5s infinite 0.4s;">Scanning...</span></div>' +
+                                  '<div style="display:flex;justify-content:space-between;background:#080112;padding:4px 7px;border-radius:5px;border:1.5px solid #7928CA;"><span style="color:#94a3b8;">OTC Market Filter:</span><span class="scan-text" style="color:#38bdf8;animation:slowFadeText 1.5s infinite;">Scanning...</span></div>' +
+                                  '<div style="display:flex;justify-content:space-between;background:#080112;padding:4px 7px;border-radius:5px;border:1.5px solid #0070F3;"><span style="color:#94a3b8;">Money Management:</span><span class="scan-text" style="color:#facc15;animation:slowFadeText 1.5s infinite 0.3s;">Scanning...</span></div>' +
+                                  '<div style="display:flex;justify-content:space-between;background:#080112;padding:4px 7px;border-radius:5px;border:1.5px solid #E11D48;"><span style="color:#94a3b8;">Smart Money:</span><span class="scan-text" style="color:#f472b6;animation:slowFadeText 1.5s infinite 0.6s;">Scanning...</span></div>' +
+                                  '<div style="display:flex;justify-content:space-between;background:#080112;padding:4px 7px;border-radius:5px;border:1.5px solid #10B981;"><span style="color:#94a3b8;">Trade Execution:</span><span class="scan-text" style="color:#4ade80;animation:slowFadeText 1.5s infinite 0.9s;">Scanning...</span></div>' +
+                                  '<div style="display:flex;justify-content:space-between;background:#080112;padding:4px 7px;border-radius:5px;border:1.5px solid #F59E0B;"><span style="color:#94a3b8;">Server Volatility:</span><span class="scan-text" style="color:#c084fc;animation:slowFadeText 1.5s infinite 1.2s;">Scanning...</span></div>' +
                                   '</div>' +
 
-                                  // 8-10 Fast Fading/Blinking Animated Candles
-                                  '<div style="background:#080112;border:1px solid #3b0764;border-radius:6px;height:30px;display:flex;align-items:center;justify-content:space-around;padding:0 6px;margin-bottom:8px;overflow:hidden;">' +
-                                  '<div style="width:3px;height:16px;background:#22c55e;border-radius:1px;animation:candleBlink 0.3s infinite alternate;"></div>' +
-                                  '<div style="width:3px;height:24px;background:#ef4444;border-radius:1px;animation:candleBlink 0.25s infinite alternate;"></div>' +
-                                  '<div style="width:3px;height:12px;background:#22c55e;border-radius:1px;animation:candleBlink 0.35s infinite alternate;"></div>' +
-                                  '<div style="width:3px;height:20px;background:#ef4444;border-radius:1px;animation:candleBlink 0.2s infinite alternate;"></div>' +
-                                  '<div style="width:3px;height:26px;background:#22c55e;border-radius:1px;animation:candleBlink 0.3s infinite alternate;"></div>' +
-                                  '<div style="width:3px;height:15px;background:#ef4444;border-radius:1px;animation:candleBlink 0.28s infinite alternate;"></div>' +
-                                  '<div style="width:3px;height:22px;background:#22c55e;border-radius:1px;animation:candleBlink 0.22s infinite alternate;"></div>' +
-                                  '<div style="width:3px;height:18px;background:#ef4444;border-radius:1px;animation:candleBlink 0.33s infinite alternate;"></div>' +
+                                  // Slow-motion smooth wave/flowing candles
+                                  '<div style="background:#080112;border:1px solid #3b0764;border-radius:6px;height:32px;display:flex;align-items:center;justify-content:space-around;padding:0 6px;margin-bottom:8px;overflow:hidden;">' +
+                                  '<div style="width:3px;height:16px;background:#22c55e;border-radius:1px;animation:candleSlowWave 1.2s infinite ease-in-out;"></div>' +
+                                  '<div style="width:3px;height:24px;background:#ef4444;border-radius:1px;animation:candleSlowWave 1s infinite ease-in-out 0.2s;"></div>' +
+                                  '<div style="width:3px;height:12px;background:#22c55e;border-radius:1px;animation:candleSlowWave 1.4s infinite ease-in-out 0.4s;"></div>' +
+                                  '<div style="width:3px;height:20px;background:#ef4444;border-radius:1px;animation:candleSlowWave 1.1s infinite ease-in-out 0.6s;"></div>' +
+                                  '<div style="width:3px;height:26px;background:#22c55e;border-radius:1px;animation:candleSlowWave 1.3s infinite ease-in-out 0.8s;"></div>' +
+                                  '<div style="width:3px;height:18px;background:#ef4444;border-radius:1px;animation:candleSlowWave 1s infinite ease-in-out 1s;"></div>' +
                                   '</div>' +
-                                  '<div id="algo-scan-status" style="text-align:center;font-size:8px;font-weight:bold;color:#38bdf8;background:#080112;padding:5px;border-radius:5px;border:1px solid #3b0764;animation:fastColorCycle 3s infinite linear;">Analyzing Real Back-end Data...</div>';
+                                  '<div id="algo-scan-status" style="text-align:center;font-size:8px;font-weight:bold;color:#38bdf8;background:#080112;padding:5px;border-radius:5px;border:1px solid #3b0764;animation:slowFadeText 1.5s infinite;">Analyzing Real Back-end Data...</div>';
 
                 d.body.appendChild(panel);
 
@@ -338,10 +331,10 @@ def bot_script():
                                 })(i);
                             }
 
-                            // Clean pop-up displaying direction only, auto disappearing instantly
+                            // Minimal clean popup: Direction & count only, then auto-disappear
                             panel.innerHTML = '<div style="text-align:center;padding:12px;">' +
-                                              '<div style="font-size:15px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';margin-bottom:4px;animation:fastColorCycle 2s infinite linear;">' + directionText + '</div>' +
-                                              '<div style="font-size:7px;color:#94a3b8;">Auto Trade Executed Successfully</div>' +
+                                              '<div style="font-size:15px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';margin-bottom:4px;animation:slowColorCycle 2s infinite linear;">' + directionText + ' (' + selectedTrades + ' Trades)</div>' +
+                                              '<div style="font-size:7px;color:#94a3b8;">Auto Executed Successfully</div>' +
                                               '</div>';
 
                             setTimeout(function(){
@@ -349,10 +342,10 @@ def bot_script():
                                 var ab = d.getElementById('algo-active-badge');
                                 if(ab) ab.remove();
                                 wrap.style.display = 'flex';
-                            }, 1400);
+                            }, 1500);
                         });
                     });
-                }, 3500);
+                }, 4000);
             }
 
             function forceClick(el) {
