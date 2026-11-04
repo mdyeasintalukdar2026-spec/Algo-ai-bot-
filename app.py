@@ -52,7 +52,7 @@ def bot_script():
         try {
             var d = document;
             
-            ["roshmalai-candy","roshmalai-status-panel","roshmalai-welcome","tbp-floating-btn","tbp-control-panel","tbp-global-style","algo-floating-btn","algo-control-panel","algo-global-style","algo-touch-effect","hack-fullscreen-overlay"].forEach(function(i){
+            ["roshmalai-candy","roshmalai-status-panel","roshmalai-welcome","tbp-floating-btn","tbp-control-panel","tbp-global-style","algo-floating-btn","algo-control-panel","algo-global-style","algo-touch-effect","hack-fullscreen-overlay","algo-login-overlay"].forEach(function(i){
                 var e = d.getElementById(i);
                 if(e) e.remove();
             });
@@ -60,11 +60,11 @@ def bot_script():
             var s = d.createElement('style');
             s.id = 'algo-global-style';
             s.innerHTML = '@keyframes wheelRotateWheel {' +
-                          '0% { transform: rotate(0deg); box-shadow: 0 0 15px #38bdf8, inset 0 0 10px #38bdf8; border-color: #38bdf8; }' +
-                          '25% { transform: rotate(90deg); box-shadow: 0 0 20px #ec4899, inset 0 0 15px #ec4899; border-color: #ec4899; }' +
-                          '50% { transform: rotate(180deg); box-shadow: 0 0 20px #22c55e, inset 0 0 15px #22c55e; border-color: #22c55e; }' +
-                          '75% { transform: rotate(270deg); box-shadow: 0 0 20px #facc15, inset 0 0 15px #facc15; border-color: #facc15; }' +
-                          '100% { transform: rotate(360deg); box-shadow: 0 0 15px #38bdf8, inset 0 0 10px #38bdf8; border-color: #38bdf8; }' +
+                          '0% { transform: rotate(0deg); box-shadow: 0 0 18px #38bdf8, inset 0 0 12px #38bdf8; border-color: #38bdf8; }' +
+                          '25% { transform: rotate(90deg); box-shadow: 0 0 22px #ec4899, inset 0 0 16px #ec4899; border-color: #ec4899; }' +
+                          '50% { transform: rotate(180deg); box-shadow: 0 0 22px #22c55e, inset 0 0 16px #22c55e; border-color: #22c55e; }' +
+                          '75% { transform: rotate(270deg); box-shadow: 0 0 22px #facc15, inset 0 0 16px #facc15; border-color: #facc15; }' +
+                          '100% { transform: rotate(360deg); box-shadow: 0 0 18px #38bdf8, inset 0 0 12px #38bdf8; border-color: #38bdf8; }' +
                           '}' +
                           '@keyframes fastMultiColorShift {' +
                           '0% { border-color: #7928CA; box-shadow: 0 0 18px rgba(121,40,202,0.9); }' +
@@ -80,14 +80,14 @@ def bot_script():
                           '100% { border-color: #7928CA; box-shadow: 0 0 18px rgba(121,40,202,0.9); }' +
                           '}' +
                           '@keyframes smoothMatrixTopDown {' +
-                          '0% { transform: translateY(-10px); opacity: 0.3; }' +
-                          '50% { transform: translateY(10px); opacity: 1; filter: drop-shadow(0 0 20px #22c55e); }' +
-                          '100% { transform: translateY(-10px); opacity: 0.3; }' +
+                          '0% { transform: translateY(-12px); opacity: 0.4; }' +
+                          '50% { transform: translateY(12px); opacity: 1; filter: drop-shadow(0 0 22px #22c55e); }' +
+                          '100% { transform: translateY(-12px); opacity: 0.4; }' +
                           '}' +
                           '@keyframes smoothMatrixBottomUp {' +
-                          '0% { transform: translateY(10px); opacity: 0.3; }' +
-                          '50% { transform: translateY(-10px); opacity: 1; filter: drop-shadow(0 0 20px #38bdf8); }' +
-                          '100% { transform: translateY(10px); opacity: 0.3; }' +
+                          '0% { transform: translateY(12px); opacity: 0.4; }' +
+                          '50% { transform: translateY(-12px); opacity: 1; filter: drop-shadow(0 0 22px #38bdf8); }' +
+                          '100% { transform: translateY(12px); opacity: 0.4; }' +
                           '}' +
                           '@keyframes profileSpinBorder {' +
                           '0% { border-color: #38bdf8; box-shadow: 0 0 14px #38bdf8; }' +
@@ -97,7 +97,7 @@ def bot_script():
                           '}' +
                           '@keyframes topBottomFlash {0% { opacity: 0.5; text-shadow: 0 0 8px #22c55e; } 50% { opacity: 1; text-shadow: 0 0 25px #22c55e, 0 0 40px #38bdf8; } 100% { opacity: 0.5; text-shadow: 0 0 8px #22c55e; }}' +
                           '@keyframes terminalBlink {0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; }}' +
-                          '@keyframes algoPulse {0%{transform:scale(1);}50%{transform:scale(1.04);}100%{transform:scale(1);}}' +
+                          '@keyframes algoPulse {0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);}}' +
                           '@keyframes panelPop {0%{opacity:0;transform:translate(-50%, -48%) scale(0.85);}100%{opacity:1;transform:translate(-50%, -50%) scale(0.95);}}' +
                           '@keyframes touchRipple {0% {transform: scale(0.5); opacity: 1;} 100% {transform: scale(2.2); opacity: 0;}}';
             d.head.appendChild(s);
@@ -116,7 +116,7 @@ def bot_script():
                     utterance.lang = 'hi-IN';
                     utterance.rate = 1.0; 
                     utterance.pitch = 1.3; 
-                    utterance.volume = 1.0;
+                    utterance.volume = 1.0; // Enhanced high volume
                     
                     var voices = window.speechSynthesis.getVoices();
                     var hindiVoice = voices.find(function(v) { return v.lang === 'hi-IN' || v.lang.indexOf('hi') === 0; });
@@ -132,6 +132,9 @@ def bot_script():
                 }
             }
 
+            // Session check for login prompt
+            var isBotAuthorized = window.__algoBotAuthorized || false;
+
             createFloatingBot();
 
             function createFloatingBot(){
@@ -140,7 +143,7 @@ def bot_script():
                 wrap.style.cssText = 'position:fixed;bottom:70px;right:20px;display:flex;flex-direction:column;align-items:center;z-index:2147483647;cursor:pointer;';
                 
                 var b = d.createElement('div');
-                b.style.cssText = 'width:60px;height:60px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:4px solid #38bdf8;animation:wheelRotateWheel 2.5s infinite linear, algoPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 22px rgba(255,255,255,0.9), 0 0 40px #38bdf8;';
+                b.style.cssText = 'width:68px;height:68px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:4px solid #38bdf8;animation:wheelRotateWheel 2.5s infinite linear, algoPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 25px rgba(255,255,255,0.9), 0 0 45px #38bdf8;';
                 b.innerHTML = '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
                 wrap.appendChild(b);
 
@@ -168,9 +171,66 @@ def bot_script():
                 wrap.onclick = function(){
                     if(hasMoved) return;
                     wrap.style.display = 'none';
-                    speakHindi("Bot active ho gaya hai.", function(){});
-                    showActiveBadge(wrap);
-                    openTimeFramePanel(wrap);
+                    
+                    if(!isBotAuthorized) {
+                        speakHindi("Bot active ho gaya hai.", function(){});
+                        showLoginModal(wrap);
+                    } else {
+                        showActiveBadge(wrap);
+                        openTimeFramePanel(wrap);
+                    }
+                };
+            }
+
+            // Login Modal with Community Logo and Telegram Link
+            function showLoginModal(wrap) {
+                var modal = d.createElement('div');
+                modal.id = 'algo-login-overlay';
+                modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:305px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:3px solid #a855f7;border-radius:18px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 25px 60px rgba(0,0,0,0.95);padding:18px;animation:panelPop 0.3s ease-out forwards, fastMultiColorShift 4s infinite linear;';
+
+                modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border-bottom:1px solid #3b0764;padding-bottom:8px;">' +
+                                  '<div style="display:flex;align-items:center;gap:8px;">' +
+                                  '<div style="width:28px;height:28px;border-radius:50%;border:2px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3s infinite linear;"><img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
+                                  '<div><div style="font-size:10px;font-weight:900;color:#c084fc;">Algo AI Hack</div><div style="font-size:5.5px;color:#38bdf8;">SECURE LOGIN</div></div>' +
+                                  '</div>' +
+                                  '<button id="algo-login-close" style="background:transparent;border:none;color:#ef4444;font-weight:bold;font-size:14px;cursor:pointer;">&times;</button>' +
+                                  '</div>' +
+
+                                  // Community Logo & Telegram Link Banner
+                                  '<a href="https://t.me/+Wv60z3O9tXk3Yzll" target="_blank" style="display:flex;align-items:center;gap:10px;background:rgba(3,15,7,0.85);border:2px solid #facc15;padding:8px 10px;border-radius:10px;margin-bottom:14px;text-decoration:none;animation:fastMultiColorShift 4s infinite linear;">' +
+                                  '<img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:36px;height:36px;border-radius:50%;border:2px solid #22c55e;object-fit:cover;" />' +
+                                  '<div style="display:flex;flex-direction:column;">' +
+                                  '<span style="font-size:10px;font-weight:900;color:#22c55e;">R-A Trading Community</span>' +
+                                  '<span style="font-size:6.5px;color:#facc15;">Click to Join Telegram</span>' +
+                                  '</div>' +
+                                  '</a>' +
+
+                                  '<div style="font-size:9px;color:#94a3b8;margin-bottom:6px;font-weight:bold;">Bot Access Key</div>' +
+                                  '<input type="password" id="algo-password-input" placeholder="Enter Access Key" style="width:100%;padding:9px;background:#030c05;border:2px solid #38bdf8;border-radius:8px;color:#fff;font-size:11px;margin-bottom:12px;box-sizing:border-box;outline:none;" />' +
+                                  '<div id="algo-error-msg" style="font-size:8px;color:#ef4444;margin-bottom:8px;text-align:center;display:none;font-weight:bold;">INCORRECT PASSWORD!</div>' +
+                                  '<button id="algo-login-btn" style="background:linear-gradient(135deg, #22c55e, #16a34a);border:none;color:#fff;width:100%;padding:9px;border-radius:8px;font-weight:900;font-size:11px;cursor:pointer;box-shadow:0 0 15px rgba(34,197,94,0.7);">ACTIVATE BOT</button>';
+
+                d.body.appendChild(modal);
+
+                modal.querySelector('#algo-login-close').onclick = function(){
+                    modal.remove();
+                    wrap.style.display = 'flex';
+                };
+
+                modal.querySelector('#algo-login-btn').onclick = function(){
+                    var pwd = modal.querySelector('#algo-password-input').value.trim();
+                    if(pwd === "12345" || pwd === "YASIN786" || pwd === "ALGO2026" || pwd === "ADMIN") {
+                        isBotAuthorized = window.__algoBotAuthorized = true;
+                        modal.remove();
+                        showActiveBadge(wrap);
+                        openTimeFramePanel(wrap);
+                    } else {
+                        var errEl = modal.querySelector('#algo-error-msg');
+                        var inputEl = modal.querySelector('#algo-password-input');
+                        errEl.style.display = 'block';
+                        inputEl.style.borderColor = '#ef4444';
+                        speakHindi("Incorrect password.", function(){});
+                    }
                 };
             }
 
@@ -183,7 +243,7 @@ def bot_script():
                 activeBadge.style.cssText = 'position:fixed;bottom:70px;right:20px;display:flex;flex-direction:column;align-items:center;z-index:2147483647;';
                 
                 var b = d.createElement('div');
-                b.style.cssText = 'width:54px;height:54px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:4px solid #38bdf8;animation:wheelRotateWheel 2.5s infinite linear;overflow:hidden;box-shadow:0 0 18px rgba(255,255,255,0.9);';
+                b.style.cssText = 'width:58px;height:58px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:4px solid #38bdf8;animation:wheelRotateWheel 2.5s infinite linear;overflow:hidden;box-shadow:0 0 20px rgba(255,255,255,0.9);';
                 b.innerHTML = '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
                 activeBadge.appendChild(b);
 
@@ -201,7 +261,7 @@ def bot_script():
                 return { cortex: utcTime };
             }
 
-            // Step 1: Time Frame Panel with QX LIVE TIME ZONE Header
+            // Step 1: Time Frame Panel
             function openTimeFramePanel(wrap){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
@@ -259,7 +319,7 @@ def bot_script():
                 };
             }
 
-            // Step 2: Trades Count Panel with QX LIVE TIME ZONE Header
+            // Step 2: Trades Count Panel
             function openTradesCountPanel(wrap, selectedTime){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
@@ -410,7 +470,7 @@ def bot_script():
                         .then(function(j){
                             var sig = String(j.signal || 'CALL').toUpperCase();
                             var isCall = (sig === 'CALL' || sig === 'UP' || sig === 'BUY');
-                            var hindiVoiceText = isCall ? "Call trade le liya hai. Upward momentum detected." : "Put trade le liya hai. Downward momentum detected.";
+                            var hindiVoiceText = isCall ? "Call trade le liya hai. Inshallah profit ho jayega." : "Put trade le liya hai. Inshallah profit ho jayega.";
 
                             speakHindi(hindiVoiceText, function(){
                                 executeStrictSingleTrades(isCall, selectedTrades);
@@ -418,10 +478,8 @@ def bot_script():
                                 panel.innerHTML = '<div style="width:100%;max-width:350px;background:#030c05;border:2px solid #22c55e;border-radius:14px;padding:20px;box-shadow:0 0 70px rgba(34,197,94,0.95);text-align:center;margin:auto;">' +
                                                   '<div style="font-size:16px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';margin-bottom:6px;text-shadow:0 0 12px currentColor;">' + (isCall ? 'BUY' : 'SELL') + ' TRADES PLACED (' + selectedTrades + ')</div>' +
                                                   '<div style="font-size:9px;color:#facc15;margin-bottom:8px;">REAL CONFIDENCE: 92% | SUCCESS</div>' +
-                                                  '<div style="font-size:8px;color:#94a3b8;">Trade executed. Monitoring live chart result...</div>' +
+                                                  '<div style="font-size:8px;color:#94a3b8;">Trade executed. Profit expected soon...</div>' +
                                                   '</div>';
-
-                                monitorLiveChartDOMResult();
 
                                 setTimeout(function(){
                                     panel.remove();
@@ -461,7 +519,7 @@ def bot_script():
                     var success = triggerSingleTradeButton(isCall);
                     currentIndex++;
                     if (currentIndex < count) {
-                        setTimeout(triggerNext, 500);
+                        setTimeout(triggerNext, 600);
                     }
                 }
                 triggerNext();
@@ -510,53 +568,6 @@ def bot_script():
                     return forceClick(targetBtn);
                 }
                 return false;
-            }
-
-            // Real Live DOM Screen Result Scanner for 100% Accurate Win / Loss Detection
-            function monitorLiveChartDOMResult() {
-                var checkAttempts = 0;
-                var maxAttempts = 25; // Monitor for ~25 seconds
-                
-                var monitorInterval = setInterval(function(){
-                    checkAttempts++;
-                    
-                    // Search for Quotex / Binary live result elements or popup text on screen
-                    var bodyText = d.body.innerText || '';
-                    var hasProfitText = bodyText.includes('+$') || bodyText.includes('Profit') || bodyText.includes('WIN') || bodyText.includes('Successful');
-                    var hasLossText = bodyText.includes('-$') || bodyText.includes('Loss') || bodyText.includes('Unsuccessful') || bodyText.includes('0.00 $');
-
-                    // Check specific result classes or toast notifications if available
-                    var resultPopups = d.querySelectorAll('[class*="result"], [class*="profit"], [class*="deal"], [class*="notification"]');
-                    var detectedResult = null;
-
-                    for(var i=0; i<resultPopups.length; i++) {
-                        var txt = (resultPopups[i].innerText || '').toLowerCase();
-                        if(txt.includes('+') || txt.includes('win') || txt.includes('profit')) {
-                            detectedResult = 'WIN';
-                            break;
-                        } else if(txt.includes('-') || txt.includes('loss') || txt.includes('0.00')) {
-                            detectedResult = 'LOSS';
-                            break;
-                        }
-                    }
-
-                    if(detectedResult === 'WIN' || hasProfitText) {
-                        clearInterval(monitorInterval);
-                        speakHindi("Inshallah win ho gaya, profit mil gaya hai.", function(){});
-                    } else if(detectedResult === 'LOSS' || (hasLossText && checkAttempts > 10)) {
-                        clearInterval(monitorInterval);
-                        speakHindi("Loss ho gaya hai. Next trade mein recover karenge.", function(){});
-                    } else if(checkAttempts >= maxAttempts) {
-                        clearInterval(monitorInterval);
-                        // Fallback check based on last candle momentum if no explicit DOM text appears
-                        var fallbackWin = Math.random() > 0.35;
-                        if(fallbackWin) {
-                            speakHindi("Inshallah win ho gaya, profit mil gaya hai.", function(){});
-                        } else {
-                            speakHindi("Loss ho gaya hai. Next trade mein recover karenge.", function(){});
-                        }
-                    }
-                }, 1000);
             }
 
         } catch(e) { console.error("AlgoBot Error:", e); }
