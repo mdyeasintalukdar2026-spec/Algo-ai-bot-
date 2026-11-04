@@ -64,12 +64,18 @@ def bot_script():
                           '50% { transform: rotate(180deg); box-shadow: 0 0 35px rgba(255,255,255,1), 0 0 65px #ec4899; border-color: #ec4899; }' +
                           '100% { transform: rotate(360deg); box-shadow: 0 0 25px rgba(255,255,255,0.9), 0 0 50px #38bdf8; border-color: #38bdf8; }' +
                           '}' +
-                          '@keyframes fastLighting {' +
-                          '0% { border-color: #7928CA; box-shadow: 0 0 10px rgba(121,40,202,0.8); }' +
-                          '25% { border-color: #0070F3; box-shadow: 0 0 10px rgba(0,112,243,0.8); }' +
-                          '50% { border-color: #E11D48; box-shadow: 0 0 10px rgba(225,29,72,0.8); }' +
-                          '75% { border-color: #10B981; box-shadow: 0 0 10px rgba(16,185,129,0.8); }' +
-                          '100% { border-color: #7928CA; box-shadow: 0 0 10px rgba(121,40,202,0.8); }' +
+                          '@keyframes slowColorShift {' +
+                          '0% { border-color: #7928CA; box-shadow: 0 0 15px rgba(121,40,202,0.8); }' +
+                          '25% { border-color: #0070F3; box-shadow: 0 0 15px rgba(0,112,243,0.8); }' +
+                          '50% { border-color: #E11D48; box-shadow: 0 0 15px rgba(225,29,72,0.8); }' +
+                          '75% { border-color: #10B981; box-shadow: 0 0 15px rgba(16,185,129,0.8); }' +
+                          '100% { border-color: #7928CA; box-shadow: 0 0 15px rgba(121,40,202,0.8); }' +
+                          '}' +
+                          '@keyframes profileSpinBorder {' +
+                          '0% { border-color: #38bdf8; box-shadow: 0 0 12px #38bdf8; }' +
+                          '33% { border-color: #ec4899; box-shadow: 0 0 12px #ec4899; }' +
+                          '66% { border-color: #22c55e; box-shadow: 0 0 12px #22c55e; }' +
+                          '100% { border-color: #38bdf8; box-shadow: 0 0 12px #38bdf8; }' +
                           '}' +
                           '@keyframes hackerGlowPulse {' +
                           '0% { filter: drop-shadow(0 0 20px #22c55e) brightness(1); box-shadow: 0 0 35px rgba(34,197,94,0.8); border-color: #22c55e; }' +
@@ -182,31 +188,34 @@ def bot_script():
                 return { bd: bdTime, cortex: utcTime };
             }
 
-            // Step 1: Time Frame Panel
+            // Step 1: Time Frame Panel with Slow Motion Color Animation Borders & QX Time Zone Header
             function openTimeFramePanel(wrap){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
-                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:295px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 25px 60px rgba(0,0,0,0.95);padding:15px;min-height:265px;animation:panelPop 0.3s ease-out forwards;';
+                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:295px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2.5px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 25px 60px rgba(0,0,0,0.95);padding:15px;min-height:265px;animation:panelPop 0.3s ease-out forwards, slowColorShift 6s infinite linear;';
 
                 var times = getLiveTimes();
 
                 panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid #3b0764;padding-bottom:6px;">' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
-                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:23px;height:23px;border-radius:50%;border:1px solid #a855f7;" />' +
-                                  '<div><div style="font-size:9px;font-weight:bold;color:#c084fc;">ALGO X</div><div style="font-size:5px;color:#38bdf8;">HACK ENGINE</div></div>' +
+                                  '<div style="width:26px;height:26px;border-radius:50%;border:2px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 5s infinite linear;"><img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
+                                  '<div><div style="font-size:9.5px;font-weight:900;color:#c084fc;">Algo AI Hack</div><div style="font-size:5px;color:#38bdf8;">HACK ENGINE</div></div>' +
                                   '</div>' +
-                                  '<div style="display:flex;gap:4px;"><span style="background:#14532d;color:#22c55e;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #22c55e;">BD: <span id="bd-clock">' + times.bd + '</span></span><span style="background:#713f12;color:#facc15;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #facc15;">CORTEX: <span id="cortex-clock">' + times.cortex + '</span></span></div>' +
+                                  '<div style="display:flex;gap:4px;border:1.5px solid #38bdf8;padding:2px 4px;border-radius:6px;background:rgba(3,15,7,0.8);animation:slowColorShift 5s infinite linear;">' +
+                                  '<span style="color:#22c55e;font-size:5.5px;font-weight:bold;">QX BD: <span id="bd-clock">' + times.bd + '</span></span>' +
+                                  '<span style="color:#facc15;font-size:5.5px;font-weight:bold;">CORTEX: <span id="cortex-clock">' + times.cortex + '</span></span>' +
+                                  '</div>' +
                                   '</div>' +
                                   '<div style="font-size:13px;font-weight:bold;margin-bottom:10px;color:#e2e8f0;">Trade time select karein</div>' +
                                   '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;">' +
-                                  '<button class="algo-time-btn" data-time="5" style="background:#180830;border:2px solid #7928CA;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear;"><div style="font-size:10px;font-weight:bold;color:#facc15;">5 SEC</div></button>' +
-                                  '<button class="algo-time-btn" data-time="15" style="background:#180830;border:2px solid #0070F3;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 0.5s;"><div style="font-size:10px;font-weight:bold;color:#38bdf8;">15 SEC</div></button>' +
-                                  '<button class="algo-time-btn" data-time="30" style="background:#180830;border:2px solid #E11D48;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 1s;"><div style="font-size:10px;font-weight:bold;color:#f472b6;">30 SEC</div></button>' +
-                                  '<button class="algo-time-btn" data-time="60" style="background:#180830;border:2px solid #10B981;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 1.5s;"><div style="font-size:10px;font-weight:bold;color:#4ade80;">1 MIN</div></button>' +
-                                  '<button class="algo-time-btn" data-time="120" style="background:#180830;border:2px solid #F59E0B;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 2s;"><div style="font-size:10px;font-weight:bold;color:#facc15;">2 MIN</div></button>' +
-                                  '<button class="algo-time-btn" data-time="180" style="background:#180830;border:2px solid #6366F1;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 2.5s;"><div style="font-size:10px;font-weight:bold;color:#c084fc;">3 MIN</div></button>' +
+                                  '<button class="algo-time-btn" data-time="5" style="background:#180830;border:2px solid #7928CA;border-radius:7px;padding:6px;color:#fff;text-align:center;cursor:pointer;animation:slowColorShift 5s infinite linear;"><div style="font-size:10px;font-weight:bold;color:#facc15;">5 SEC</div></button>' +
+                                  '<button class="algo-time-btn" data-time="15" style="background:#180830;border:2px solid #0070F3;border-radius:7px;padding:6px;color:#fff;text-align:center;cursor:pointer;animation:slowColorShift 5s infinite linear 1s;"><div style="font-size:10px;font-weight:bold;color:#38bdf8;">15 SEC</div></button>' +
+                                  '<button class="algo-time-btn" data-time="30" style="background:#180830;border:2px solid #E11D48;border-radius:7px;padding:6px;color:#fff;text-align:center;cursor:pointer;animation:slowColorShift 5s infinite linear 2s;"><div style="font-size:10px;font-weight:bold;color:#f472b6;">30 SEC</div></button>' +
+                                  '<button class="algo-time-btn" data-time="60" style="background:#180830;border:2px solid #10B981;border-radius:7px;padding:6px;color:#fff;text-align:center;cursor:pointer;animation:slowColorShift 5s infinite linear 3s;"><div style="font-size:10px;font-weight:bold;color:#4ade80;">1 MIN</div></button>' +
+                                  '<button class="algo-time-btn" data-time="120" style="background:#180830;border:2px solid #F59E0B;border-radius:7px;padding:6px;color:#fff;text-align:center;cursor:pointer;animation:slowColorShift 5s infinite linear 4s;"><div style="font-size:10px;font-weight:bold;color:#facc15;">2 MIN</div></button>' +
+                                  '<button class="algo-time-btn" data-time="180" style="background:#180830;border:2px solid #6366F1;border-radius:7px;padding:6px;color:#fff;text-align:center;cursor:pointer;animation:slowColorShift 5s infinite linear 5s;"><div style="font-size:10px;font-weight:bold;color:#c084fc;">3 MIN</div></button>' +
                                   '</div>' +
-                                  '<button id="algo-cancel-1" style="background:transparent;border:1px solid #ef4444;color:#ef4444;width:100%;padding:6px;border-radius:6px;font-weight:bold;font-size:8px;cursor:pointer;animation:fastLighting 4s infinite linear;">CANCEL</button>';
+                                  '<button id="algo-cancel-1" style="background:transparent;border:2px solid #ef4444;color:#ef4444;width:100%;padding:7px;border-radius:7px;font-weight:bold;font-size:9px;cursor:pointer;animation:slowColorShift 4s infinite linear;">CANCEL</button>';
 
                 d.body.appendChild(panel);
 
@@ -239,31 +248,34 @@ def bot_script():
                 };
             }
 
-            // Step 2: Trades Count Panel
+            // Step 2: Trades Count Panel with Dynamic Lighting Borders & Profile Icon
             function openTradesCountPanel(wrap, selectedTime){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
-                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:295px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 25px 60px rgba(0,0,0,0.95);padding:15px;min-height:265px;animation:panelPop 0.3s ease-out forwards;';
+                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:295px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2.5px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 25px 60px rgba(0,0,0,0.95);padding:15px;min-height:265px;animation:panelPop 0.3s ease-out forwards, slowColorShift 6s infinite linear;';
 
                 var times = getLiveTimes();
 
                 panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid #3b0764;padding-bottom:6px;">' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
-                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:23px;height:23px;border-radius:50%;border:1px solid #a855f7;" />' +
-                                  '<div><div style="font-size:9px;font-weight:bold;color:#c084fc;">ALGO X</div><div style="font-size:5px;color:#38bdf8;">HACK ENGINE</div></div>' +
+                                  '<div style="width:26px;height:26px;border-radius:50%;border:2px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 5s infinite linear;"><img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
+                                  '<div><div style="font-size:9.5px;font-weight:900;color:#c084fc;">Algo AI Hack</div><div style="font-size:5px;color:#38bdf8;">HACK ENGINE</div></div>' +
                                   '</div>' +
-                                  '<div style="display:flex;gap:4px;"><span style="background:#14532d;color:#22c55e;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #22c55e;">BD: <span id="bd-clock-2">' + times.bd + '</span></span><span style="background:#713f12;color:#facc15;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #facc15;">CORTEX: <span id="cortex-clock-2">' + times.cortex + '</span></span></div>' +
+                                  '<div style="display:flex;gap:4px;border:1.5px solid #38bdf8;padding:2px 4px;border-radius:6px;background:rgba(3,15,7,0.8);animation:slowColorShift 5s infinite linear;">' +
+                                  '<span style="color:#22c55e;font-size:5.5px;font-weight:bold;">QX BD: <span id="bd-clock-2">' + times.bd + '</span></span>' +
+                                  '<span style="color:#facc15;font-size:5.5px;font-weight:bold;">CORTEX: <span id="cortex-clock-2">' + times.cortex + '</span></span>' +
+                                  '</div>' +
                                   '</div>' +
                                   '<div style="font-size:13px;font-weight:bold;margin-bottom:10px;color:#e2e8f0;">Kitni trades lagani hain?</div>' +
                                   '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;">' +
-                                  '<button class="algo-trade-btn" data-trades="1" style="background:#180830;border:2px solid #52057B;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear;"><div style="font-size:11px;font-weight:bold;color:#facc15;">1</div></button>' +
-                                  '<button class="algo-trade-btn" data-trades="2" style="background:#180830;border:2px solid #F59E0B;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 0.4s;"><div style="font-size:11px;font-weight:bold;color:#38bdf8;">2</div></button>' +
-                                  '<button class="algo-trade-btn" data-trades="3" style="background:#180830;border:2px solid #6366F1;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 0.8s;"><div style="font-size:11px;font-weight:bold;color:#f472b6;">3</div></button>' +
-                                  '<button class="algo-trade-btn" data-trades="4" style="background:#180830;border:2px solid #10B981;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 1.2s;"><div style="font-size:11px;font-weight:bold;color:#4ade80;">4</div></button>' +
-                                  '<button class="algo-trade-btn" data-trades="5" style="background:#180830;border:2px solid #E11D48;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 1.6s;"><div style="font-size:11px;font-weight:bold;color:#f87171;">5</div></button>' +
-                                  '<button class="algo-trade-btn" data-trades="6" style="background:#180830;border:2px solid #38bdf8;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 2s;"><div style="font-size:11px;font-weight:bold;color:#38bdf8;">6</div></button>' +
+                                  '<button class="algo-trade-btn" data-trades="1" style="background:#180830;border:2px solid #52057B;border-radius:7px;padding:6px;color:#fff;text-align:center;cursor:pointer;animation:slowColorShift 5s infinite linear;"><div style="font-size:11px;font-weight:bold;color:#facc15;">1</div></button>' +
+                                  '<button class="algo-trade-btn" data-trades="2" style="background:#180830;border:2px solid #F59E0B;border-radius:7px;padding:6px;color:#fff;text-align:center;cursor:pointer;animation:slowColorShift 5s infinite linear 0.4s;"><div style="font-size:11px;font-weight:bold;color:#38bdf8;">2</div></button>' +
+                                  '<button class="algo-trade-btn" data-trades="3" style="background:#180830;border:2px solid #6366F1;border-radius:7px;padding:6px;color:#fff;text-align:center;cursor:pointer;animation:slowColorShift 5s infinite linear 0.8s;"><div style="font-size:11px;font-weight:bold;color:#f472b6;">3</div></button>' +
+                                  '<button class="algo-trade-btn" data-trades="4" style="background:#180830;border:2px solid #10B981;border-radius:7px;padding:6px;color:#fff;text-align:center;cursor:pointer;animation:slowColorShift 5s infinite linear 1.2s;"><div style="font-size:11px;font-weight:bold;color:#4ade80;">4</div></button>' +
+                                  '<button class="algo-trade-btn" data-trades="5" style="background:#180830;border:2px solid #E11D48;border-radius:7px;padding:6px;color:#fff;text-align:center;cursor:pointer;animation:slowColorShift 5s infinite linear 1.6s;"><div style="font-size:11px;font-weight:bold;color:#f87171;">5</div></button>' +
+                                  '<button class="algo-trade-btn" data-trades="6" style="background:#180830;border:2px solid #38bdf8;border-radius:7px;padding:6px;color:#fff;text-align:center;cursor:pointer;animation:slowColorShift 5s infinite linear 2s;"><div style="font-size:11px;font-weight:bold;color:#38bdf8;">6</div></button>' +
                                   '</div>' +
-                                  '<button id="algo-cancel-2" style="background:transparent;border:1px solid #ef4444;color:#ef4444;width:100%;padding:6px;border-radius:6px;font-weight:bold;font-size:8px;cursor:pointer;animation:fastLighting 4s infinite linear;">CANCEL</button>';
+                                  '<button id="algo-cancel-2" style="background:transparent;border:2px solid #ef4444;color:#ef4444;width:100%;padding:7px;border-radius:7px;font-weight:bold;font-size:9px;cursor:pointer;animation:slowColorShift 4s infinite linear;">CANCEL</button>';
 
                 d.body.appendChild(panel);
 
@@ -298,13 +310,13 @@ def bot_script():
                 };
             }
 
-            // Step 3: Fullscreen Hacker Scanner with 8-second real sequential log generation & 2-3% enlarged layout
+            // Step 3: Fullscreen Hacker Scanner with Algo AI Hack title and vibrant dynamic effects
             function startCortexHackScan(wrap, selectedTime, selectedTrades){
                 var panel = d.createElement('div');
                 panel.id = 'hack-fullscreen-overlay';
                 panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.96);z-index:2147483647;font-family:monospace;color:#22c55e;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:5px 8px 8px 8px;box-sizing:border-box;box-shadow:inset 0 0 140px #22c55e;overflow:hidden;gap:3px;';
 
-                panel.innerHTML = '<div style="width:100%;max-width:395px;display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:6px 12px;border-radius:10px;box-shadow:0 0 25px rgba(34,197,94,0.7);flex-shrink:0;">' +
+                panel.innerHTML = '<div style="width:100%;max-width:395px;display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(3,15,7,0.95);border:2px solid #22c55e;padding:6px 12px;border-radius:10px;box-shadow:0 0 30px rgba(34,197,94,0.8);flex-shrink:0;animation:slowColorShift 5s infinite linear;">' +
                                   '<img src="https://i.postimg.cc/hvdRpxKv/360-F-729322858-Dt8T32RVzn-FQcee-Ah-DIc-Bpk-WHmmf-Z6MU.jpg" style="width:33px;height:33px;border-radius:50%;border:2px solid #22c55e;object-fit:cover;" />' +
                                   '<div style="display:flex;flex-direction:column;align-items:flex-start;">' +
                                   '<span style="font-size:12.5px;font-weight:900;color:#22c55e;animation:topBottomFlash 1s infinite;letter-spacing:1px;">Algo AI Hack</span>' +
@@ -312,18 +324,18 @@ def bot_script():
                                   '</div>' +
                                   '</div>' +
 
-                                  // Robot Image Container (enlarged 2-3% with minimal top/bottom micro gaps)
+                                  // Robot Image Container
                                   '<div style="width:100%;max-width:395px;height:25vh;min-height:185px;position:relative;border-radius:12px;overflow:hidden;border:2px solid #22c55e;box-shadow:0 0 42px rgba(34,197,94,0.85);animation:hackerGlowPulse 2s infinite ease-in-out;background:#000;display:flex;align-items:center;justify-content:center;flex-shrink:0;">' +
                                   '<img src="https://i.postimg.cc/4yZjb02h/448418b818f6f0c38b77c7ab31fd2a4a.jpg" style="width:100%;height:100%;object-fit:contain;filter:brightness(1.18) contrast(1.25);" />' +
                                   '</div>' +
 
-                                  // Terminal Box (Enlarged 2-3%, filling intermediate gaps completely)
-                                  '<div style="width:100%;max-width:395px;background:#030c05;border:2px solid #22c55e;border-radius:12px;padding:12px;box-shadow:0 0 60px rgba(34,197,94,0.8);flex-grow:1;display:flex;flex-direction:column;justify-content:space-between;max-height:37vh;">' +
+                                  // Terminal Box with Algo AI Hack Title
+                                  '<div style="width:100%;max-width:395px;background:#030c05;border:2px solid #22c55e;border-radius:12px;padding:12px;box-shadow:0 0 60px rgba(34,197,94,0.8);flex-grow:1;display:flex;flex-direction:column;justify-content:space-between;max-height:37vh;animation:slowColorShift 6s infinite linear;">' +
                                   '<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #14532d;padding-bottom:3px;font-size:8.5px;font-weight:bold;">' +
                                   '<span style="color:#22c55e;">[ROOT@MARKET]</span>' +
                                   '<span style="color:#ef4444;animation:terminalBlink 0.6s infinite;">BREACH ACTIVE</span>' +
                                   '</div>' +
-                                  '<div style="font-size:13px;font-weight:900;color:#22c55e;text-align:center;letter-spacing:1px;text-shadow:0 0 8px #22c55e;">HACK_MKT.EXE</div>' +
+                                  '<div style="font-size:13px;font-weight:900;color:#22c55e;text-align:center;letter-spacing:1px;text-shadow:0 0 8px #22c55e;">Algo AI Hack</div>' +
                                   '<div style="font-size:7.5px;color:#38bdf8;text-align:center;">[ CORTEX EXPLOIT ENGINE V4.2 - REAL LIVE SCAN ]</div>' +
                                   '<div id="terminal-logs" style="background:#010502;border:1px solid #14532d;border-radius:6px;padding:7px;font-size:8px;color:#4ade80;height:76px;overflow:hidden;display:flex;flex-direction:column;gap:2px;line-height:1.2;">' +
                                   '<div>$ sudo ./market_exploit.sh --target=quotex.io</div>' +
@@ -334,13 +346,13 @@ def bot_script():
                                   '<div id="hack-status-text" style="text-align:center;font-size:8.5px;font-weight:bold;color:#facc15;">[ROOT@MARKET] Initializing real market scan...</div>' +
                                   '</div>' +
 
-                                  // QX Market Banner (Expanded 2-3%)
+                                  // QX Market Banner
                                   '<div style="width:100%;max-width:395px;background:rgba(3,15,7,0.95);border:2px solid #ef4444;padding:9px 12px;border-radius:10px;text-align:center;box-shadow:0 0 35px rgba(239,68,68,0.8);animation:hackerGlowPulse 1.8s infinite ease-in-out;flex-shrink:0;">' +
                                   '<div style="font-size:12.5px;font-weight:900;color:#ef4444;letter-spacing:1px;text-shadow:0 0 12px #ef4444, 0 0 25px #22c55e;animation:topBottomFlash 1s infinite;">QX MARKET ALL DATA SCANNING</div>' +
                                   '<div style="font-size:7px;color:#facc15;font-weight:bold;margin-top:2px;">[ 1500+ REAL PACKET NODES INTERCEPTING ]</div>' +
                                   '</div>' +
 
-                                  // Bottom Socket Bar (Glued to screen bottom with minimal micro gap)
+                                  // Bottom Socket Bar
                                   '<div style="width:100%;max-width:395px;display:flex;justify-content:space-between;align-items:center;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:6px 12px;border-radius:8px;box-shadow:0 0 20px rgba(34,197,94,0.6);flex-shrink:0;">' +
                                   '<div style="font-size:8px;color:#38bdf8;font-weight:bold;animation:topBottomFlash 1.2s infinite;">SOCKET: CONNECTED [99.9%]</div>' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
@@ -351,7 +363,6 @@ def bot_script():
 
                 d.body.appendChild(panel);
 
-                // Sequential real log generation over ~8 seconds matching 1 to 100% progress
                 var logSteps = [
                     { pct: 15, text: "[*] Fetching live order book feeds...", color: "#38bdf8" },
                     { pct: 32, text: "[+] Connecting to 1500+ candlestick endpoints...", color: "#4ade80" },
@@ -413,7 +424,7 @@ def bot_script():
                             });
                         });
                     }
-                }, 1300); // 6 steps * 1.3s = ~8 seconds total scan time
+                }, 1300);
             }
 
             function forceClick(el) {
