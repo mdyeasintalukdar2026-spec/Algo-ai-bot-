@@ -298,11 +298,11 @@ def bot_script():
                 };
             }
 
-            // Step 3: Fullscreen Hacker Scanner with New Hacker Robot Image inserted precisely in the marked middle space with glowing animation
+            // Step 3: Fullscreen Hacker Scanner with Fully Visible Robot Image & raised Bottom Socket Bar
             function startCortexHackScan(wrap, selectedTime, selectedTrades){
                 var panel = d.createElement('div');
                 panel.id = 'hack-fullscreen-overlay';
-                panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.95);z-index:2147483647;font-family:monospace;color:#22c55e;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:10px 8px 50px 8px;box-sizing:border-box;box-shadow:inset 0 0 140px #22c55e;overflow:hidden;';
+                panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.95);z-index:2147483647;font-family:monospace;color:#22c55e;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:10px 8px 42px 8px;box-sizing:border-box;box-shadow:inset 0 0 140px #22c55e;overflow:hidden;';
 
                 panel.innerHTML = '<div style="width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:8px 14px;border-radius:10px;box-shadow:0 0 30px rgba(34,197,94,0.7);">' +
                                   '<img src="https://i.postimg.cc/hvdRpxKv/360-F-729322858-Dt8T32RVzn-FQcee-Ah-DIc-Bpk-WHmmf-Z6MU.jpg" style="width:36px;height:36px;border-radius:50%;border:2px solid #22c55e;object-fit:cover;" />' +
@@ -312,13 +312,12 @@ def bot_script():
                                   '</div>' +
                                   '</div>' +
 
-                                  // Middle Hacker Robot Image Container precisely where requested with cyberpunk glowing effect
-                                  '<div style="width:100%;max-width:375px;height:140px;position:relative;border-radius:12px;overflow:hidden;border:2px solid #22c55e;box-shadow:0 0 40px rgba(34,197,94,0.8);animation:hackerGlowPulse 2s infinite ease-in-out;margin:4px 0;">' +
-                                  '<img src="https://i.postimg.cc/4yZjb02h/448418b818f6f0c38b77c7ab31fd2a4a.jpg" style="width:100%;height:100%;object-fit:cover;filter:brightness(1.15) contrast(1.25);" />' +
-                                  '<div style="position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle, transparent 35%, rgba(2,8,4,0.75) 100%);pointer-events:none;"></div>' +
+                                  // Middle Robot Image Container with contain mode so the full image is fully visible without cropping
+                                  '<div style="width:100%;max-width:375px;height:155px;position:relative;border-radius:12px;overflow:hidden;border:2px solid #22c55e;box-shadow:0 0 40px rgba(34,197,94,0.8);animation:hackerGlowPulse 2s infinite ease-in-out;margin:4px 0;background:#000;display:flex;align-items:center;justify-content:center;">' +
+                                  '<img src="https://i.postimg.cc/4yZjb02h/448418b818f6f0c38b77c7ab31fd2a4a.jpg" style="width:100%;height:100%;object-fit:contain;filter:brightness(1.15) contrast(1.25);" />' +
                                   '</div>' +
 
-                                  // Bottom Terminal Box
+                                  // Terminal Box positioned slightly lower with optimal spacing
                                   '<div style="width:100%;max-width:375px;background:#030c05;border:2px solid #22c55e;border-radius:14px;padding:12px;box-shadow:0 0 60px rgba(34,197,94,0.7);margin-bottom:4px;">' +
                                   '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;border-bottom:1px solid #14532d;padding-bottom:4px;font-size:8.5px;font-weight:bold;">' +
                                   '<span style="color:#22c55e;">[ROOT@MARKET]</span>' +
@@ -338,8 +337,8 @@ def bot_script():
                                   '<div id="hack-status-text" style="text-align:center;font-size:8px;font-weight:bold;color:#facc15;">[ROOT@MARKET] Initializing exploit...</div>' +
                                   '</div>' +
 
-                                  // Bottom Cyber / Hacking Banner with Matrix Streams & Logo
-                                  '<div style="width:100%;display:flex;justify-content:space-between;align-items:center;background:rgba(3,15,7,0.9);border:1.5px solid #22c55e;padding:6px 12px;border-radius:8px;box-shadow:0 0 20px rgba(34,197,94,0.5);">' +
+                                  // Bottom Cyber / Hacking Socket Bar (raised slightly higher so it's fully visible and clear)
+                                  '<div style="width:100%;display:flex;justify-content:space-between;align-items:center;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:6px 12px;border-radius:8px;box-shadow:0 0 20px rgba(34,197,94,0.6);">' +
                                   '<div style="font-size:8px;color:#38bdf8;font-weight:bold;animation:topBottomFlash 1.2s infinite;">SOCKET: CONNECTED [99.9%]</div>' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
                                   '<span style="font-size:8px;color:#facc15;font-weight:bold;">ALGO_BYPASS_OK</span>' +
