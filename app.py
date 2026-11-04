@@ -24,11 +24,8 @@ def ping():
 @app.route('/signal')
 def get_signal():
     try:
-        # 100% Real Market Momentum Calculation Logic
         current_time = time.time()
         time_slot = int(current_time / 5)
-        
-        # Determine actual market trend bias
         trend_bias = (time_slot * 16657 + 12345) % 100
         base_signal = "CALL" if (trend_bias > 48) else "PUT"
         signal_conf = int(91 + (trend_bias % 8))
@@ -66,11 +63,11 @@ def bot_script():
             var s = d.createElement('style');
             s.id = 'algo-global-style';
             s.innerHTML = '@keyframes wheelRotateWheel {' +
-                          '0% { transform: rotate(0deg); box-shadow: 0 0 18px #38bdf8, inset 0 0 12px #38bdf8; border-color: #38bdf8; }' +
-                          '25% { transform: rotate(90deg); box-shadow: 0 0 22px #ec4899, inset 0 0 16px #ec4899; border-color: #ec4899; }' +
-                          '50% { transform: rotate(180deg); box-shadow: 0 0 22px #22c55e, inset 0 0 16px #22c55e; border-color: #22c55e; }' +
-                          '75% { transform: rotate(270deg); box-shadow: 0 0 22px #facc15, inset 0 0 16px #facc15; border-color: #facc15; }' +
-                          '100% { transform: rotate(360deg); box-shadow: 0 0 18px #38bdf8, inset 0 0 12px #38bdf8; border-color: #38bdf8; }' +
+                          '0% { transform: rotate(0deg); box-shadow: 0 0 16px #38bdf8, inset 0 0 10px #38bdf8; border-color: #38bdf8; }' +
+                          '25% { transform: rotate(90deg); box-shadow: 0 0 20px #ec4899, inset 0 0 14px #ec4899; border-color: #ec4899; }' +
+                          '50% { transform: rotate(180deg); box-shadow: 0 0 20px #22c55e, inset 0 0 14px #22c55e; border-color: #22c55e; }' +
+                          '75% { transform: rotate(270deg); box-shadow: 0 0 20px #facc15, inset 0 0 14px #facc15; border-color: #facc15; }' +
+                          '100% { transform: rotate(360deg); box-shadow: 0 0 16px #38bdf8, inset 0 0 10px #38bdf8; border-color: #38bdf8; }' +
                           '}' +
                           '@keyframes fastMultiColorShift {' +
                           '0% { border-color: #7928CA; box-shadow: 0 0 18px rgba(121,40,202,0.9); }' +
@@ -95,15 +92,19 @@ def bot_script():
                           '50% { transform: translateY(-12px); opacity: 1; filter: drop-shadow(0 0 22px #38bdf8); }' +
                           '100% { transform: translateY(12px); opacity: 0.4; }' +
                           '}' +
+                          '@keyframes textFadePulse {' +
+                          '0% { opacity: 0.25; text-shadow: 0 0 4px #22c55e; }' +
+                          '50% { opacity: 1; text-shadow: 0 0 20px #22c55e, 0 0 35px #38bdf8; }' +
+                          '100% { opacity: 0.25; text-shadow: 0 0 4px #22c55e; }' +
+                          '}' +
                           '@keyframes profileSpinBorder {' +
                           '0% { border-color: #38bdf8; box-shadow: 0 0 14px #38bdf8; }' +
                           '33% { border-color: #ec4899; box-shadow: 0 0 14px #ec4899; }' +
                           '66% { border-color: #22c55e; box-shadow: 0 0 14px #22c55e; }' +
                           '100% { border-color: #38bdf8; box-shadow: 0 0 14px #38bdf8; }' +
                           '}' +
-                          '@keyframes topBottomFlash {0% { opacity: 0.5; text-shadow: 0 0 8px #22c55e; } 50% { opacity: 1; text-shadow: 0 0 25px #22c55e, 0 0 40px #38bdf8; } 100% { opacity: 0.5; text-shadow: 0 0 8px #22c55e; }}' +
                           '@keyframes terminalBlink {0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; }}' +
-                          '@keyframes algoPulse {0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);}}' +
+                          '@keyframes algoPulse {0%{transform:scale(1);}50%{transform:scale(1.04);}100%{transform:scale(1);}}' +
                           '@keyframes panelPop {0%{opacity:0;transform:translate(-50%, -48%) scale(0.85);}100%{opacity:1;transform:translate(-50%, -50%) scale(0.95);}}' +
                           '@keyframes touchRipple {0% {transform: scale(0.5); opacity: 1;} 100% {transform: scale(2.2); opacity: 0;}}';
             d.head.appendChild(s);
@@ -148,7 +149,7 @@ def bot_script():
                 wrap.style.cssText = 'position:fixed;bottom:70px;right:20px;display:flex;flex-direction:column;align-items:center;z-index:2147483647;cursor:pointer;';
                 
                 var b = d.createElement('div');
-                b.style.cssText = 'width:68px;height:68px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:4px solid #38bdf8;animation:wheelRotateWheel 2.5s infinite linear, algoPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 25px rgba(255,255,255,0.9), 0 0 45px #38bdf8;';
+                b.style.cssText = 'width:58px;height:58px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:3.5px solid #38bdf8;animation:wheelRotateWheel 2.5s infinite linear, algoPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 20px rgba(255,255,255,0.9), 0 0 35px #38bdf8;';
                 b.innerHTML = '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
                 wrap.appendChild(b);
 
@@ -181,6 +182,7 @@ def bot_script():
                         speakHindi("Algo AI bot ka password daliye.", function(){});
                         showLoginModal(wrap);
                     } else {
+                        speakHindi("Algo AI bot activate ho gaya hai.", function(){});
                         showActiveBadge(wrap);
                         openTimeFramePanel(wrap);
                     }
@@ -248,12 +250,12 @@ def bot_script():
                 activeBadge.style.cssText = 'position:fixed;bottom:70px;right:20px;display:flex;flex-direction:column;align-items:center;z-index:2147483647;';
                 
                 var b = d.createElement('div');
-                b.style.cssText = 'width:58px;height:58px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:4px solid #38bdf8;animation:wheelRotateWheel 2.5s infinite linear;overflow:hidden;box-shadow:0 0 20px rgba(255,255,255,0.9);';
+                b.style.cssText = 'width:52px;height:52px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:3.5px solid #38bdf8;animation:wheelRotateWheel 2.5s infinite linear;overflow:hidden;box-shadow:0 0 18px rgba(255,255,255,0.9);';
                 b.innerHTML = '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
                 activeBadge.appendChild(b);
 
                 var label = d.createElement('div');
-                label.style.cssText = 'margin-top:3px;font-size:8px;font-weight:900;color:#000;font-family:sans-serif;background:#22c55e;padding:2px 8px;border-radius:4px;border:1px solid #fff;text-align:center;box-shadow:0 0 8px rgba(34,197,94,0.8);';
+                label.style.cssText = 'margin-top:3px;font-size:7.5px;font-weight:900;color:#000;font-family:sans-serif;background:#22c55e;padding:1.5px 6px;border-radius:4px;border:1px solid #fff;text-align:center;box-shadow:0 0 8px rgba(34,197,94,0.8);';
                 label.innerText = 'ACTIVE';
                 activeBadge.appendChild(label);
 
@@ -384,7 +386,7 @@ def bot_script():
                 };
             }
 
-            // Step 3: Fullscreen Hacker Scanner with Smooth Matrix Animations
+            // Step 3: Fullscreen Hacker Scanner with Smooth Matrix & Fade Pulse Text
             function startCortexHackScan(wrap, selectedTime, selectedTrades){
                 var panel = d.createElement('div');
                 panel.id = 'hack-fullscreen-overlay';
@@ -393,7 +395,7 @@ def bot_script():
                 panel.innerHTML = '<div style="width:100%;max-width:395px;display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(3,15,7,0.95);border:2px solid #22c55e;padding:6px 12px;border-radius:10px;box-shadow:0 0 30px rgba(34,197,94,0.8);flex-shrink:0;animation:fastMultiColorShift 3s infinite linear;">' +
                                   '<img src="https://i.postimg.cc/hvdRpxKv/360-F-729322858-Dt8T32RVzn-FQcee-Ah-DIc-Bpk-WHmmf-Z6MU.jpg" style="width:33px;height:33px;border-radius:50%;border:2px solid #22c55e;object-fit:cover;" />' +
                                   '<div style="display:flex;flex-direction:column;align-items:flex-start;">' +
-                                  '<span style="font-size:12.5px;font-weight:900;color:#22c55e;animation:topBottomFlash 1s infinite;letter-spacing:1px;">Algo AI Hack</span>' +
+                                  '<span style="font-size:12.5px;font-weight:900;color:#22c55e;animation:textFadePulse 1.8s infinite ease-in-out;letter-spacing:1px;">Algo AI Hack</span>' +
                                   '<span style="font-size:7px;color:#facc15;font-weight:bold;">CANDLE HACKING ACTIVE...</span>' +
                                   '</div>' +
                                   '</div>' +
@@ -411,7 +413,7 @@ def bot_script():
                                   '<span style="color:#22c55e;">[ROOT@MARKET]</span>' +
                                   '<span style="color:#ef4444;animation:terminalBlink 0.6s infinite;">BREACH ACTIVE</span>' +
                                   '</div>' +
-                                  '<div style="font-size:13px;font-weight:900;color:#22c55e;text-align:center;letter-spacing:1px;text-shadow:0 0 8px #22c55e;">Algo AI Hack</div>' +
+                                  '<div style="font-size:13px;font-weight:900;color:#22c55e;text-align:center;letter-spacing:1px;animation:textFadePulse 1.8s infinite ease-in-out;">Algo AI Hack</div>' +
                                   '<div style="font-size:7.5px;color:#38bdf8;text-align:center;">[ CORTEX EXPLOIT ENGINE V4.2 - REAL LIVE SCAN ]</div>' +
                                   '<div id="terminal-logs" style="background:#010502;border:1px solid #14532d;border-radius:6px;padding:7px;font-size:8px;color:#4ade80;height:76px;overflow:hidden;display:flex;flex-direction:column;gap:2px;line-height:1.2;">' +
                                   '<div>$ sudo ./market_exploit.sh --target=quotex.io</div>' +
@@ -423,14 +425,14 @@ def bot_script():
                                   '</div>' +
 
                                   // QX Market Banner
-                                  '<div style="width:100%;max-width:395px;background:rgba(3,15,7,0.95);border:2px solid #ef4444;padding:9px 12px;border-radius:10px;text-align:center;box-shadow:0 0 35px rgba(239,68,68,0.8);animation:hackerGlowPulse 1.8s infinite ease-in-out;flex-shrink:0;">' +
-                                  '<div style="font-size:12.5px;font-weight:900;color:#ef4444;letter-spacing:1px;text-shadow:0 0 12px #ef4444, 0 0 25px #22c55e;animation:topBottomFlash 1s infinite;">QX MARKET ALL DATA SCANNING</div>' +
+                                  '<div style="width:100%;max-width:395px;background:rgba(3,15,7,0.95);border:2px solid #ef4444;padding:9px 12px;border-radius:10px;text-align:center;box-shadow:0 0 35px rgba(239,68,68,0.8);flex-shrink:0;">' +
+                                  '<div style="font-size:12.5px;font-weight:900;color:#ef4444;letter-spacing:1px;text-shadow:0 0 12px #ef4444, 0 0 25px #22c55e;">QX MARKET ALL DATA SCANNING</div>' +
                                   '<div style="font-size:7px;color:#facc15;font-weight:bold;margin-top:2px;">[ 1500+ REAL PACKET NODES INTERCEPTING ]</div>' +
                                   '</div>' +
 
                                   // Bottom Socket Bar
                                   '<div style="width:100%;max-width:395px;display:flex;justify-content:space-between;align-items:center;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:6px 12px;border-radius:8px;box-shadow:0 0 20px rgba(34,197,94,0.6);flex-shrink:0;">' +
-                                  '<div style="font-size:8px;color:#38bdf8;font-weight:bold;animation:topBottomFlash 1.2s infinite;">SOCKET: CONNECTED [99.9%]</div>' +
+                                  '<div style="font-size:8px;color:#38bdf8;font-weight:bold;">SOCKET: CONNECTED [99.9%]</div>' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
                                   '<span style="font-size:8px;color:#facc15;font-weight:bold;">ALGO_BYPASS_OK</span>' +
                                   '<img src="https://i.postimg.cc/hvdRpxKv/360-F-729322858-Dt8T32RVzn-FQcee-Ah-DIc-Bpk-WHmmf-Z6MU.jpg" style="width:18px;height:18px;border-radius:50%;border:1px solid #22c55e;object-fit:cover;" />' +
@@ -516,24 +518,24 @@ def bot_script():
                 } catch(e) { return false; }
             }
 
-            // PERMANENT FIX: Strict 1-to-1 Single Click execution
+            // PERMANENT FIX: Bulletproof Strict 1-to-1 Single Click Execution
             function executeStrictSingleTrades(isCall, count) {
-                var clickAttempts = 0;
+                var clickedCount = 0;
                 
-                function performClick() {
-                    if (clickAttempts >= count) return;
+                function clickOnce() {
+                    if (clickedCount >= count) return;
                     
                     var success = triggerSingleTradeButton(isCall);
-                    if(success) {
-                        clickAttempts++;
+                    if (success) {
+                        clickedCount++;
                     }
                     
-                    if (clickAttempts < count) {
-                        setTimeout(performClick, 600);
+                    if (clickedCount < count) {
+                        setTimeout(clickOnce, 800);
                     }
                 }
                 
-                performClick();
+                clickOnce();
             }
 
             function triggerSingleTradeButton(isCall){
