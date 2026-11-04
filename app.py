@@ -520,32 +520,34 @@ def bot_script():
                 }, 1200);
             }
 
-            function forceClick(el) {
+            // PERMANENT FIX: Single Native Mouse Event Only (No Multi-Pointer Event Bubble)
+            function forceSingleClickOnly(el) {
                 if(!el) return false;
                 try {
+                    if (typeof el.click === 'function') {
+                        el.click();
+                        return true;
+                    }
                     var box = el.getBoundingClientRect();
                     var cx = box.left + (box.width / 2);
                     var cy = box.top + (box.height / 2);
-                    ['pointerdown', 'mousedown', 'pointerup', 'mouseup', 'click'].forEach(function(evName){
-                        var ev = new MouseEvent(evName, {
-                            bubbles: true, cancelable: true, view: window,
-                            clientX: cx, clientY: cy, screenX: cx, screenY: cy
-                        });
-                        el.dispatchEvent(ev);
+                    var singleEv = new MouseEvent('click', {
+                        bubbles: true, cancelable: true, view: window,
+                        clientX: cx, clientY: cy, screenX: cx, screenY: cy
                     });
-                    if(typeof el.click === 'function') el.click();
+                    el.dispatchEvent(singleEv);
                     return true;
                 } catch(e) { return false; }
             }
 
-            // ULTIMATE STRICT ANTI-DOUBLE LOCK: Exact single trade count matching user selection without any extra duplication
+            // HARDENED STRICT EXECUTION LOCK: Exactly 1 Click Per Loop Iteration
             function executeStrictSingleTrades(isCall, count) {
                 if (isExecutionLocked) return;
                 isExecutionLocked = true;
                 
                 var clickedCount = 0;
                 
-                function clickOnce() {
+                function clickStep() {
                     if (clickedCount >= count) {
                         isExecutionLocked = false;
                         return;
@@ -557,13 +559,13 @@ def bot_script():
                     }
                     
                     if (clickedCount < count) {
-                        setTimeout(clickOnce, 1200);
+                        setTimeout(clickStep, 1500);
                     } else {
                         isExecutionLocked = false;
                     }
                 }
                 
-                clickOnce();
+                clickStep();
             }
 
             function triggerSingleTradeButton(isCall){
@@ -606,7 +608,7 @@ def bot_script():
                 }
 
                 if(targetBtn){
-                    return forceClick(targetBtn);
+                    return forceSingleClickOnly(targetBtn);
                 }
                 return false;
             }
