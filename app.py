@@ -60,6 +60,10 @@ def bot_script():
                 if(e) e.remove();
             });
 
+            var img1 = "https://i.postimg.cc/qqGgKCD7/IMG-20261104-WA0017.jpg";
+            var img2 = "https://i.postimg.cc/sx3g3gfF/360-F-729322858-Dt8T32RVzn-FQcee-Ah-DIc-Bpk-WHmmf-Z6MU.jpg";
+            var img3 = "https://i.postimg.cc/pX7t5PMd/images-(1).jpg";
+
             var s = d.createElement('style');
             s.id = 'algo-global-style';
             s.innerHTML = '@keyframes wheelRotateWheel {' +
@@ -151,7 +155,6 @@ def bot_script():
                 createPatailaBot();
             }
 
-            // Step 1: Initial Circular Bot (Slightly larger with Image 1 URL and white lighting effects)
             function createCircularBot(){
                 var wrap = d.getElementById('algo-floating-btn') || d.createElement('div');
                 wrap.id = 'algo-floating-btn';
@@ -160,7 +163,7 @@ def bot_script():
                 wrap.innerHTML = '';
                 var b = d.createElement('div');
                 b.style.cssText = 'width:66px;height:66px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(13,2,31,0.98) 80%);display:flex;align-items:center;justify-content:center;border:4px solid #38bdf8;animation:wheelRotateWheel 2.0s infinite linear, algoPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 25px rgba(255,255,255,1), 0 0 40px #38bdf8;';
-                b.innerHTML = '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
+                b.innerHTML = '<img src="' + img1 + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
                 wrap.appendChild(b);
 
                 if(!d.body.contains(wrap)) d.body.appendChild(wrap);
@@ -192,7 +195,6 @@ def bot_script():
                 };
             }
 
-            // Step 2: Post-Verification Pataila Bot (Using Image 2 URL with fast multi-color shifting borders)
             function createPatailaBot(){
                 var wrap = d.getElementById('algo-floating-btn') || d.createElement('div');
                 wrap.id = 'algo-floating-btn';
@@ -200,7 +202,7 @@ def bot_script():
                 
                 wrap.innerHTML = '<div style="display:flex;align-items:center;gap:7px;background:rgba(13,2,31,0.95);border:2.5px solid #22c55e;padding:4px 10px 4px 4px;border-radius:22px;box-shadow:0 0 22px rgba(34,197,94,0.9), inset 0 0 12px rgba(34,197,94,0.5);animation:fastMultiColorShift 2.2s infinite linear;">' +
                                  '<div style="width:36px;height:36px;border-radius:50%;border:2px solid #38bdf8;overflow:hidden;flex-shrink:0;">' +
-                                 '<img src="https://i.postimg.cc/W1DhfxFK/360-F-729322858-Dt8T32RVzn-FQcee-Ah-DIc-Bpk-WHmmf-Z6MU.jpg" style="width:100%;height:100%;object-fit:cover;" />' +
+                                 '<img src="' + img2 + '" style="width:100%;height:100%;object-fit:cover;" />' +
                                  '</div>' +
                                  '<div style="display:flex;flex-direction:column;justify-content:center;line-height:1.1;">' +
                                  '<span style="font-size:9.5px;font-weight:900;color:#fff;font-family:sans-serif;letter-spacing:0.5px;">ALGO AI HACK</span>' +
@@ -252,14 +254,14 @@ def bot_script():
 
                 modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border-bottom:1px solid #3b0764;padding-bottom:8px;">' +
                                   '<div style="display:flex;align-items:center;gap:8px;">' +
-                                  '<div style="width:28px;height:28px;border-radius:50%;border:2px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 2.5s infinite linear;"><img src="https://i.postimg.cc/W1DhfxFK/360-F-729322858-Dt8T32RVzn-FQcee-Ah-DIc-Bpk-WHmmf-Z6MU.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
+                                  '<div style="width:31px;height:31px;border-radius:50%;border:2.5px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 2.5s infinite linear;box-shadow:0 0 14px rgba(56,189,248,0.9);"><img src="' + img2 + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
                                   '<div><div style="font-size:10px;font-weight:900;color:#c084fc;">Algo AI Hack</div><div style="font-size:5.5px;color:#38bdf8;">SECURE LOGIN</div></div>' +
                                   '</div>' +
                                   '<button id="algo-login-close" style="background:transparent;border:none;color:#ef4444;font-weight:bold;font-size:14px;cursor:pointer;">&times;</button>' +
                                   '</div>' +
 
                                   '<a href="https://t.me/+Wv60z3O9tXk3Yzll" target="_blank" style="display:flex;align-items:center;gap:10px;background:rgba(3,15,7,0.85);border:2px solid #facc15;padding:8px 10px;border-radius:10px;margin-bottom:14px;text-decoration:none;animation:fastMultiColorShift 3s infinite linear;">' +
-                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:36px;height:36px;border-radius:50%;border:2px solid #22c55e;object-fit:cover;" />' +
+                                  '<img src="' + img1 + '" style="width:36px;height:36px;border-radius:50%;border:2px solid #22c55e;object-fit:cover;" />' +
                                   '<div style="display:flex;flex-direction:column;">' +
                                   '<span style="font-size:10px;font-weight:900;color:#22c55e;">R-A Trading Community</span>' +
                                   '<span style="font-size:6.5px;color:#facc15;">Click to Join Telegram</span>' +
@@ -302,7 +304,6 @@ def bot_script():
                 return { cortex: utcTime };
             }
 
-            // Time Frame Panel (Using Image 3 URL for slightly larger top-left logo with slow lighting effect)
             function openTimeFramePanel(wrap){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
@@ -312,7 +313,7 @@ def bot_script():
 
                 panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid #3b0764;padding-bottom:6px;">' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
-                                  '<div style="width:31px;height:31px;border-radius:50%;border:2.5px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3.5s infinite linear;box-shadow:0 0 14px rgba(56,189,248,0.9);"><img src="https://i.postimg.cc/pX7t5PMd/images-(1).jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
+                                  '<div style="width:33px;height:33px;border-radius:50%;border:2.5px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3.5s infinite linear;box-shadow:0 0 15px rgba(56,189,248,0.95);"><img src="' + img3 + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
                                   '<div><div style="font-size:9.5px;font-weight:900;color:#c084fc;">Algo AI Hack</div><div style="font-size:5px;color:#38bdf8;">VERSION v1.0</div></div>' +
                                   '</div>' +
                                   '<div style="display:flex;flex-direction:column;align-items:flex-end;border:1.5px solid #38bdf8;padding:2px 6px;border-radius:6px;background:rgba(3,15,7,0.85);animation:fastMultiColorShift 3s infinite linear;">' +
@@ -358,7 +359,6 @@ def bot_script():
                 };
             }
 
-            // Trades Count Panel (Using Image 3 URL for top-left logo with slow lighting effect)
             function openTradesCountPanel(wrap, selectedTime){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
@@ -368,7 +368,7 @@ def bot_script():
 
                 panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid #3b0764;padding-bottom:6px;">' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
-                                  '<div style="width:31px;height:31px;border-radius:50%;border:2.5px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3.5s infinite linear;box-shadow:0 0 14px rgba(56,189,248,0.9);"><img src="https://i.postimg.cc/pX7t5PMd/images-(1).jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
+                                  '<div style="width:33px;height:33px;border-radius:50%;border:2.5px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3.5s infinite linear;box-shadow:0 0 15px rgba(56,189,248,0.95);"><img src="' + img3 + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
                                   '<div><div style="font-size:9.5px;font-weight:900;color:#c084fc;">Algo AI Hack</div><div style="font-size:5px;color:#38bdf8;">VERSION v1.0</div></div>' +
                                   '</div>' +
                                   '<div style="display:flex;flex-direction:column;align-items:flex-end;border:1.5px solid #38bdf8;padding:2px 6px;border-radius:6px;background:rgba(3,15,7,0.85);animation:fastMultiColorShift 3s infinite linear;">' +
@@ -417,14 +417,13 @@ def bot_script():
                 };
             }
 
-            // Hacker Scan Screen (Using Image 3 URL for top logo with slow lighting effect)
             function startCortexHackScan(wrap, selectedTime, selectedTrades){
                 var panel = d.createElement('div');
                 panel.id = 'hack-fullscreen-overlay';
                 panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.96);z-index:2147483647;font-family:monospace;color:#22c55e;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:5px 8px 8px 8px;box-sizing:border-box;box-shadow:inset 0 0 140px #22c55e;overflow:hidden;gap:3px;';
 
                 panel.innerHTML = '<div style="width:100%;max-width:395px;display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(3,15,7,0.95);border:2px solid #22c55e;padding:6px 12px;border-radius:10px;box-shadow:0 0 32px rgba(34,197,94,0.85);flex-shrink:0;animation:fastMultiColorShift 2.2s infinite linear;">' +
-                                  '<div style="width:36px;height:36px;border-radius:50%;border:2.5px solid #22c55e;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3.5s infinite linear;box-shadow:0 0 14px rgba(34,197,94,0.9);flex-shrink:0;"><img src="https://i.postimg.cc/pX7t5PMd/images-(1).jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
+                                  '<div style="width:36px;height:36px;border-radius:50%;border:2.5px solid #22c55e;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3.5s infinite linear;box-shadow:0 0 14px rgba(34,197,94,0.9);flex-shrink:0;"><img src="' + img3 + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
                                   '<div style="display:flex;flex-direction:column;align-items:flex-start;">' +
                                   '<span style="font-size:12.5px;font-weight:900;color:#22c55e;animation:textFadePulse 1.8s infinite ease-in-out;letter-spacing:1px;">Algo AI Hack</span>' +
                                   '<span style="font-size:7px;color:#facc15;font-weight:bold;">CANDLE HACKING ACTIVE...</span>' +
@@ -462,7 +461,7 @@ def bot_script():
                                   '<div style="font-size:8px;color:#38bdf8;font-weight:bold;">SOCKET: CONNECTED [99.9%]</div>' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
                                   '<span style="font-size:8px;color:#facc15;font-weight:bold;">ALGO_BYPASS_OK</span>' +
-                                  '<div style="width:20px;height:20px;border-radius:50%;border:2px solid #22c55e;padding:0.5px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px #22c55e;"><img src="https://i.postimg.cc/pX7t5PMd/images-(1).jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
+                                  '<div style="width:20px;height:20px;border-radius:50%;border:2px solid #22c55e;padding:0.5px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px #22c55e;"><img src="' + img3 + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
                                   '</div>' +
                                   '</div>';
 
