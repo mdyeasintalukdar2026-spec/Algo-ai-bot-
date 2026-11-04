@@ -59,27 +59,25 @@ def bot_script():
 
             var s = d.createElement('style');
             s.id = 'algo-global-style';
-            s.innerHTML = '@keyframes eagleWheel {' +
-                          '0% { transform: rotate(0deg); box-shadow: 0 0 30px rgba(255,255,255,0.9), 0 0 60px #38bdf8; border-color: #38bdf8; }' +
-                          '50% { transform: rotate(180deg); box-shadow: 0 0 40px rgba(255,255,255,1), 0 0 75px #ec4899; border-color: #ec4899; }' +
-                          '100% { transform: rotate(360deg); box-shadow: 0 0 30px rgba(255,255,255,0.9), 0 0 60px #38bdf8; border-color: #38bdf8; }' +
+            s.innerHTML = '@keyframes wheelRotate {' +
+                          '0% { transform: rotate(0deg); box-shadow: 0 0 25px rgba(255,255,255,0.9), 0 0 50px #38bdf8; border-color: #38bdf8; }' +
+                          '50% { transform: rotate(180deg); box-shadow: 0 0 35px rgba(255,255,255,1), 0 0 65px #ec4899; border-color: #ec4899; }' +
+                          '100% { transform: rotate(360deg); box-shadow: 0 0 25px rgba(255,255,255,0.9), 0 0 50px #38bdf8; border-color: #38bdf8; }' +
                           '}' +
                           '@keyframes fastLighting {' +
-                          '0% { border-color: #7928CA; box-shadow: 0 0 12px rgba(121,40,202,0.8); }' +
-                          '20% { border-color: #0070F3; box-shadow: 0 0 12px rgba(0,112,243,0.8); }' +
-                          '40% { border-color: #E11D48; box-shadow: 0 0 12px rgba(225,29,72,0.8); }' +
-                          '60% { border-color: #10B981; box-shadow: 0 0 12px rgba(16,185,129,0.8); }' +
-                          '80% { border-color: #F59E0B; box-shadow: 0 0 12px rgba(245,158,11,0.8); }' +
-                          '100% { border-color: #7928CA; box-shadow: 0 0 12px rgba(121,40,202,0.8); }' +
+                          '0% { border-color: #7928CA; box-shadow: 0 0 10px rgba(121,40,202,0.8); }' +
+                          '25% { border-color: #0070F3; box-shadow: 0 0 10px rgba(0,112,243,0.8); }' +
+                          '50% { border-color: #E11D48; box-shadow: 0 0 10px rgba(225,29,72,0.8); }' +
+                          '75% { border-color: #10B981; box-shadow: 0 0 10px rgba(16,185,129,0.8); }' +
+                          '100% { border-color: #7928CA; box-shadow: 0 0 10px rgba(121,40,202,0.8); }' +
                           '}' +
-                          '@keyframes hackMatrixScan {' +
-                          '0% { background-position: 0% 0%; filter: hue-rotate(0deg); }' +
-                          '50% { background-position: 100% 100%; filter: hue-rotate(90deg); }' +
-                          '100% { background-position: 0% 0%; filter: hue-rotate(0deg); }' +
+                          '@keyframes hackMatrixFullscreen {' +
+                          '0% { background: rgba(5, 1, 10, 0.96); box-shadow: inset 0 0 80px #22c55e; }' +
+                          '50% { background: rgba(1, 10, 5, 0.96); box-shadow: inset 0 0 80px #ef4444; }' +
+                          '100% { background: rgba(5, 1, 10, 0.96); box-shadow: inset 0 0 80px #22c55e; }' +
                           '}' +
                           '@keyframes slowFadeText {0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; }}' +
-                          '@keyframes candleSlowWave {0% { transform: translateY(0px); opacity: 0.5; } 50% { transform: translateY(-8px); opacity: 1; } 100% { transform: translateY(0px); opacity: 0.5; }}' +
-                          '@keyframes algoPulse {0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);}}' +
+                          '@keyframes algoPulse {0%{transform:scale(1);}50%{transform:scale(1.04);}100%{transform:scale(1);}}' +
                           '@keyframes panelPop {0%{opacity:0;transform:translate(-50%, -48%) scale(0.85);}100%{opacity:1;transform:translate(-50%, -50%) scale(0.95);}}' +
                           '@keyframes touchRipple {0% {transform: scale(0.5); opacity: 1;} 100% {transform: scale(2.2); opacity: 0;}}';
             d.head.appendChild(s);
@@ -120,9 +118,9 @@ def bot_script():
                 wrap.id = 'algo-floating-btn';
                 wrap.style.cssText = 'position:fixed;bottom:70px;right:20px;display:flex;flex-direction:column;align-items:center;z-index:2147483647;cursor:pointer;';
                 
-                // Eagle-wing shaped styling with sharp side curves, white glow & rotating wheel electric border
+                // Perfectly round icon with rotating wheel border & white background glow
                 var b = d.createElement('div');
-                b.style.cssText = 'width:78px;height:68px;border-radius:38% 62% 63% 37% / 40% 45% 55% 60%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:3px dashed #38bdf8;animation:eagleWheel 5s infinite linear, algoPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 35px rgba(255,255,255,0.9), 0 0 60px #38bdf8;';
+                b.style.cssText = 'width:68px;height:68px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:3px dashed #38bdf8;animation:wheelRotate 5s infinite linear, algoPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 30px rgba(255,255,255,0.9), 0 0 55px #38bdf8;';
                 b.innerHTML = '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
                 wrap.appendChild(b);
 
@@ -165,7 +163,7 @@ def bot_script():
                 activeBadge.style.cssText = 'position:fixed;bottom:70px;right:20px;display:flex;flex-direction:column;align-items:center;z-index:2147483647;';
                 
                 var b = d.createElement('div');
-                b.style.cssText = 'width:68px;height:58px;border-radius:38% 62% 63% 37% / 40% 45% 55% 60%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:3px dashed #38bdf8;animation:eagleWheel 5s infinite linear;overflow:hidden;box-shadow:0 0 25px rgba(255,255,255,0.9);';
+                b.style.cssText = 'width:60px;height:60px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:3px dashed #38bdf8;animation:wheelRotate 5s infinite linear;overflow:hidden;box-shadow:0 0 20px rgba(255,255,255,0.9);';
                 b.innerHTML = '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
                 activeBadge.appendChild(b);
 
@@ -177,33 +175,56 @@ def bot_script():
                 d.body.appendChild(activeBadge);
             }
 
-            // Step 1: Time Frame Panel (Longer panel, 3-4% smaller time buttons, BD & Cortex Live Time Zones on top)
+            // Live Clock helper for BD & Cortex Live Time zones
+            function getLiveTimes() {
+                var now = new Date();
+                var bdTime = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Dhaka', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                var utcTime = now.toLocaleTimeString('en-US', { timeZone: 'UTC', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                return { bd: bdTime, cortex: utcTime };
+            }
+
+            // Step 1: Time Frame Panel (Taller panel, 3-4% smaller time buttons, expanded options including 1m, 2m, 3m)
             function openTimeFramePanel(wrap){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
-                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:295px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 25px 60px rgba(0,0,0,0.95);padding:15px;min-height:235px;animation:panelPop 0.3s ease-out forwards;';
+                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:295px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 25px 60px rgba(0,0,0,0.95);padding:15px;min-height:265px;animation:panelPop 0.3s ease-out forwards;';
+
+                var times = getLiveTimes();
 
                 panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid #3b0764;padding-bottom:6px;">' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
                                   '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:23px;height:23px;border-radius:50%;border:1px solid #a855f7;" />' +
-                                  '<div><div style="font-size:9px;font-weight:bold;color:#c084fc;">ALGO X</div><div style="font-size:5px;color:#38bdf8;">AI HACK ENGINE</div></div>' +
+                                  '<div><div style="font-size:9px;font-weight:bold;color:#c084fc;">ALGO X</div><div style="font-size:5px;color:#38bdf8;">HACK ENGINE</div></div>' +
                                   '</div>' +
-                                  '<div style="display:flex;gap:4px;"><span style="background:#14532d;color:#22c55e;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #22c55e;">BD TIME ZONE</span><span style="background:#713f12;color:#facc15;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #facc15;">CORTEX LIVE</span></div>' +
+                                  '<div style="display:flex;gap:4px;"><span style="background:#14532d;color:#22c55e;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #22c55e;">BD: <span id="bd-clock">' + times.bd + '</span></span><span style="background:#713f12;color:#facc15;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #facc15;">CORTEX: <span id="cortex-clock">' + times.cortex + '</span></span></div>' +
                                   '</div>' +
-                                  '<div style="font-size:13px;font-weight:bold;margin-bottom:12px;color:#e2e8f0;">Trade time select karein</div>' +
-                                  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px;">' +
-                                  '<button class="algo-time-btn" data-time="5" style="background:#180830;border:2px solid #7928CA;border-radius:7px;padding:6px;color:#fff;text-align:left;cursor:pointer;animation:fastLighting 3s infinite linear;"><div style="font-size:11px;font-weight:bold;color:#facc15;">5 SEC</div><div style="font-size:5px;color:#94a3b8;">TURBO</div></button>' +
-                                  '<button class="algo-time-btn" data-time="15" style="background:#180830;border:2px solid #0070F3;border-radius:7px;padding:6px;color:#fff;text-align:left;cursor:pointer;animation:fastLighting 3s infinite linear 0.75s;"><div style="font-size:11px;font-weight:bold;color:#38bdf8;">15 SEC</div><div style="font-size:5px;color:#94a3b8;">RAPID</div></button>' +
-                                  '<button class="algo-time-btn" data-time="30" style="background:#180830;border:2px solid #E11D48;border-radius:7px;padding:6px;color:#fff;text-align:left;cursor:pointer;animation:fastLighting 3s infinite linear 1.5s;"><div style="font-size:11px;font-weight:bold;color:#f472b6;">30 SEC</div><div style="font-size:5px;color:#94a3b8;">BALANCED</div></button>' +
-                                  '<button class="algo-time-btn" data-time="60" style="background:#180830;border:2px solid #10B981;border-radius:7px;padding:6px;color:#fff;text-align:left;cursor:pointer;animation:fastLighting 3s infinite linear 2.25s;"><div style="font-size:11px;font-weight:bold;color:#4ade80;">1 MIN</div><div style="font-size:5px;color:#94a3b8;">PRECISION</div></button>' +
+                                  '<div style="font-size:13px;font-weight:bold;margin-bottom:10px;color:#e2e8f0;">Trade time select karein</div>' +
+                                  // Expanded options: 5s, 15s, 30s, 1m, 2m, 3m (3-4% smaller size)
+                                  '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;">' +
+                                  '<button class="algo-time-btn" data-time="5" style="background:#180830;border:2px solid #7928CA;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear;"><div style="font-size:10px;font-weight:bold;color:#facc15;">5 SEC</div></button>' +
+                                  '<button class="algo-time-btn" data-time="15" style="background:#180830;border:2px solid #0070F3;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 0.5s;"><div style="font-size:10px;font-weight:bold;color:#38bdf8;">15 SEC</div></button>' +
+                                  '<button class="algo-time-btn" data-time="30" style="background:#180830;border:2px solid #E11D48;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 1s;"><div style="font-size:10px;font-weight:bold;color:#f472b6;">30 SEC</div></button>' +
+                                  '<button class="algo-time-btn" data-time="60" style="background:#180830;border:2px solid #10B981;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 1.5s;"><div style="font-size:10px;font-weight:bold;color:#4ade80;">1 MIN</div></button>' +
+                                  '<button class="algo-time-btn" data-time="120" style="background:#180830;border:2px solid #F59E0B;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 2s;"><div style="font-size:10px;font-weight:bold;color:#facc15;">2 MIN</div></button>' +
+                                  '<button class="algo-time-btn" data-time="180" style="background:#180830;border:2px solid #6366F1;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 2.5s;"><div style="font-size:10px;font-weight:bold;color:#c084fc;">3 MIN</div></button>' +
                                   '</div>' +
                                   '<button id="algo-cancel-1" style="background:transparent;border:1px solid #ef4444;color:#ef4444;width:100%;padding:6px;border-radius:6px;font-weight:bold;font-size:8px;cursor:pointer;animation:fastLighting 4s infinite linear;">CANCEL</button>';
 
                 d.body.appendChild(panel);
 
+                // Update live clocks every second
+                var clockInterval = setInterval(function(){
+                    var t = getLiveTimes();
+                    var bdEl = d.getElementById('bd-clock');
+                    var cxEl = d.getElementById('cortex-clock');
+                    if(bdEl) bdEl.innerText = t.bd;
+                    if(cxEl) cxEl.innerText = t.cortex;
+                }, 1000);
+
                 var timeBtns = panel.querySelectorAll('.algo-time-btn');
                 timeBtns.forEach(function(btn){
                     btn.onclick = function(){
+                        clearInterval(clockInterval);
                         var selectedTime = btn.getAttribute('data-time');
                         speakHindi("Time frame set ho gaya hai.", function(){
                             panel.remove();
@@ -213,6 +234,7 @@ def bot_script():
                 });
 
                 panel.querySelector('#algo-cancel-1').onclick = function(){
+                    clearInterval(clockInterval);
                     panel.remove();
                     var ab = d.getElementById('algo-active-badge');
                     if(ab) ab.remove();
@@ -220,33 +242,47 @@ def bot_script():
                 };
             }
 
-            // Step 2: Trades Count Panel (Longer panel, 3-4% smaller trade buttons, BD & Cortex Live Time Zones on top)
+            // Step 2: Trades Count Panel (Taller panel, 3-4% smaller trade buttons, expanded up to 6 trades)
             function openTradesCountPanel(wrap, selectedTime){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
-                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:295px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 25px 60px rgba(0,0,0,0.95);padding:15px;min-height:235px;animation:panelPop 0.3s ease-out forwards;';
+                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:295px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:2px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 25px 60px rgba(0,0,0,0.95);padding:15px;min-height:265px;animation:panelPop 0.3s ease-out forwards;';
+
+                var times = getLiveTimes();
 
                 panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid #3b0764;padding-bottom:6px;">' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
                                   '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:23px;height:23px;border-radius:50%;border:1px solid #a855f7;" />' +
-                                  '<div><div style="font-size:9px;font-weight:bold;color:#c084fc;">ALGO X</div><div style="font-size:5px;color:#38bdf8;">AI HACK ENGINE</div></div>' +
+                                  '<div><div style="font-size:9px;font-weight:bold;color:#c084fc;">ALGO X</div><div style="font-size:5px;color:#38bdf8;">HACK ENGINE</div></div>' +
                                   '</div>' +
-                                  '<div style="display:flex;gap:4px;"><span style="background:#14532d;color:#22c55e;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #22c55e;">BD TIME ZONE</span><span style="background:#713f12;color:#facc15;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #facc15;">CORTEX LIVE</span></div>' +
+                                  '<div style="display:flex;gap:4px;"><span style="background:#14532d;color:#22c55e;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #22c55e;">BD: <span id="bd-clock-2">' + times.bd + '</span></span><span style="background:#713f12;color:#facc15;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #facc15;">CORTEX: <span id="cortex-clock-2">' + times.cortex + '</span></span></div>' +
                                   '</div>' +
-                                  '<div style="font-size:13px;font-weight:bold;margin-bottom:12px;color:#e2e8f0;">Kitni trades lagani hain?</div>' +
-                                  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px;">' +
-                                  '<button class="algo-trade-btn" data-trades="1" style="background:#180830;border:2px solid #52057B;border-radius:7px;padding:6px;color:#fff;text-align:left;cursor:pointer;animation:fastLighting 3s infinite linear;"><div style="font-size:11px;font-weight:bold;color:#facc15;">1</div><div style="font-size:5px;color:#94a3b8;">SINGLE</div></button>' +
-                                  '<button class="algo-trade-btn" data-trades="2" style="background:#180830;border:2px solid #F59E0B;border-radius:7px;padding:6px;color:#fff;text-align:left;cursor:pointer;animation:fastLighting 3s infinite linear 0.75s;"><div style="font-size:11px;font-weight:bold;color:#38bdf8;">2</div><div style="font-size:5px;color:#94a3b8;">DOUBLE</div></button>' +
-                                  '<button class="algo-trade-btn" data-trades="3" style="background:#180830;border:2px solid #6366F1;border-radius:7px;padding:6px;color:#fff;text-align:left;cursor:pointer;animation:fastLighting 3s infinite linear 1.5s;"><div style="font-size:11px;font-weight:bold;color:#f472b6;">3</div><div style="font-size:5px;color:#94a3b8;">TRIPLE</div></button>' +
-                                  '<button class="algo-trade-btn" data-trades="4" style="background:#180830;border:2px solid #10B981;border-radius:7px;padding:6px;color:#fff;text-align:left;cursor:pointer;animation:fastLighting 3s infinite linear 2.25s;"><div style="font-size:11px;font-weight:bold;color:#4ade80;">4</div><div style="font-size:5px;color:#94a3b8;">MAX</div></button>' +
+                                  '<div style="font-size:13px;font-weight:bold;margin-bottom:10px;color:#e2e8f0;">Kitni trades lagani hain?</div>' +
+                                  // Expanded options: 1 to 6 trades
+                                  '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;">' +
+                                  '<button class="algo-trade-btn" data-trades="1" style="background:#180830;border:2px solid #52057B;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear;"><div style="font-size:11px;font-weight:bold;color:#facc15;">1</div></button>' +
+                                  '<button class="algo-trade-btn" data-trades="2" style="background:#180830;border:2px solid #F59E0B;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 0.4s;"><div style="font-size:11px;font-weight:bold;color:#38bdf8;">2</div></button>' +
+                                  '<button class="algo-trade-btn" data-trades="3" style="background:#180830;border:2px solid #6366F1;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 0.8s;"><div style="font-size:11px;font-weight:bold;color:#f472b6;">3</div></button>' +
+                                  '<button class="algo-trade-btn" data-trades="4" style="background:#180830;border:2px solid #10B981;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 1.2s;"><div style="font-size:11px;font-weight:bold;color:#4ade80;">4</div></button>' +
+                                  '<button class="algo-trade-btn" data-trades="5" style="background:#180830;border:2px solid #E11D48;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 1.6s;"><div style="font-size:11px;font-weight:bold;color:#f87171;">5</div></button>' +
+                                  '<button class="algo-trade-btn" data-trades="6" style="background:#180830;border:2px solid #38bdf8;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 2s;"><div style="font-size:11px;font-weight:bold;color:#38bdf8;">6</div></button>' +
                                   '</div>' +
                                   '<button id="algo-cancel-2" style="background:transparent;border:1px solid #ef4444;color:#ef4444;width:100%;padding:6px;border-radius:6px;font-weight:bold;font-size:8px;cursor:pointer;animation:fastLighting 4s infinite linear;">CANCEL</button>';
 
                 d.body.appendChild(panel);
 
+                var clockInterval2 = setInterval(function(){
+                    var t = getLiveTimes();
+                    var bdEl = d.getElementById('bd-clock-2');
+                    var cxEl = d.getElementById('cortex-clock-2');
+                    if(bdEl) bdEl.innerText = t.bd;
+                    if(cxEl) cxEl.innerText = t.cortex;
+                }, 1000);
+
                 var tradeBtns = panel.querySelectorAll('.algo-trade-btn');
                 tradeBtns.forEach(function(btn){
                     btn.onclick = function(){
+                        clearInterval(clockInterval2);
                         var selectedTrades = btn.getAttribute('data-trades');
                         panel.remove();
                         
@@ -258,6 +294,7 @@ def bot_script():
                 });
 
                 panel.querySelector('#algo-cancel-2').onclick = function(){
+                    clearInterval(clockInterval2);
                     panel.remove();
                     var ab = d.getElementById('algo-active-badge');
                     if(ab) ab.remove();
@@ -265,57 +302,42 @@ def bot_script():
                 };
             }
 
-            // Step 3: QX Hack Style Professional Scanning with Matrix Scan Effect & Slow Waves
+            // Step 3: Fullscreen Pro Gaming Hack Scanner (Free Fire / Cyberpunk Hack Style)
             function startNeuralScan(wrap, selectedTime, selectedTrades){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
-                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:320px;background:linear-gradient(135deg, #05010a 0%, #1a0230 100%);border:2px solid #38bdf8;border-radius:18px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 0 50px rgba(56,189,248,0.5);padding:16px;animation:hackMatrixScan 2s infinite linear, panelPop 0.3s ease-out forwards;';
+                panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.95);z-index:2147483647;font-family:sans-serif;color:#22c55e;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px;box-sizing:border-box;animation:hackMatrixFullscreen 1.5s infinite alternate;';
 
-                panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">' +
-                                  '<div style="display:flex;align-items:center;gap:6px;">' +
-                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:22px;height:22px;border-radius:50%;border:1px solid #38bdf8;" />' +
-                                  '<span style="font-size:9px;font-weight:bold;color:#38bdf8;">QX HACK ENGINE</span>' +
-                                  '</div>' +
-                                  '<span style="font-size:6px;color:#22c55e;border:1px solid #22c55e;padding:2px 6px;border-radius:4px;animation:fastLighting 2s infinite linear;">HACK SCAN / ' + selectedTrades + '</span>' +
-                                  '</div>' +
-                                  '<div style="font-size:14px;font-weight:bold;margin-bottom:8px;color:#38bdf8;text-shadow:0 0 10px rgba(56,189,248,0.8);">Algo Hack Neural Intelligence</div>' +
+                panel.innerHTML = '<div style="width:100%;max-width:360px;background:#050f07;border:2px solid #22c55e;border-radius:18px;padding:20px;box-shadow:0 0 60px rgba(34,197,94,0.6);text-align:center;">' +
+                                  '<div style="font-size:13px;font-weight:900;color:#22c55e;margin-bottom:6px;letter-spacing:1px;text-shadow:0 0 10px #22c55e;">[ QX HACK SYSTEM ACTIVE ]</div>' +
+                                  '<div style="font-size:9px;color:#facc15;margin-bottom:14px;">BYPASSING BROKER SERVERS...</div>' +
                                   
-                                  '<div style="display:flex;flex-direction:column;gap:5px;margin-bottom:10px;font-size:7px;">' +
-                                  '<div style="display:flex;justify-content:space-between;background:#0d021f;padding:5px 8px;border-radius:5px;border:1px solid #38bdf8;"><span style="color:#94a3b8;">OTC Market Bypass:</span><span class="scan-text" style="color:#22c55e;animation:slowFadeText 1s infinite;">Injecting...</span></div>' +
-                                  '<div style="display:flex;justify-content:space-between;background:#0d021f;padding:5px 8px;border-radius:5px;border:1px solid #ec4899;"><span style="color:#94a3b8;">Money Management:</span><span class="scan-text" style="color:#facc15;animation:slowFadeText 1s infinite 0.2s;">Bypassing...</span></div>' +
-                                  '<div style="display:flex;justify-content:space-between;background:#0d021f;padding:5px 8px;border-radius:5px;border:1px solid #facc15;"><span style="color:#94a3b8;">Smart Money Trace:</span><span class="scan-text" style="color:#f472b6;animation:slowFadeText 1s infinite 0.4s;">Syncing...</span></div>' +
-                                  '<div style="display:flex;justify-content:space-between;background:#0d021f;padding:5px 8px;border-radius:5px;border:1px solid #4ade80;"><span style="color:#94a3b8;">Trade Execution:</span><span class="scan-text" style="color:#4ade80;animation:slowFadeText 1s infinite 0.6s;">Locked...</span></div>' +
-                                  '<div style="display:flex;justify-content:space-between;background:#0d021f;padding:5px 8px;border-radius:5px;border:1px solid #c084fc;"><span style="color:#94a3b8;">Server Volatility:</span><span class="scan-text" style="color:#c084fc;animation:slowFadeText 1s infinite 0.8s;">Extracting...</span></div>' +
+                                  // Cyber/Gaming Hack Terminal Lines
+                                  '<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px;font-size:8px;text-align:left;background:#010502;padding:10px;border-radius:8px;border:1px solid #14532d;">' +
+                                  '<div style="color:#22c55e;">> INJECTING OTC PROTOCOL... [OK]</div>' +
+                                  '<div style="color:#38bdf8;">> BYPASSING VOLATILITY SHIELD... [OK]</div>' +
+                                  '<div style="color:#facc15;">> EXTRACTING SMART MONEY NODES... [OK]</div>' +
+                                  '<div style="color:#f472b6;">> LOCKING EXECUTION SEQUENCE... [READY]</div>' +
                                   '</div>' +
 
-                                  // Slow motion smooth wave candles
-                                  '<div style="background:#05010a;border:1px solid #38bdf8;border-radius:6px;height:32px;display:flex;align-items:center;justify-content:space-around;padding:0 6px;margin-bottom:10px;overflow:hidden;">' +
-                                  '<div style="width:3px;height:16px;background:#22c55e;border-radius:1px;animation:candleSlowWave 1.2s infinite ease-in-out;"></div>' +
-                                  '<div style="width:3px;height:24px;background:#ef4444;border-radius:1px;animation:candleSlowWave 1s infinite ease-in-out 0.2s;"></div>' +
-                                  '<div style="width:3px;height:12px;background:#22c55e;border-radius:1px;animation:candleSlowWave 1.4s infinite ease-in-out 0.4s;"></div>' +
-                                  '<div style="width:3px;height:20px;background:#ef4444;border-radius:1px;animation:candleSlowWave 1.1s infinite ease-in-out 0.6s;"></div>' +
-                                  '<div style="width:3px;height:26px;background:#22c55e;border-radius:1px;animation:candleSlowWave 1.3s infinite ease-in-out 0.8s;"></div>' +
-                                  '<div style="width:3px;height:18px;background:#ef4444;border-radius:1px;animation:candleSlowWave 1s infinite ease-in-out 1s;"></div>' +
+                                  // Flashing Hack Wave / Matrix Scan Box
+                                  '<div style="background:#010502;border:1px solid #22c55e;border-radius:8px;height:40px;display:flex;align-items:center;justify-content:space-around;padding:0 10px;margin-bottom:14px;overflow:hidden;">' +
+                                  '<div style="width:4px;height:25px;background:#22c55e;border-radius:2px;animation:slowFadeText 0.3s infinite alternate;"></div>' +
+                                  '<div style="width:4px;height:32px;background:#ef4444;border-radius:2px;animation:slowFadeText 0.25s infinite alternate;"></div>' +
+                                  '<div style="width:4px;height:18px;background:#22c55e;border-radius:2px;animation:slowFadeText 0.35s infinite alternate;"></div>' +
+                                  '<div style="width:4px;height:28px;background:#ef4444;border-radius:2px;animation:slowFadeText 0.2s infinite alternate;"></div>' +
+                                  '<div style="width:4px;height:35px;background:#22c55e;border-radius:2px;animation:slowFadeText 0.28s infinite alternate;"></div>' +
                                   '</div>' +
-                                  '<div id="algo-scan-status" style="text-align:center;font-size:8px;font-weight:bold;color:#22c55e;background:#0d021f;padding:6px;border-radius:6px;border:1px solid #22c55e;animation:slowFadeText 1.5s infinite;">QX Hack Synchronizing with Broker...</div>';
+                                  '<div id="algo-scan-status" style="font-size:10px;font-weight:bold;color:#22c55e;text-shadow:0 0 8px #22c55e;">HACK SCANNING IN PROGRESS...</div>' +
+                                  '</div>';
 
                 d.body.appendChild(panel);
 
                 setTimeout(function(){
-                    var scanTexts = panel.querySelectorAll('.scan-text');
-                    if(scanTexts.length >= 5) {
-                        scanTexts[0].style.animation = 'none'; scanTexts[0].innerText = 'Success (99%)'; scanTexts[0].style.color = '#22c55e';
-                        scanTexts[1].style.animation = 'none'; scanTexts[1].innerText = 'Optimized'; scanTexts[1].style.color = '#22c55e';
-                        scanTexts[2].style.animation = 'none'; scanTexts[2].innerText = 'Active (97%)'; scanTexts[2].style.color = '#38bdf8';
-                        scanTexts[3].style.animation = 'none'; scanTexts[3].innerText = 'Ready (100%)'; scanTexts[3].style.color = '#4ade80';
-                        scanTexts[4].style.animation = 'none'; scanTexts[4].innerText = 'Stable'; scanTexts[4].style.color = '#facc15';
-                    }
-
                     var statusEl = panel.querySelector('#algo-scan-status');
                     if(statusEl) {
-                        statusEl.innerText = "Market scanning successful ho chuka hai.";
-                        statusEl.style.color = "#22c55e";
-                        statusEl.style.animation = 'none';
+                        statusEl.innerText = "MARKET SCANNING SUCCESSFUL HO CHUKA HAI.";
+                        statusEl.style.color = "#4ade80";
                     }
 
                     fetch('https://draco-ai-bot.onrender.com/signal?t=' + Date.now())
@@ -336,9 +358,9 @@ def bot_script():
                             }
 
                             // Minimal clean popup: Direction & Trade Count only
-                            panel.innerHTML = '<div style="text-align:center;padding:15px;">' +
-                                              '<div style="font-size:16px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';margin-bottom:5px;animation:fastLighting 2s infinite linear;">' + directionText + ' (' + selectedTrades + ' Trades)</div>' +
-                                              '<div style="font-size:7px;color:#94a3b8;">Hack Executed Successfully</div>' +
+                            panel.innerHTML = '<div style="width:100%;max-width:340px;background:#050f07;border:2px solid #22c55e;border-radius:18px;padding:25px;box-shadow:0 0 60px rgba(34,197,94,0.7);text-align:center;">' +
+                                              '<div style="font-size:18px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';margin-bottom:8px;text-shadow:0 0 12px currentColor;">' + directionText + ' (' + selectedTrades + ' TRADES)</div>' +
+                                              '<div style="font-size:9px;color:#facc15;">HACK EXECUTED SUCCESSFULLY</div>' +
                                               '</div>';
 
                             setTimeout(function(){
