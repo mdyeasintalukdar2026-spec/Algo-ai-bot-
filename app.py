@@ -143,21 +143,72 @@ def bot_script():
             var isBotSetupDone = window.__algoBotSetupDone || false;
             var savedTimeFrame = window.__algoSavedTime || null;
             var savedTradesCount = window.__algoSavedTrades || null;
+            var isExecutionLocked = false;
 
-            createOvalBot();
+            if(!isBotAuthorized) {
+                createCircularBot();
+            } else {
+                createPatailaBot();
+            }
 
-            function createOvalBot(){
-                var wrap = d.createElement('div');
+            // Step 1: Initial Circular Bot
+            function createCircularBot(){
+                var wrap = d.getElementById('algo-floating-btn') || d.createElement('div');
                 wrap.id = 'algo-floating-btn';
-                // Pataila (Oval) shape styling on bottom-left / left side
                 wrap.style.cssText = 'position:fixed;bottom:70px;left:15px;display:flex;flex-direction:column;align-items:center;z-index:2147483647;cursor:pointer;';
                 
+                wrap.innerHTML = '';
                 var b = d.createElement('div');
-                b.style.cssText = 'width:62px;height:42px;border-radius:22px;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:3px solid #38bdf8;animation:fastMultiColorShift 3s infinite linear, algoPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 20px rgba(255,255,255,0.9), 0 0 35px #38bdf8;';
-                b.innerHTML = '<img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:100%;height:100%;object-fit:cover;" />';
+                b.style.cssText = 'width:58px;height:58px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:3.5px solid #38bdf8;animation:wheelRotateWheel 2.5s infinite linear, algoPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 20px rgba(255,255,255,0.9), 0 0 35px #38bdf8;';
+                b.innerHTML = '<img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
                 wrap.appendChild(b);
 
-                d.body.appendChild(wrap);
+                if(!d.body.contains(wrap)) d.body.appendChild(wrap);
+                
+                var isDragging = false, startX, startY, hasMoved = false;
+                wrap.onmousedown = wrap.ontouchstart = function(e){
+                    isDragging = true; hasMoved = false;
+                    var p = e.touches ? e.touches[0] : e;
+                    startX = p.clientX - wrap.offsetLeft;
+                    startY = p.clientY - wrap.offsetTop;
+                };
+                wrap.onmousemove = wrap.ontouchmove = function(e){
+                    if(!isDragging) return;
+                    var p = e.touches ? e.touches[0] : e;
+                    var nx = p.clientX - startX, ny = p.clientY - startY;
+                    if(Math.abs(nx - wrap.offsetLeft) > 2 || Math.abs(ny - wrap.offsetTop) > 2) hasMoved = true;
+                    wrap.style.left = nx + 'px';
+                    wrap.style.top = ny + 'px';
+                    wrap.style.bottom = 'auto';
+                    wrap.style.right = 'auto';
+                };
+                wrap.onmouseup = wrap.ontouchend = function(){ isDragging = false; };
+                
+                wrap.onclick = function(){
+                    if(hasMoved) return;
+                    wrap.style.display = 'none';
+                    speakHindi("Algo AI bot ka password daliye.", function(){});
+                    showLoginModal(wrap);
+                };
+            }
+
+            // Step 2: Post-Verification Pataila (Oval) Bot Layout matching user screenshot
+            function createPatailaBot(){
+                var wrap = d.getElementById('algo-floating-btn') || d.createElement('div');
+                wrap.id = 'algo-floating-btn';
+                wrap.style.cssText = 'position:fixed;bottom:70px;left:15px;display:flex;align-items:center;z-index:2147483647;cursor:pointer;';
+                
+                wrap.innerHTML = '<div style="display:flex;align-items:center;gap:7px;background:rgba(13,2,31,0.95);border:2.5px solid #22c55e;padding:4px 10px 4px 4px;border-radius:22px;box-shadow:0 0 20px rgba(34,197,94,0.8), inset 0 0 10px rgba(34,197,94,0.4);animation:fastMultiColorShift 3s infinite linear;">' +
+                                 '<div style="width:36px;height:36px;border-radius:50%;border:2px solid #38bdf8;overflow:hidden;flex-shrink:0;">' +
+                                 '<img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:100%;height:100%;object-fit:cover;" />' +
+                                 '</div>' +
+                                 '<div style="display:flex;flex-direction:column;justify-content:center;line-height:1.1;">' +
+                                 '<span style="font-size:9.5px;font-weight:900;color:#fff;font-family:sans-serif;letter-spacing:0.5px;">ALGO AI HACK</span>' +
+                                 '<span style="font-size:6.5px;font-weight:bold;color:#22c55e;font-family:sans-serif;">VERSION v1.0</span>' +
+                                 '</div>' +
+                                 '</div>';
+
+                if(!d.body.contains(wrap)) d.body.appendChild(wrap);
                 
                 var isDragging = false, startX, startY, hasMoved = false;
                 wrap.onmousedown = wrap.ontouchstart = function(e){
@@ -182,18 +233,12 @@ def bot_script():
                     if(hasMoved) return;
                     wrap.style.display = 'none';
                     
-                    if(!isBotAuthorized) {
-                        speakHindi("Algo AI bot ka password daliye.", function(){});
-                        showLoginModal(wrap);
-                    } else if(!isBotSetupDone) {
+                    if(!isBotSetupDone) {
                         speakHindi("Algo AI bot activate ho gaya hai.", function(){
-                            showActiveBadge(wrap);
                             openTimeFramePanel(wrap);
                         });
                     } else {
-                        // Already configured: Direct Market Scan and Trade Execution without opening setup panels
                         speakHindi("Market scanning ho raha hai.", function(){
-                            showActiveBadge(wrap);
                             startCortexHackScan(wrap, savedTimeFrame, savedTradesCount);
                         });
                     }
@@ -230,7 +275,7 @@ def bot_script():
 
                 modal.querySelector('#algo-login-close').onclick = function(){
                     modal.remove();
-                    wrap.style.display = 'flex';
+                    createCircularBot();
                 };
 
                 modal.querySelector('#algo-login-btn').onclick = function(){
@@ -239,8 +284,7 @@ def bot_script():
                         isBotAuthorized = window.__algoBotAuthorized = true;
                         modal.remove();
                         speakHindi("Algo AI bot verification successful ho gaya.", function(){
-                            showActiveBadge(wrap);
-                            openTimeFramePanel(wrap);
+                            createPatailaBot();
                         });
                     } else {
                         var errEl = modal.querySelector('#algo-error-msg');
@@ -252,34 +296,12 @@ def bot_script():
                 };
             }
 
-            function showActiveBadge(wrap) {
-                var existingActive = d.getElementById('algo-active-badge');
-                if(existingActive) existingActive.remove();
-
-                var activeBadge = d.createElement('div');
-                activeBadge.id = 'algo-active-badge';
-                activeBadge.style.cssText = 'position:fixed;bottom:70px;left:15px;display:flex;flex-direction:column;align-items:center;z-index:2147483647;';
-                
-                var b = d.createElement('div');
-                b.style.cssText = 'width:52px;height:36px;border-radius:18px;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:3px solid #38bdf8;animation:fastMultiColorShift 3s infinite linear;overflow:hidden;box-shadow:0 0 16px rgba(255,255,255,0.9);';
-                b.innerHTML = '<img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:100%;height:100%;object-fit:cover;" />';
-                activeBadge.appendChild(b);
-
-                var label = d.createElement('div');
-                label.style.cssText = 'margin-top:2px;font-size:7px;font-weight:900;color:#000;font-family:sans-serif;background:#22c55e;padding:1px 5px;border-radius:3px;border:1px solid #fff;text-align:center;box-shadow:0 0 6px rgba(34,197,94,0.8);';
-                label.innerText = 'ACTIVE';
-                activeBadge.appendChild(label);
-
-                d.body.appendChild(activeBadge);
-            }
-
             function getLiveTimes() {
                 var now = new Date();
                 var utcTime = now.toLocaleTimeString('en-US', { timeZone: 'UTC', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
                 return { cortex: utcTime };
             }
 
-            // Step 1: Time Frame Panel with Custom Profile Logo
             function openTimeFramePanel(wrap){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
@@ -290,7 +312,7 @@ def bot_script():
                 panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid #3b0764;padding-bottom:6px;">' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
                                   '<div style="width:26px;height:26px;border-radius:50%;border:2px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3s infinite linear;"><img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
-                                  '<div><div style="font-size:9.5px;font-weight:900;color:#c084fc;">Algo AI Hack</div><div style="font-size:5px;color:#38bdf8;">HACK ENGINE</div></div>' +
+                                  '<div><div style="font-size:9.5px;font-weight:900;color:#c084fc;">Algo AI Hack</div><div style="font-size:5px;color:#38bdf8;">VERSION v1.0</div></div>' +
                                   '</div>' +
                                   '<div style="display:flex;flex-direction:column;align-items:flex-end;border:1.5px solid #38bdf8;padding:2px 6px;border-radius:6px;background:rgba(3,15,7,0.85);animation:fastMultiColorShift 3s infinite linear;">' +
                                   '<span style="color:#facc15;font-size:4.5px;font-weight:bold;letter-spacing:0.5px;">QX LIVE TIME ZONE</span>' +
@@ -331,13 +353,10 @@ def bot_script():
                 panel.querySelector('#algo-cancel-1').onclick = function(){
                     clearInterval(clockInterval);
                     panel.remove();
-                    var ab = d.getElementById('algo-active-badge');
-                    if(ab) ab.remove();
-                    wrap.style.display = 'flex';
+                    createPatailaBot();
                 };
             }
 
-            // Step 2: Trades Count Panel with Custom Profile Logo
             function openTradesCountPanel(wrap, selectedTime){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
@@ -348,7 +367,7 @@ def bot_script():
                 panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid #3b0764;padding-bottom:6px;">' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
                                   '<div style="width:26px;height:26px;border-radius:50%;border:2px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3s infinite linear;"><img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
-                                  '<div><div style="font-size:9.5px;font-weight:900;color:#c084fc;">Algo AI Hack</div><div style="font-size:5px;color:#38bdf8;">HACK ENGINE</div></div>' +
+                                  '<div><div style="font-size:9.5px;font-weight:900;color:#c084fc;">Algo AI Hack</div><div style="font-size:5px;color:#38bdf8;">VERSION v1.0</div></div>' +
                                   '</div>' +
                                   '<div style="display:flex;flex-direction:column;align-items:flex-end;border:1.5px solid #38bdf8;padding:2px 6px;border-radius:6px;background:rgba(3,15,7,0.85);animation:fastMultiColorShift 3s infinite linear;">' +
                                   '<span style="color:#facc15;font-size:4.5px;font-weight:bold;letter-spacing:0.5px;">QX LIVE TIME ZONE</span>' +
@@ -392,13 +411,10 @@ def bot_script():
                 panel.querySelector('#algo-cancel-2').onclick = function(){
                     clearInterval(clockInterval2);
                     panel.remove();
-                    var ab = d.getElementById('algo-active-badge');
-                    if(ab) ab.remove();
-                    wrap.style.display = 'flex';
+                    createPatailaBot();
                 };
             }
 
-            // Step 3: Fullscreen Hacker Scanner with Smooth Matrix & Fade Pulse Text
             function startCortexHackScan(wrap, selectedTime, selectedTrades){
                 var panel = d.createElement('div');
                 panel.id = 'hack-fullscreen-overlay';
@@ -412,14 +428,12 @@ def bot_script():
                                   '</div>' +
                                   '</div>' +
 
-                                  // Robot Image Container with Smooth Matrix Flows
                                   '<div style="width:100%;max-width:395px;height:25vh;min-height:185px;position:relative;border-radius:12px;overflow:hidden;border:2px solid #22c55e;box-shadow:0 0 45px rgba(34,197,94,0.9);background:#000;display:flex;align-items:center;justify-content:center;flex-shrink:0;">' +
                                   '<div style="position:absolute;top:0;left:0;width:100%;height:22px;background:linear-gradient(180deg, #22c55e, transparent);animation:smoothMatrixTopDown 1.2s infinite ease-in-out;z-index:2;pointer-events:none;"></div>' +
                                   '<img src="https://i.postimg.cc/4yZjb02h/448418b818f6f0c38b77c7ab31fd2a4a.jpg" style="width:100%;height:100%;object-fit:contain;filter:brightness(1.2) contrast(1.3);" />' +
                                   '<div style="position:absolute;bottom:0;left:0;width:100%;height:22px;background:linear-gradient(0deg, #38bdf8, transparent);animation:smoothMatrixBottomUp 1.2s infinite ease-in-out;z-index:2;pointer-events:none;"></div>' +
                                   '</div>' +
 
-                                  // Terminal Box
                                   '<div style="width:100%;max-width:395px;background:#030c05;border:2px solid #22c55e;border-radius:12px;padding:12px;box-shadow:0 0 60px rgba(34,197,94,0.8);flex-grow:1;display:flex;flex-direction:column;justify-content:space-between;max-height:37vh;animation:fastMultiColorShift 3.5s infinite linear;">' +
                                   '<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #14532d;padding-bottom:3px;font-size:8.5px;font-weight:bold;">' +
                                   '<span style="color:#22c55e;">[ROOT@MARKET]</span>' +
@@ -436,13 +450,11 @@ def bot_script():
                                   '<div id="hack-status-text" style="text-align:center;font-size:8.5px;font-weight:bold;color:#facc15;">[ROOT@MARKET] Initializing real market scan...</div>' +
                                   '</div>' +
 
-                                  // QX Market Banner
                                   '<div style="width:100%;max-width:395px;background:rgba(3,15,7,0.95);border:2px solid #ef4444;padding:9px 12px;border-radius:10px;text-align:center;box-shadow:0 0 35px rgba(239,68,68,0.8);flex-shrink:0;">' +
                                   '<div style="font-size:12.5px;font-weight:900;color:#ef4444;letter-spacing:1px;text-shadow:0 0 12px #ef4444, 0 0 25px #22c55e;">QX MARKET ALL DATA SCANNING</div>' +
                                   '<div style="font-size:7px;color:#facc15;font-weight:bold;margin-top:2px;">[ 1500+ REAL PACKET NODES INTERCEPTING ]</div>' +
                                   '</div>' +
 
-                                  // Bottom Socket Bar
                                   '<div style="width:100%;max-width:395px;display:flex;justify-content:space-between;align-items:center;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:6px 12px;border-radius:8px;box-shadow:0 0 20px rgba(34,197,94,0.6);flex-shrink:0;">' +
                                   '<div style="font-size:8px;color:#38bdf8;font-weight:bold;">SOCKET: CONNECTED [99.9%]</div>' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
@@ -502,9 +514,7 @@ def bot_script():
 
                                 setTimeout(function(){
                                     panel.remove();
-                                    var ab = d.getElementById('algo-active-badge');
-                                    if(ab) ab.remove();
-                                    wrap.style.display = 'flex';
+                                    createPatailaBot();
                                 }, 2200);
                             });
                         });
@@ -521,7 +531,7 @@ def bot_script():
                     ['pointerdown', 'mousedown', 'pointerup', 'mouseup', 'click'].forEach(function(evName){
                         var ev = new MouseEvent(evName, {
                             bubbles: true, cancelable: true, view: window,
-                            clientX: cx,clientY: cy,screenX: cx,screenY: cy
+                            clientX: cx, clientY: cy, screenX: cx, screenY: cy
                         });
                         el.dispatchEvent(ev);
                     });
@@ -530,12 +540,18 @@ def bot_script():
                 } catch(e) { return false; }
             }
 
-            // PERMANENT FIX: Strict 1-to-1 exact trade execution matching selected count without duplication
+            // ULTIMATE STRICT ANTI-DOUBLE LOCK: Exact single trade count matching user selection without any extra duplication
             function executeStrictSingleTrades(isCall, count) {
+                if (isExecutionLocked) return;
+                isExecutionLocked = true;
+                
                 var clickedCount = 0;
                 
                 function clickOnce() {
-                    if (clickedCount >= count) return;
+                    if (clickedCount >= count) {
+                        isExecutionLocked = false;
+                        return;
+                    }
                     
                     var success = triggerSingleTradeButton(isCall);
                     if (success) {
@@ -543,7 +559,9 @@ def bot_script():
                     }
                     
                     if (clickedCount < count) {
-                        setTimeout(clickOnce, 800);
+                        setTimeout(clickOnce, 1200);
+                    } else {
+                        isExecutionLocked = false;
                     }
                 }
                 
