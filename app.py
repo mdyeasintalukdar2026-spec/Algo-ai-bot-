@@ -298,11 +298,11 @@ def bot_script():
                 };
             }
 
-            // Step 3: Fullscreen Hacker Scanner with Fully Visible Robot Image & raised Bottom Socket Bar
+            // Step 3: Fullscreen Hacker Scanner with precise 10% larger box, raised bottom bar, slightly shifted up robot image, and perfect gaps
             function startCortexHackScan(wrap, selectedTime, selectedTrades){
                 var panel = d.createElement('div');
                 panel.id = 'hack-fullscreen-overlay';
-                panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.95);z-index:2147483647;font-family:monospace;color:#22c55e;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:10px 8px 42px 8px;box-sizing:border-box;box-shadow:inset 0 0 140px #22c55e;overflow:hidden;';
+                panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.95);z-index:2147483647;font-family:monospace;color:#22c55e;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:10px 10px 22px 10px;box-sizing:border-box;box-shadow:inset 0 0 140px #22c55e;overflow:hidden;';
 
                 panel.innerHTML = '<div style="width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:8px 14px;border-radius:10px;box-shadow:0 0 30px rgba(34,197,94,0.7);">' +
                                   '<img src="https://i.postimg.cc/hvdRpxKv/360-F-729322858-Dt8T32RVzn-FQcee-Ah-DIc-Bpk-WHmmf-Z6MU.jpg" style="width:36px;height:36px;border-radius:50%;border:2px solid #22c55e;object-fit:cover;" />' +
@@ -312,20 +312,20 @@ def bot_script():
                                   '</div>' +
                                   '</div>' +
 
-                                  // Middle Robot Image Container with contain mode so the full image is fully visible without cropping
-                                  '<div style="width:100%;max-width:375px;height:155px;position:relative;border-radius:12px;overflow:hidden;border:2px solid #22c55e;box-shadow:0 0 40px rgba(34,197,94,0.8);animation:hackerGlowPulse 2s infinite ease-in-out;margin:4px 0;background:#000;display:flex;align-items:center;justify-content:center;">' +
+                                  // Middle Robot Image Container shifted slightly higher with a neat gap
+                                  '<div style="width:100%;max-width:385px;height:150px;position:relative;border-radius:12px;overflow:hidden;border:2px solid #22c55e;box-shadow:0 0 40px rgba(34,197,94,0.8);animation:hackerGlowPulse 2s infinite ease-in-out;margin-top:4px;background:#000;display:flex;align-items:center;justify-content:center;">' +
                                   '<img src="https://i.postimg.cc/4yZjb02h/448418b818f6f0c38b77c7ab31fd2a4a.jpg" style="width:100%;height:100%;object-fit:contain;filter:brightness(1.15) contrast(1.25);" />' +
                                   '</div>' +
 
-                                  // Terminal Box positioned slightly lower with optimal spacing
-                                  '<div style="width:100%;max-width:375px;background:#030c05;border:2px solid #22c55e;border-radius:14px;padding:12px;box-shadow:0 0 60px rgba(34,197,94,0.7);margin-bottom:4px;">' +
-                                  '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;border-bottom:1px solid #14532d;padding-bottom:4px;font-size:8.5px;font-weight:bold;">' +
+                                  // Terminal Box increased by ~10% with optimal spacing and gaps
+                                  '<div style="width:100%;max-width:385px;background:#030c05;border:2px solid #22c55e;border-radius:14px;padding:14px;box-shadow:0 0 65px rgba(34,197,94,0.75);margin-top:4px;margin-bottom:4px;">' +
+                                  '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;border-bottom:1px solid #14532d;padding-bottom:5px;font-size:9px;font-weight:bold;">' +
                                   '<span style="color:#22c55e;">[ROOT@MARKET]</span>' +
                                   '<span style="color:#ef4444;animation:terminalBlink 0.6s infinite;">BREACH ACTIVE</span>' +
                                   '</div>' +
-                                  '<div style="font-size:12px;font-weight:900;color:#22c55e;text-align:center;margin-bottom:4px;letter-spacing:1px;text-shadow:0 0 8px #22c55e;">HACK_MKT.EXE</div>' +
-                                  '<div style="font-size:7px;color:#38bdf8;text-align:center;margin-bottom:8px;">[ CORTEX EXPLOIT ENGINE V4.2 - LIVE SCAN ]</div>' +
-                                  '<div id="terminal-logs" style="background:#010502;border:1px solid #14532d;border-radius:6px;padding:7px;font-size:7.5px;color:#4ade80;height:75px;overflow:hidden;display:flex;flex-direction:column;gap:3px;margin-bottom:8px;line-height:1.2;">' +
+                                  '<div style="font-size:13px;font-weight:900;color:#22c55e;text-align:center;margin-bottom:5px;letter-spacing:1px;text-shadow:0 0 8px #22c55e;">HACK_MKT.EXE</div>' +
+                                  '<div style="font-size:7.5px;color:#38bdf8;text-align:center;margin-bottom:8px;">[ CORTEX EXPLOIT ENGINE V4.2 - LIVE SCAN ]</div>' +
+                                  '<div id="terminal-logs" style="background:#010502;border:1px solid #14532d;border-radius:6px;padding:8px;font-size:8px;color:#4ade80;height:82px;overflow:hidden;display:flex;flex-direction:column;gap:3px;margin-bottom:8px;line-height:1.25;">' +
                                   '<div>$ sudo ./market_exploit.sh --target=quotex.io</div>' +
                                   '<div>[*] Loading exploit payload v4.2...</div>' +
                                   '<div>[+] Port 443 OPEN -> SSL/TLS handshake OK</div>' +
@@ -334,15 +334,15 @@ def bot_script():
                                   '<div style="width:100%;height:5px;background:#010502;border:1px solid #22c55e;border-radius:3px;margin-bottom:6px;overflow:hidden;">' +
                                   '<div id="hack-bar" style="width:20%;height:100%;background:#22c55e;box-shadow:0 0 8px #22c55e;transition:width 0.8s ease;"></div>' +
                                   '</div>' +
-                                  '<div id="hack-status-text" style="text-align:center;font-size:8px;font-weight:bold;color:#facc15;">[ROOT@MARKET] Initializing exploit...</div>' +
+                                  '<div id="hack-status-text" style="text-align:center;font-size:8.5px;font-weight:bold;color:#facc15;">[ROOT@MARKET] Initializing exploit...</div>' +
                                   '</div>' +
 
-                                  // Bottom Cyber / Hacking Socket Bar (raised slightly higher so it's fully visible and clear)
-                                  '<div style="width:100%;display:flex;justify-content:space-between;align-items:center;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:6px 12px;border-radius:8px;box-shadow:0 0 20px rgba(34,197,94,0.6);">' +
-                                  '<div style="font-size:8px;color:#38bdf8;font-weight:bold;animation:topBottomFlash 1.2s infinite;">SOCKET: CONNECTED [99.9%]</div>' +
+                                  // Bottom Socket Bar raised 10% higher and made 3-4% bigger with clear gaps
+                                  '<div style="width:100%;max-width:385px;display:flex;justify-content:space-between;align-items:center;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:8px 14px;border-radius:10px;box-shadow:0 0 25px rgba(34,197,94,0.7);">' +
+                                  '<div style="font-size:8.5px;color:#38bdf8;font-weight:bold;animation:topBottomFlash 1.2s infinite;">SOCKET: CONNECTED [99.9%]</div>' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
-                                  '<span style="font-size:8px;color:#facc15;font-weight:bold;">ALGO_BYPASS_OK</span>' +
-                                  '<img src="https://i.postimg.cc/hvdRpxKv/360-F-729322858-Dt8T32RVzn-FQcee-Ah-DIc-Bpk-WHmmf-Z6MU.jpg" style="width:20px;height:20px;border-radius:50%;border:1.5px solid #22c55e;object-fit:cover;" />' +
+                                  '<span style="font-size:8.5px;color:#facc15;font-weight:bold;">ALGO_BYPASS_OK</span>' +
+                                  '<img src="https://i.postimg.cc/hvdRpxKv/360-F-729322858-Dt8T32RVzn-FQcee-Ah-DIc-Bpk-WHmmf-Z6MU.jpg" style="width:22px;height:22px;border-radius:50%;border:1.5px solid #22c55e;object-fit:cover;" />' +
                                   '</div>' +
                                   '</div>';
 
@@ -397,7 +397,7 @@ def bot_script():
                                 })(i);
                             }
 
-                            panel.innerHTML = '<div style="width:100%;max-width:350px;background:#030c05;border:2px solid #22c55e;border-radius:14px;padding:20px;box-shadow:0 0 70px rgba(34,197,94,0.95);text-align:center;margin:auto;">' +
+                            panel.innerHTML = '<div style="width:100%;max-width:360px;background:#030c05;border:2px solid #22c55e;border-radius:14px;padding:20px;box-shadow:0 0 70px rgba(34,197,94,0.95);text-align:center;margin:auto;">' +
                                               '<div style="font-size:16px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';margin-bottom:6px;text-shadow:0 0 12px currentColor;">' + (isCall ? 'BUY' : 'SELL') + ' TRADES PLACED (' + selectedTrades + ')</div>' +
                                               '<div style="font-size:9px;color:#facc15;margin-bottom:8px;">CONFIDENCE: 70% | SUCCESS</div>' +
                                               '<div style="font-size:8px;color:#94a3b8;">Trade closed. Next scan in 10s</div>' +
