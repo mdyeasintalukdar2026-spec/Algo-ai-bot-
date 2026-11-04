@@ -140,17 +140,21 @@ def bot_script():
             }
 
             var isBotAuthorized = window.__algoBotAuthorized || false;
+            var isBotSetupDone = window.__algoBotSetupDone || false;
+            var savedTimeFrame = window.__algoSavedTime || null;
+            var savedTradesCount = window.__algoSavedTrades || null;
 
-            createFloatingBot();
+            createOvalBot();
 
-            function createFloatingBot(){
+            function createOvalBot(){
                 var wrap = d.createElement('div');
                 wrap.id = 'algo-floating-btn';
-                wrap.style.cssText = 'position:fixed;bottom:70px;right:20px;display:flex;flex-direction:column;align-items:center;z-index:2147483647;cursor:pointer;';
+                // Pataila (Oval) shape styling on bottom-left / left side
+                wrap.style.cssText = 'position:fixed;bottom:70px;left:15px;display:flex;flex-direction:column;align-items:center;z-index:2147483647;cursor:pointer;';
                 
                 var b = d.createElement('div');
-                b.style.cssText = 'width:58px;height:58px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:3.5px solid #38bdf8;animation:wheelRotateWheel 2.5s infinite linear, algoPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 20px rgba(255,255,255,0.9), 0 0 35px #38bdf8;';
-                b.innerHTML = '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
+                b.style.cssText = 'width:62px;height:42px;border-radius:22px;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:3px solid #38bdf8;animation:fastMultiColorShift 3s infinite linear, algoPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 20px rgba(255,255,255,0.9), 0 0 35px #38bdf8;';
+                b.innerHTML = '<img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:100%;height:100%;object-fit:cover;" />';
                 wrap.appendChild(b);
 
                 d.body.appendChild(wrap);
@@ -181,10 +185,17 @@ def bot_script():
                     if(!isBotAuthorized) {
                         speakHindi("Algo AI bot ka password daliye.", function(){});
                         showLoginModal(wrap);
+                    } else if(!isBotSetupDone) {
+                        speakHindi("Algo AI bot activate ho gaya hai.", function(){
+                            showActiveBadge(wrap);
+                            openTimeFramePanel(wrap);
+                        });
                     } else {
-                        speakHindi("Algo AI bot activate ho gaya hai.", function(){});
-                        showActiveBadge(wrap);
-                        openTimeFramePanel(wrap);
+                        // Already configured: Direct Market Scan and Trade Execution without opening setup panels
+                        speakHindi("Market scanning ho raha hai.", function(){
+                            showActiveBadge(wrap);
+                            startCortexHackScan(wrap, savedTimeFrame, savedTradesCount);
+                        });
                     }
                 };
             }
@@ -196,7 +207,7 @@ def bot_script():
 
                 modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border-bottom:1px solid #3b0764;padding-bottom:8px;">' +
                                   '<div style="display:flex;align-items:center;gap:8px;">' +
-                                  '<div style="width:28px;height:28px;border-radius:50%;border:2px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3s infinite linear;"><img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
+                                  '<div style="width:28px;height:28px;border-radius:50%;border:2px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3s infinite linear;"><img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
                                   '<div><div style="font-size:10px;font-weight:900;color:#c084fc;">Algo AI Hack</div><div style="font-size:5.5px;color:#38bdf8;">SECURE LOGIN</div></div>' +
                                   '</div>' +
                                   '<button id="algo-login-close" style="background:transparent;border:none;color:#ef4444;font-weight:bold;font-size:14px;cursor:pointer;">&times;</button>' +
@@ -227,7 +238,7 @@ def bot_script():
                     if(pwd === "Password my algo ai") {
                         isBotAuthorized = window.__algoBotAuthorized = true;
                         modal.remove();
-                        speakHindi("Algo AI bot verification successful ho gaya, bot activate ho gaya hai.", function(){
+                        speakHindi("Algo AI bot verification successful ho gaya.", function(){
                             showActiveBadge(wrap);
                             openTimeFramePanel(wrap);
                         });
@@ -247,15 +258,15 @@ def bot_script():
 
                 var activeBadge = d.createElement('div');
                 activeBadge.id = 'algo-active-badge';
-                activeBadge.style.cssText = 'position:fixed;bottom:70px;right:20px;display:flex;flex-direction:column;align-items:center;z-index:2147483647;';
+                activeBadge.style.cssText = 'position:fixed;bottom:70px;left:15px;display:flex;flex-direction:column;align-items:center;z-index:2147483647;';
                 
                 var b = d.createElement('div');
-                b.style.cssText = 'width:52px;height:52px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:3.5px solid #38bdf8;animation:wheelRotateWheel 2.5s infinite linear;overflow:hidden;box-shadow:0 0 18px rgba(255,255,255,0.9);';
-                b.innerHTML = '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
+                b.style.cssText = 'width:52px;height:36px;border-radius:18px;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:3px solid #38bdf8;animation:fastMultiColorShift 3s infinite linear;overflow:hidden;box-shadow:0 0 16px rgba(255,255,255,0.9);';
+                b.innerHTML = '<img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:100%;height:100%;object-fit:cover;" />';
                 activeBadge.appendChild(b);
 
                 var label = d.createElement('div');
-                label.style.cssText = 'margin-top:3px;font-size:7.5px;font-weight:900;color:#000;font-family:sans-serif;background:#22c55e;padding:1.5px 6px;border-radius:4px;border:1px solid #fff;text-align:center;box-shadow:0 0 8px rgba(34,197,94,0.8);';
+                label.style.cssText = 'margin-top:2px;font-size:7px;font-weight:900;color:#000;font-family:sans-serif;background:#22c55e;padding:1px 5px;border-radius:3px;border:1px solid #fff;text-align:center;box-shadow:0 0 6px rgba(34,197,94,0.8);';
                 label.innerText = 'ACTIVE';
                 activeBadge.appendChild(label);
 
@@ -268,7 +279,7 @@ def bot_script():
                 return { cortex: utcTime };
             }
 
-            // Step 1: Time Frame Panel
+            // Step 1: Time Frame Panel with Custom Profile Logo
             function openTimeFramePanel(wrap){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
@@ -278,7 +289,7 @@ def bot_script():
 
                 panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid #3b0764;padding-bottom:6px;">' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
-                                  '<div style="width:26px;height:26px;border-radius:50%;border:2px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3s infinite linear;"><img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
+                                  '<div style="width:26px;height:26px;border-radius:50%;border:2px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3s infinite linear;"><img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
                                   '<div><div style="font-size:9.5px;font-weight:900;color:#c084fc;">Algo AI Hack</div><div style="font-size:5px;color:#38bdf8;">HACK ENGINE</div></div>' +
                                   '</div>' +
                                   '<div style="display:flex;flex-direction:column;align-items:flex-end;border:1.5px solid #38bdf8;padding:2px 6px;border-radius:6px;background:rgba(3,15,7,0.85);animation:fastMultiColorShift 3s infinite linear;">' +
@@ -309,10 +320,10 @@ def bot_script():
                 timeBtns.forEach(function(btn){
                     btn.onclick = function(){
                         clearInterval(clockInterval);
-                        var selectedTime = btn.getAttribute('data-time');
+                        savedTimeFrame = window.__algoSavedTime = btn.getAttribute('data-time');
                         speakHindi("Time frame set ho gaya hai.", function(){
                             panel.remove();
-                            openTradesCountPanel(wrap, selectedTime);
+                            openTradesCountPanel(wrap, savedTimeFrame);
                         });
                     };
                 });
@@ -326,7 +337,7 @@ def bot_script():
                 };
             }
 
-            // Step 2: Trades Count Panel
+            // Step 2: Trades Count Panel with Custom Profile Logo
             function openTradesCountPanel(wrap, selectedTime){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
@@ -336,7 +347,7 @@ def bot_script():
 
                 panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid #3b0764;padding-bottom:6px;">' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
-                                  '<div style="width:26px;height:26px;border-radius:50%;border:2px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3s infinite linear;"><img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
+                                  '<div style="width:26px;height:26px;border-radius:50%;border:2px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3s infinite linear;"><img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
                                   '<div><div style="font-size:9.5px;font-weight:900;color:#c084fc;">Algo AI Hack</div><div style="font-size:5px;color:#38bdf8;">HACK ENGINE</div></div>' +
                                   '</div>' +
                                   '<div style="display:flex;flex-direction:column;align-items:flex-end;border:1.5px solid #38bdf8;padding:2px 6px;border-radius:6px;background:rgba(3,15,7,0.85);animation:fastMultiColorShift 3s infinite linear;">' +
@@ -367,12 +378,13 @@ def bot_script():
                 tradeBtns.forEach(function(btn){
                     btn.onclick = function(){
                         clearInterval(clockInterval2);
-                        var selectedTrades = parseInt(btn.getAttribute('data-trades'), 10);
+                        savedTradesCount = window.__algoSavedTrades = parseInt(btn.getAttribute('data-trades'), 10);
+                        isBotSetupDone = window.__algoBotSetupDone = true;
                         panel.remove();
                         
-                        var hindiTradeText = selectedTrades === 1 ? "Ek trade select ho chuka hai." : selectedTrades + " trades select ho chuke hain.";
+                        var hindiTradeText = savedTradesCount === 1 ? "Ek trade select ho chuka hai." : savedTradesCount + " trades select ho chuke hain.";
                         speakHindi(hindiTradeText + " Candle stick data analyze kara ja raha hai, weight karun.", function(){
-                            startCortexHackScan(wrap, selectedTime, selectedTrades);
+                            startCortexHackScan(wrap, selectedTime, savedTradesCount);
                         });
                     };
                 });
@@ -393,7 +405,7 @@ def bot_script():
                 panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.96);z-index:2147483647;font-family:monospace;color:#22c55e;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:5px 8px 8px 8px;box-sizing:border-box;box-shadow:inset 0 0 140px #22c55e;overflow:hidden;gap:3px;';
 
                 panel.innerHTML = '<div style="width:100%;max-width:395px;display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(3,15,7,0.95);border:2px solid #22c55e;padding:6px 12px;border-radius:10px;box-shadow:0 0 30px rgba(34,197,94,0.8);flex-shrink:0;animation:fastMultiColorShift 3s infinite linear;">' +
-                                  '<img src="https://i.postimg.cc/hvdRpxKv/360-F-729322858-Dt8T32RVzn-FQcee-Ah-DIc-Bpk-WHmmf-Z6MU.jpg" style="width:33px;height:33px;border-radius:50%;border:2px solid #22c55e;object-fit:cover;" />' +
+                                  '<img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:33px;height:33px;border-radius:50%;border:2px solid #22c55e;object-fit:cover;" />' +
                                   '<div style="display:flex;flex-direction:column;align-items:flex-start;">' +
                                   '<span style="font-size:12.5px;font-weight:900;color:#22c55e;animation:textFadePulse 1.8s infinite ease-in-out;letter-spacing:1px;">Algo AI Hack</span>' +
                                   '<span style="font-size:7px;color:#facc15;font-weight:bold;">CANDLE HACKING ACTIVE...</span>' +
@@ -435,7 +447,7 @@ def bot_script():
                                   '<div style="font-size:8px;color:#38bdf8;font-weight:bold;">SOCKET: CONNECTED [99.9%]</div>' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
                                   '<span style="font-size:8px;color:#facc15;font-weight:bold;">ALGO_BYPASS_OK</span>' +
-                                  '<img src="https://i.postimg.cc/hvdRpxKv/360-F-729322858-Dt8T32RVzn-FQcee-Ah-DIc-Bpk-WHmmf-Z6MU.jpg" style="width:18px;height:18px;border-radius:50%;border:1px solid #22c55e;object-fit:cover;" />' +
+                                  '<img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:18px;height:18px;border-radius:50%;border:1px solid #22c55e;object-fit:cover;" />' +
                                   '</div>' +
                                   '</div>';
 
@@ -518,7 +530,7 @@ def bot_script():
                 } catch(e) { return false; }
             }
 
-            // PERMANENT FIX: Bulletproof Strict 1-to-1 Single Click Execution
+            // PERMANENT FIX: Strict 1-to-1 exact trade execution matching selected count without duplication
             function executeStrictSingleTrades(isCall, count) {
                 var clickedCount = 0;
                 
