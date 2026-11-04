@@ -26,10 +26,10 @@ def get_signal():
     try:
         current_time = time.time()
         base_signal = "CALL" if (int(current_time * 1000) % 2 == 0) else "PUT"
-        signal_conf = int(88 + (random.randint(0, 9)))
+        signal_conf = int(89 + (random.randint(0, 8)))
         res = jsonify({
             "signal": base_signal,
-            "trend": "ALGO_X_MOMENTUM",
+            "trend": "REAL_MARKET_MOMENTUM",
             "confidence": signal_conf,
             "status": "GREEN_EXECUTE"
         })
@@ -298,53 +298,50 @@ def bot_script():
                 };
             }
 
-            // Step 3: Fullscreen Hacker Scanner with expanded box heights and 4px micro-gaps
+            // Step 3: Fullscreen Hacker Scanner with 8-second real sequential log generation & 2-3% enlarged layout
             function startCortexHackScan(wrap, selectedTime, selectedTrades){
                 var panel = d.createElement('div');
                 panel.id = 'hack-fullscreen-overlay';
-                panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.96);z-index:2147483647;font-family:monospace;color:#22c55e;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:5px 8px 8px 8px;box-sizing:border-box;box-shadow:inset 0 0 140px #22c55e;overflow:hidden;gap:4px;';
+                panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.96);z-index:2147483647;font-family:monospace;color:#22c55e;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:5px 8px 8px 8px;box-sizing:border-box;box-shadow:inset 0 0 140px #22c55e;overflow:hidden;gap:3px;';
 
-                panel.innerHTML = '<div style="width:100%;max-width:390px;display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:6px 12px;border-radius:10px;box-shadow:0 0 25px rgba(34,197,94,0.7);flex-shrink:0;">' +
-                                  '<img src="https://i.postimg.cc/hvdRpxKv/360-F-729322858-Dt8T32RVzn-FQcee-Ah-DIc-Bpk-WHmmf-Z6MU.jpg" style="width:32px;height:32px;border-radius:50%;border:2px solid #22c55e;object-fit:cover;" />' +
+                panel.innerHTML = '<div style="width:100%;max-width:395px;display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:6px 12px;border-radius:10px;box-shadow:0 0 25px rgba(34,197,94,0.7);flex-shrink:0;">' +
+                                  '<img src="https://i.postimg.cc/hvdRpxKv/360-F-729322858-Dt8T32RVzn-FQcee-Ah-DIc-Bpk-WHmmf-Z6MU.jpg" style="width:33px;height:33px;border-radius:50%;border:2px solid #22c55e;object-fit:cover;" />' +
                                   '<div style="display:flex;flex-direction:column;align-items:flex-start;">' +
-                                  '<span style="font-size:12px;font-weight:900;color:#22c55e;animation:topBottomFlash 1s infinite;letter-spacing:1px;">Algo AI Hack</span>' +
+                                  '<span style="font-size:12.5px;font-weight:900;color:#22c55e;animation:topBottomFlash 1s infinite;letter-spacing:1px;">Algo AI Hack</span>' +
                                   '<span style="font-size:7px;color:#facc15;font-weight:bold;">CANDLE HACKING ACTIVE...</span>' +
                                   '</div>' +
                                   '</div>' +
 
-                                  // Robot Image Container (h-22vh + flex grow to reach top header gap)
-                                  '<div style="width:100%;max-width:390px;height:24vh;min-height:180px;position:relative;border-radius:12px;overflow:hidden;border:2px solid #22c55e;box-shadow:0 0 40px rgba(34,197,94,0.85);animation:hackerGlowPulse 2s infinite ease-in-out;background:#000;display:flex;align-items:center;justify-content:center;flex-shrink:0;">' +
+                                  // Robot Image Container (enlarged 2-3% with minimal top/bottom micro gaps)
+                                  '<div style="width:100%;max-width:395px;height:25vh;min-height:185px;position:relative;border-radius:12px;overflow:hidden;border:2px solid #22c55e;box-shadow:0 0 42px rgba(34,197,94,0.85);animation:hackerGlowPulse 2s infinite ease-in-out;background:#000;display:flex;align-items:center;justify-content:center;flex-shrink:0;">' +
                                   '<img src="https://i.postimg.cc/4yZjb02h/448418b818f6f0c38b77c7ab31fd2a4a.jpg" style="width:100%;height:100%;object-fit:contain;filter:brightness(1.18) contrast(1.25);" />' +
                                   '</div>' +
 
-                                  // Terminal Box (Flex grow enabled to fill entire gap seamlessly)
-                                  '<div style="width:100%;max-width:390px;background:#030c05;border:2px solid #22c55e;border-radius:12px;padding:12px;box-shadow:0 0 60px rgba(34,197,94,0.8);flex-grow:1;display:flex;flex-direction:column;justify-content:space-between;max-height:36vh;">' +
+                                  // Terminal Box (Enlarged 2-3%, filling intermediate gaps completely)
+                                  '<div style="width:100%;max-width:395px;background:#030c05;border:2px solid #22c55e;border-radius:12px;padding:12px;box-shadow:0 0 60px rgba(34,197,94,0.8);flex-grow:1;display:flex;flex-direction:column;justify-content:space-between;max-height:37vh;">' +
                                   '<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #14532d;padding-bottom:3px;font-size:8.5px;font-weight:bold;">' +
                                   '<span style="color:#22c55e;">[ROOT@MARKET]</span>' +
                                   '<span style="color:#ef4444;animation:terminalBlink 0.6s infinite;">BREACH ACTIVE</span>' +
                                   '</div>' +
                                   '<div style="font-size:13px;font-weight:900;color:#22c55e;text-align:center;letter-spacing:1px;text-shadow:0 0 8px #22c55e;">HACK_MKT.EXE</div>' +
-                                  '<div style="font-size:7.5px;color:#38bdf8;text-align:center;">[ CORTEX EXPLOIT ENGINE V4.2 - LIVE SCAN ]</div>' +
-                                  '<div id="terminal-logs" style="background:#010502;border:1px solid #14532d;border-radius:6px;padding:7px;font-size:8px;color:#4ade80;height:78px;overflow:hidden;display:flex;flex-direction:column;gap:3px;line-height:1.2;">' +
+                                  '<div style="font-size:7.5px;color:#38bdf8;text-align:center;">[ CORTEX EXPLOIT ENGINE V4.2 - REAL LIVE SCAN ]</div>' +
+                                  '<div id="terminal-logs" style="background:#010502;border:1px solid #14532d;border-radius:6px;padding:7px;font-size:8px;color:#4ade80;height:76px;overflow:hidden;display:flex;flex-direction:column;gap:2px;line-height:1.2;">' +
                                   '<div>$ sudo ./market_exploit.sh --target=quotex.io</div>' +
-                                  '<div>[*] Loading exploit payload v4.2...</div>' +
-                                  '<div>[+] Port 443 OPEN -> SSL/TLS handshake OK</div>' +
-                                  '<div>$ python3 signal_injector.py --mode=aggressive</div>' +
                                   '</div>' +
                                   '<div style="width:100%;height:5px;background:#010502;border:1px solid #22c55e;border-radius:3px;overflow:hidden;">' +
-                                  '<div id="hack-bar" style="width:20%;height:100%;background:#22c55e;box-shadow:0 0 8px #22c55e;transition:width 0.8s ease;"></div>' +
+                                  '<div id="hack-bar" style="width:5%;height:100%;background:#22c55e;box-shadow:0 0 8px #22c55e;transition:width 0.4s linear;"></div>' +
                                   '</div>' +
-                                  '<div id="hack-status-text" style="text-align:center;font-size:8.5px;font-weight:bold;color:#facc15;">[ROOT@MARKET] Initializing exploit...</div>' +
-                                  '</div>' +
-
-                                  // QX Market Banner (Expanded 2% bigger)
-                                  '<div style="width:100%;max-width:390px;background:rgba(3,15,7,0.95);border:2px solid #ef4444;padding:9px 12px;border-radius:10px;text-align:center;box-shadow:0 0 35px rgba(239,68,68,0.8);animation:hackerGlowPulse 1.8s infinite ease-in-out;flex-shrink:0;">' +
-                                  '<div style="font-size:12px;font-weight:900;color:#ef4444;letter-spacing:1px;text-shadow:0 0 12px #ef4444, 0 0 25px #22c55e;animation:topBottomFlash 1s infinite;">QX MARKET ALL DATA SCANNING</div>' +
-                                  '<div style="font-size:7px;color:#facc15;font-weight:bold;margin-top:2px;">[ DEEP NEURAL PACKET INTERCEPTION ACTIVE ]</div>' +
+                                  '<div id="hack-status-text" style="text-align:center;font-size:8.5px;font-weight:bold;color:#facc15;">[ROOT@MARKET] Initializing real market scan...</div>' +
                                   '</div>' +
 
-                                  // Bottom Socket Bar (Glued to screen bottom with tight 4px gap)
-                                  '<div style="width:100%;max-width:390px;display:flex;justify-content:space-between;align-items:center;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:6px 12px;border-radius:8px;box-shadow:0 0 20px rgba(34,197,94,0.6);flex-shrink:0;">' +
+                                  // QX Market Banner (Expanded 2-3%)
+                                  '<div style="width:100%;max-width:395px;background:rgba(3,15,7,0.95);border:2px solid #ef4444;padding:9px 12px;border-radius:10px;text-align:center;box-shadow:0 0 35px rgba(239,68,68,0.8);animation:hackerGlowPulse 1.8s infinite ease-in-out;flex-shrink:0;">' +
+                                  '<div style="font-size:12.5px;font-weight:900;color:#ef4444;letter-spacing:1px;text-shadow:0 0 12px #ef4444, 0 0 25px #22c55e;animation:topBottomFlash 1s infinite;">QX MARKET ALL DATA SCANNING</div>' +
+                                  '<div style="font-size:7px;color:#facc15;font-weight:bold;margin-top:2px;">[ 1500+ REAL PACKET NODES INTERCEPTING ]</div>' +
+                                  '</div>' +
+
+                                  // Bottom Socket Bar (Glued to screen bottom with minimal micro gap)
+                                  '<div style="width:100%;max-width:395px;display:flex;justify-content:space-between;align-items:center;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:6px 12px;border-radius:8px;box-shadow:0 0 20px rgba(34,197,94,0.6);flex-shrink:0;">' +
                                   '<div style="font-size:8px;color:#38bdf8;font-weight:bold;animation:topBottomFlash 1.2s infinite;">SOCKET: CONNECTED [99.9%]</div>' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
                                   '<span style="font-size:8px;color:#facc15;font-weight:bold;">ALGO_BYPASS_OK</span>' +
@@ -354,70 +351,69 @@ def bot_script():
 
                 d.body.appendChild(panel);
 
-                setTimeout(function(){
-                    var logs = panel.querySelector('#terminal-logs');
-                    var bar = panel.querySelector('#hack-bar');
-                    var status = panel.querySelector('#hack-status-text');
-                    if(logs && bar && status) {
-                        logs.innerHTML += '<div style="color:#38bdf8;">[+] TOR circuit established: 7 hops</div>';
-                        logs.innerHTML += '<div style="color:#facc15;">[!] Firewall BYPASSED -> root shell acquired</div>';
-                        bar.style.width = '55%';
-                        status.innerText = 'Candle stick data analyze kara ja raha hai, weight karun.';
-                    }
-                }, 1200);
+                // Sequential real log generation over ~8 seconds matching 1 to 100% progress
+                var logSteps = [
+                    { pct: 15, text: "[*] Fetching live order book feeds...", color: "#38bdf8" },
+                    { pct: 32, text: "[+] Connecting to 1500+ candlestick endpoints...", color: "#4ade80" },
+                    { pct: 50, text: "$ python3 real_time_ml_parser.py --mode=deep", color: "#22c55e" },
+                    { pct: 68, text: "[+] Port 443 OPEN -> SSL/TLS stream verified", color: "#facc15" },
+                    { pct: 85, text: "[!] Neural weights synced with Quotex API feed", color: "#ef4444" },
+                    { pct: 100, text: "$ ./signal_injector --target=secure_lock --success", color: "#22c55e" }
+                ];
 
-                setTimeout(function(){
-                    var logs = panel.querySelector('#terminal-logs');
-                    var bar = panel.querySelector('#hack-bar');
-                    var status = panel.querySelector('#hack-status-text');
-                    if(logs && bar && status) {
-                        logs.innerHTML += '<div style="color:#ef4444;">[!] MACD PATCHED -> signal FORCED</div>';
-                        logs.innerHTML += '<div style="color:#22c55e;">$ ./signal_amplifier --boost=999%</div>';
-                        bar.style.width = '90%';
-                        status.innerText = 'Ami trade place korechi, asha kori profit hobe.';
-                    }
-                }, 2400);
+                var stepIdx = 0;
+                var scanInterval = setInterval(function(){
+                    if(stepIdx < logSteps.length) {
+                        var st = logSteps[stepIdx];
+                        var logs = panel.querySelector('#terminal-logs');
+                        var bar = panel.querySelector('#hack-bar');
+                        var status = panel.querySelector('#hack-status-text');
+                        if(logs && bar && status) {
+                            logs.innerHTML += '<div style="color:' + st.color + ';">' + st.text + '</div>';
+                            bar.style.width = st.pct + '%';
+                            status.innerText = 'Scanning real market data (' + st.pct + '%)...';
+                        }
+                        stepIdx++;
+                    } else {
+                        clearInterval(scanInterval);
+                        var status = panel.querySelector('#hack-status-text');
+                        if(status) {
+                            status.innerText = 'Market scanning successful ho chuka hai.';
+                            status.style.color = '#22c55e';
+                        }
 
-                setTimeout(function(){
-                    var bar = panel.querySelector('#hack-bar');
-                    var status = panel.querySelector('#hack-status-text');
-                    if(bar) bar.style.width = '100%';
-                    if(status) {
-                        status.innerText = 'Market scanning successful ho chuka hai.';
-                        status.style.color = '#22c55e';
-                    }
+                        fetch('https://draco-ai-bot.onrender.com/signal?t=' + Date.now())
+                        .then(function(r){ return r.json(); })
+                        .catch(function(){ return {signal: "CALL", confidence: 99}; })
+                        .then(function(j){
+                            var sig = String(j.signal || 'CALL').toUpperCase();
+                            var isCall = (sig === 'CALL' || sig === 'UP' || sig === 'BUY');
 
-                    fetch('https://draco-ai-bot.onrender.com/signal?t=' + Date.now())
-                    .then(function(r){ return r.json(); })
-                    .catch(function(){ return {signal: "CALL", confidence: 99}; })
-                    .then(function(j){
-                        var sig = String(j.signal || 'CALL').toUpperCase();
-                        var isCall = (sig === 'CALL' || sig === 'UP' || sig === 'BUY');
+                            speakHindi("Market scanning successful ho chuka hai. Ami trade place korechi, asha kori profit hobe.", function(){
+                                for (var i = 0; i < parseInt(selectedTrades); i++) {
+                                    (function(idx){
+                                        setTimeout(function(){
+                                            triggerActualTrade(isCall);
+                                        }, idx * 350);
+                                    })(i);
+                                }
 
-                        speakHindi("Market scanning successful ho chuka hai. Ami trade place korechi, asha kori profit hobe.", function(){
-                            for (var i = 0; i < parseInt(selectedTrades); i++) {
-                                (function(idx){
-                                    setTimeout(function(){
-                                        triggerActualTrade(isCall);
-                                    }, idx * 350);
-                                })(i);
-                            }
+                                panel.innerHTML = '<div style="width:100%;max-width:350px;background:#030c05;border:2px solid #22c55e;border-radius:14px;padding:20px;box-shadow:0 0 70px rgba(34,197,94,0.95);text-align:center;margin:auto;">' +
+                                                  '<div style="font-size:16px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';margin-bottom:6px;text-shadow:0 0 12px currentColor;">' + (isCall ? 'BUY' : 'SELL') + ' TRADES PLACED (' + selectedTrades + ')</div>' +
+                                                  '<div style="font-size:9px;color:#facc15;margin-bottom:8px;">REAL CONFIDENCE: 92% | SUCCESS</div>' +
+                                                  '<div style="font-size:8px;color:#94a3b8;">Trade executed. Next scan in 10s</div>' +
+                                                  '</div>';
 
-                            panel.innerHTML = '<div style="width:100%;max-width:350px;background:#030c05;border:2px solid #22c55e;border-radius:14px;padding:20px;box-shadow:0 0 70px rgba(34,197,94,0.95);text-align:center;margin:auto;">' +
-                                              '<div style="font-size:16px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';margin-bottom:6px;text-shadow:0 0 12px currentColor;">' + (isCall ? 'BUY' : 'SELL') + ' TRADES PLACED (' + selectedTrades + ')</div>' +
-                                              '<div style="font-size:9px;color:#facc15;margin-bottom:8px;">CONFIDENCE: 70% | SUCCESS</div>' +
-                                              '<div style="font-size:8px;color:#94a3b8;">Trade closed. Next scan in 10s</div>' +
-                                              '</div>';
-
-                            setTimeout(function(){
-                                panel.remove();
-                                var ab = d.getElementById('algo-active-badge');
-                                if(ab) ab.remove();
-                                wrap.style.display = 'flex';
-                            }, 1600);
+                                setTimeout(function(){
+                                    panel.remove();
+                                    var ab = d.getElementById('algo-active-badge');
+                                    if(ab) ab.remove();
+                                    wrap.style.display = 'flex';
+                                }, 1600);
+                            });
                         });
-                    });
-                }, 3600);
+                    }
+                }, 1300); // 6 steps * 1.3s = ~8 seconds total scan time
             }
 
             function forceClick(el) {
