@@ -52,7 +52,7 @@ def bot_script():
         try {
             var d = document;
             
-            ["roshmalai-candy","roshmalai-status-panel","roshmalai-welcome","tbp-floating-btn","tbp-control-panel","tbp-global-style","algo-floating-btn","algo-control-panel","algo-global-style","algo-touch-effect"].forEach(function(i){
+            ["roshmalai-candy","roshmalai-status-panel","roshmalai-welcome","tbp-floating-btn","tbp-control-panel","tbp-global-style","algo-floating-btn","algo-control-panel","algo-global-style","algo-touch-effect","hack-fullscreen-overlay"].forEach(function(i){
                 var e = d.getElementById(i);
                 if(e) e.remove();
             });
@@ -71,12 +71,7 @@ def bot_script():
                           '75% { border-color: #10B981; box-shadow: 0 0 10px rgba(16,185,129,0.8); }' +
                           '100% { border-color: #7928CA; box-shadow: 0 0 10px rgba(121,40,202,0.8); }' +
                           '}' +
-                          '@keyframes hackMatrixFullscreen {' +
-                          '0% { background: rgba(5, 1, 10, 0.96); box-shadow: inset 0 0 80px #22c55e; }' +
-                          '50% { background: rgba(1, 10, 5, 0.96); box-shadow: inset 0 0 80px #ef4444; }' +
-                          '100% { background: rgba(5, 1, 10, 0.96); box-shadow: inset 0 0 80px #22c55e; }' +
-                          '}' +
-                          '@keyframes slowFadeText {0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; }}' +
+                          '@keyframes terminalBlink {0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; }}' +
                           '@keyframes algoPulse {0%{transform:scale(1);}50%{transform:scale(1.04);}100%{transform:scale(1);}}' +
                           '@keyframes panelPop {0%{opacity:0;transform:translate(-50%, -48%) scale(0.85);}100%{opacity:1;transform:translate(-50%, -50%) scale(0.95);}}' +
                           '@keyframes touchRipple {0% {transform: scale(0.5); opacity: 1;} 100% {transform: scale(2.2); opacity: 0;}}';
@@ -118,7 +113,6 @@ def bot_script():
                 wrap.id = 'algo-floating-btn';
                 wrap.style.cssText = 'position:fixed;bottom:70px;right:20px;display:flex;flex-direction:column;align-items:center;z-index:2147483647;cursor:pointer;';
                 
-                // Perfectly round icon with rotating wheel border & white background glow
                 var b = d.createElement('div');
                 b.style.cssText = 'width:68px;height:68px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:3px dashed #38bdf8;animation:wheelRotate 5s infinite linear, algoPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 30px rgba(255,255,255,0.9), 0 0 55px #38bdf8;';
                 b.innerHTML = '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
@@ -175,7 +169,6 @@ def bot_script():
                 d.body.appendChild(activeBadge);
             }
 
-            // Live Clock helper for BD & Cortex Live Time zones
             function getLiveTimes() {
                 var now = new Date();
                 var bdTime = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Dhaka', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -183,7 +176,7 @@ def bot_script():
                 return { bd: bdTime, cortex: utcTime };
             }
 
-            // Step 1: Time Frame Panel (Taller panel, 3-4% smaller time buttons, expanded options including 1m, 2m, 3m)
+            // Step 1: Time Frame Panel
             function openTimeFramePanel(wrap){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
@@ -199,7 +192,6 @@ def bot_script():
                                   '<div style="display:flex;gap:4px;"><span style="background:#14532d;color:#22c55e;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #22c55e;">BD: <span id="bd-clock">' + times.bd + '</span></span><span style="background:#713f12;color:#facc15;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #facc15;">CORTEX: <span id="cortex-clock">' + times.cortex + '</span></span></div>' +
                                   '</div>' +
                                   '<div style="font-size:13px;font-weight:bold;margin-bottom:10px;color:#e2e8f0;">Trade time select karein</div>' +
-                                  // Expanded options: 5s, 15s, 30s, 1m, 2m, 3m (3-4% smaller size)
                                   '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;">' +
                                   '<button class="algo-time-btn" data-time="5" style="background:#180830;border:2px solid #7928CA;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear;"><div style="font-size:10px;font-weight:bold;color:#facc15;">5 SEC</div></button>' +
                                   '<button class="algo-time-btn" data-time="15" style="background:#180830;border:2px solid #0070F3;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 0.5s;"><div style="font-size:10px;font-weight:bold;color:#38bdf8;">15 SEC</div></button>' +
@@ -212,7 +204,6 @@ def bot_script():
 
                 d.body.appendChild(panel);
 
-                // Update live clocks every second
                 var clockInterval = setInterval(function(){
                     var t = getLiveTimes();
                     var bdEl = d.getElementById('bd-clock');
@@ -242,7 +233,7 @@ def bot_script():
                 };
             }
 
-            // Step 2: Trades Count Panel (Taller panel, 3-4% smaller trade buttons, expanded up to 6 trades)
+            // Step 2: Trades Count Panel
             function openTradesCountPanel(wrap, selectedTime){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
@@ -258,7 +249,6 @@ def bot_script():
                                   '<div style="display:flex;gap:4px;"><span style="background:#14532d;color:#22c55e;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #22c55e;">BD: <span id="bd-clock-2">' + times.bd + '</span></span><span style="background:#713f12;color:#facc15;font-size:6px;padding:2px 5px;border-radius:3px;border:1px solid #facc15;">CORTEX: <span id="cortex-clock-2">' + times.cortex + '</span></span></div>' +
                                   '</div>' +
                                   '<div style="font-size:13px;font-weight:bold;margin-bottom:10px;color:#e2e8f0;">Kitni trades lagani hain?</div>' +
-                                  // Expanded options: 1 to 6 trades
                                   '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;">' +
                                   '<button class="algo-trade-btn" data-trades="1" style="background:#180830;border:2px solid #52057B;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear;"><div style="font-size:11px;font-weight:bold;color:#facc15;">1</div></button>' +
                                   '<button class="algo-trade-btn" data-trades="2" style="background:#180830;border:2px solid #F59E0B;border-radius:7px;padding:5px;color:#fff;text-align:center;cursor:pointer;animation:fastLighting 3s infinite linear 0.4s;"><div style="font-size:11px;font-weight:bold;color:#38bdf8;">2</div></button>' +
@@ -287,8 +277,8 @@ def bot_script():
                         panel.remove();
                         
                         var hindiTradeText = selectedTrades == "1" ? "Ek trade select ho chuka hai." : selectedTrades + " trades select ho chuke hain.";
-                        speakHindi(hindiTradeText + " Chaliye sir, market ka pura check shuru karti hu. Support aur resistance level check ho rahe hain.", function(){
-                            startNeuralScan(wrap, selectedTime, selectedTrades);
+                        speakHindi(hindiTradeText + " Candle stick data analyze kara ja raha hai, weight karun.", function(){
+                            startCortexHackScan(wrap, selectedTime, selectedTrades);
                         });
                     };
                 });
@@ -302,42 +292,74 @@ def bot_script():
                 };
             }
 
-            // Step 3: Fullscreen Pro Gaming Hack Scanner (Free Fire / Cyberpunk Hack Style)
-            function startNeuralScan(wrap, selectedTime, selectedTrades){
+            // Step 3: Exact Video Style Fullscreen Terminal Hack Scan with Cortex Info & AI Voice
+            function startCortexHackScan(wrap, selectedTime, selectedTrades){
                 var panel = d.createElement('div');
-                panel.id = 'algo-control-panel';
-                panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.95);z-index:2147483647;font-family:sans-serif;color:#22c55e;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px;box-sizing:border-box;animation:hackMatrixFullscreen 1.5s infinite alternate;';
+                panel.id = 'hack-fullscreen-overlay';
+                panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.94);z-index:2147483647;font-family:monospace;color:#22c55e;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:15px;box-sizing:border-box;box-shadow:inset 0 0 100px #22c55e;';
 
-                panel.innerHTML = '<div style="width:100%;max-width:360px;background:#050f07;border:2px solid #22c55e;border-radius:18px;padding:20px;box-shadow:0 0 60px rgba(34,197,94,0.6);text-align:center;">' +
-                                  '<div style="font-size:13px;font-weight:900;color:#22c55e;margin-bottom:6px;letter-spacing:1px;text-shadow:0 0 10px #22c55e;">[ QX HACK SYSTEM ACTIVE ]</div>' +
-                                  '<div style="font-size:9px;color:#facc15;margin-bottom:14px;">BYPASSING BROKER SERVERS...</div>' +
+                panel.innerHTML = '<div style="width:100%;max-width:380px;background:#030c05;border:2px solid #22c55e;border-radius:14px;padding:16px;box-shadow:0 0 50px rgba(34,197,94,0.7);">' +
+                                  // Top bar with ROOT@MARKET and BREACH ACTIVE
+                                  '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid #14532d;padding-bottom:6px;font-size:9px;font-weight:bold;">' +
+                                  '<span style="color:#22c55e;">[ROOT@MARKET]</span>' +
+                                  '<span style="color:#ef4444;animation:terminalBlink 0.6s infinite;">BREACH ACTIVE</span>' +
+                                  '</div>' +
                                   
-                                  // Cyber/Gaming Hack Terminal Lines
-                                  '<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px;font-size:8px;text-align:left;background:#010502;padding:10px;border-radius:8px;border:1px solid #14532d;">' +
-                                  '<div style="color:#22c55e;">> INJECTING OTC PROTOCOL... [OK]</div>' +
-                                  '<div style="color:#38bdf8;">> BYPASSING VOLATILITY SHIELD... [OK]</div>' +
-                                  '<div style="color:#facc15;">> EXTRACTING SMART MONEY NODES... [OK]</div>' +
-                                  '<div style="color:#f472b6;">> LOCKING EXECUTION SEQUENCE... [READY]</div>' +
+                                  // HACK_MKT.EXE Banner
+                                  '<div style="font-size:14px;font-weight:900;color:#22c55e;text-align:center;margin-bottom:8px;letter-spacing:1px;text-shadow:0 0 10px #22c55e;">HACK_MKT.EXE</div>' +
+                                  '<div style="font-size:7px;color:#38bdf8;text-align:center;margin-bottom:12px;">[ CORTEX EXPLOIT ENGINE V4.2 - UNAUTHORIZED ACCESS DETECTED ]</div>' +
+
+                                  // Scrolling Terminal Code Log matching your screenshot/video
+                                  '<div id="terminal-logs" style="background:#010502;border:1px solid #14532d;border-radius:6px;padding:8px;font-size:7.5px;color:#4ade80;height:95px;overflow:hidden;display:flex;flex-direction:column;gap:4px;margin-bottom:12px;line-height:1.2;">' +
+                                  '<div>$ sudo ./market_exploit.sh --target=quotex.io</div>' +
+                                  '<div>[*] Loading exploit payload v4.2...</div>' +
+                                  '<div>[*] Scanning open ports: 443, 8080, 3000...</div>' +
+                                  '<div>[+] Port 443 OPEN -> SSL/TLS handshake OK</div>' +
+                                  '<div>$ python3 signal_injector.py --mode=aggressive</div>' +
                                   '</div>' +
 
-                                  // Flashing Hack Wave / Matrix Scan Box
-                                  '<div style="background:#010502;border:1px solid #22c55e;border-radius:8px;height:40px;display:flex;align-items:center;justify-content:space-around;padding:0 10px;margin-bottom:14px;overflow:hidden;">' +
-                                  '<div style="width:4px;height:25px;background:#22c55e;border-radius:2px;animation:slowFadeText 0.3s infinite alternate;"></div>' +
-                                  '<div style="width:4px;height:32px;background:#ef4444;border-radius:2px;animation:slowFadeText 0.25s infinite alternate;"></div>' +
-                                  '<div style="width:4px;height:18px;background:#22c55e;border-radius:2px;animation:slowFadeText 0.35s infinite alternate;"></div>' +
-                                  '<div style="width:4px;height:28px;background:#ef4444;border-radius:2px;animation:slowFadeText 0.2s infinite alternate;"></div>' +
-                                  '<div style="width:4px;height:35px;background:#22c55e;border-radius:2px;animation:slowFadeText 0.28s infinite alternate;"></div>' +
+                                  // Progress Bar / Status
+                                  '<div style="width:100%;height:6px;background:#010502;border:1px solid #22c55e;border-radius:3px;margin-bottom:10px;overflow:hidden;">' +
+                                  '<div id="hack-bar" style="width:20%;height:100%;background:#22c55e;box-shadow:0 0 8px #22c55e;transition:width 0.8s ease;"></div>' +
                                   '</div>' +
-                                  '<div id="algo-scan-status" style="font-size:10px;font-weight:bold;color:#22c55e;text-shadow:0 0 8px #22c55e;">HACK SCANNING IN PROGRESS...</div>' +
+
+                                  '<div id="hack-status-text" style="text-align:center;font-size:8.5px;font-weight:bold;color:#facc15;">[ROOT@MARKET] Initializing exploit...</div>' +
                                   '</div>';
 
                 d.body.appendChild(panel);
 
+                // Step-by-step terminal log injection matching video flow
                 setTimeout(function(){
-                    var statusEl = panel.querySelector('#algo-scan-status');
-                    if(statusEl) {
-                        statusEl.innerText = "MARKET SCANNING SUCCESSFUL HO CHUKA HAI.";
-                        statusEl.style.color = "#4ade80";
+                    var logs = panel.querySelector('#terminal-logs');
+                    var bar = panel.querySelector('#hack-bar');
+                    var status = panel.querySelector('#hack-status-text');
+                    if(logs && bar && status) {
+                        logs.innerHTML += '<div style="color:#38bdf8;">[+] TOR circuit established: 7 hops</div>';
+                        logs.innerHTML += '<div style="color:#facc15;">[!] Firewall BYPASSED -> root shell acquired</div>';
+                        bar.style.width = '55%';
+                        status.innerText = 'Candle stick data analyze kara ja raha hai, weight karun.';
+                    }
+                }, 1200);
+
+                setTimeout(function(){
+                    var logs = panel.querySelector('#terminal-logs');
+                    var bar = panel.querySelector('#hack-bar');
+                    var status = panel.querySelector('#hack-status-text');
+                    if(logs && bar && status) {
+                        logs.innerHTML += '<div style="color:#ef4444;">[!] MACD PATCHED -> signal FORCED</div>';
+                        logs.innerHTML += '<div style="color:#22c55e;">$ ./signal_amplifier --boost=999%</div>';
+                        bar.style.width = '90%';
+                        status.innerText = 'Ami trade place korechi, asha kori profit hobe.';
+                    }
+                }, 2400);
+
+                setTimeout(function(){
+                    var bar = panel.querySelector('#hack-bar');
+                    var status = panel.querySelector('#hack-status-text');
+                    if(bar) bar.style.width = '100%';
+                    if(status) {
+                        status.innerText = 'Market scanning successful ho chuka hai.';
+                        status.style.color = '#22c55e';
                     }
 
                     fetch('https://draco-ai-bot.onrender.com/signal?t=' + Date.now())
@@ -346,9 +368,9 @@ def bot_script():
                     .then(function(j){
                         var sig = String(j.signal || 'CALL').toUpperCase();
                         var isCall = (sig === 'CALL' || sig === 'UP' || sig === 'BUY');
-                        var directionText = isCall ? 'UP' : 'DOWN';
+                        var directionText = isCall ? 'PUT #' : 'PUT #'; // As requested, clean result display
 
-                        speakHindi("Market scanning successful ho chuka hai. Meri saari analysis pe trade laga diya hai. Inshallah profit ho jaega.", function(){
+                        speakHindi("Market scanning successful ho chuka hai. Ami trade place korechi, asha kori profit hobe.", function(){
                             for (var i = 0; i < parseInt(selectedTrades); i++) {
                                 (function(idx){
                                     setTimeout(function(){
@@ -357,10 +379,11 @@ def bot_script():
                                 })(i);
                             }
 
-                            // Minimal clean popup: Direction & Trade Count only
-                            panel.innerHTML = '<div style="width:100%;max-width:340px;background:#050f07;border:2px solid #22c55e;border-radius:18px;padding:25px;box-shadow:0 0 60px rgba(34,197,94,0.7);text-align:center;">' +
-                                              '<div style="font-size:18px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';margin-bottom:8px;text-shadow:0 0 12px currentColor;">' + directionText + ' (' + selectedTrades + ' TRADES)</div>' +
-                                              '<div style="font-size:9px;color:#facc15;">HACK EXECUTED SUCCESSFULLY</div>' +
+                            // Final Trade Placed Success Screen
+                            panel.innerHTML = '<div style="width:100%;max-width:340px;background:#030c05;border:2px solid #22c55e;border-radius:14px;padding:20px;box-shadow:0 0 60px rgba(34,197,94,0.8);text-align:center;">' +
+                                              '<div style="font-size:16px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';margin-bottom:6px;text-shadow:0 0 10px currentColor;">' + (isCall ? 'BUY' : 'SELL') + ' TRADES PLACED (' + selectedTrades + ')</div>' +
+                                              '<div style="font-size:8px;color:#facc15;margin-bottom:10px;">CONFIDENCE: 70% | SUCCESS</div>' +
+                                              '<div style="font-size:7.5px;color:#94a3b8;">Trade closed. Next scan in 10s</div>' +
                                               '</div>';
 
                             setTimeout(function(){
@@ -368,10 +391,10 @@ def bot_script():
                                 var ab = d.getElementById('algo-active-badge');
                                 if(ab) ab.remove();
                                 wrap.style.display = 'flex';
-                            }, 1400);
+                            }, 1600);
                         });
                     });
-                }, 3500);
+                }, 3600);
             }
 
             function forceClick(el) {
