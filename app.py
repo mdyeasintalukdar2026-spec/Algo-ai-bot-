@@ -72,9 +72,9 @@ def bot_script():
                           '100% { border-color: #7928CA; box-shadow: 0 0 10px rgba(121,40,202,0.8); }' +
                           '}' +
                           '@keyframes hackerGlowPulse {' +
-                          '0% { filter: drop-shadow(0 0 15px #22c55e) brightness(1); box-shadow: 0 0 25px rgba(34,197,94,0.8); border-color: #22c55e; }' +
-                          '50% { filter: drop-shadow(0 0 35px #38bdf8) brightness(1.5); box-shadow: 0 0 45px rgba(56,189,248,1); border-color: #38bdf8; }' +
-                          '100% { filter: drop-shadow(0 0 15px #22c55e) brightness(1); box-shadow: 0 0 25px rgba(34,197,94,0.8); border-color: #22c55e; }' +
+                          '0% { filter: drop-shadow(0 0 15px #22c55e) brightness(1); box-shadow: 0 0 30px rgba(34,197,94,0.8); border-color: #22c55e; }' +
+                          '50% { filter: drop-shadow(0 0 35px #38bdf8) brightness(1.5); box-shadow: 0 0 50px rgba(56,189,248,1); border-color: #38bdf8; }' +
+                          '100% { filter: drop-shadow(0 0 15px #22c55e) brightness(1); box-shadow: 0 0 30px rgba(34,197,94,0.8); border-color: #22c55e; }' +
                           '}' +
                           '@keyframes topBottomFlash {0% { opacity: 0.5; text-shadow: 0 0 6px #22c55e; } 50% { opacity: 1; text-shadow: 0 0 22px #22c55e, 0 0 35px #38bdf8; } 100% { opacity: 0.5; text-shadow: 0 0 6px #22c55e; }}' +
                           '@keyframes terminalBlink {0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; }}' +
@@ -298,11 +298,11 @@ def bot_script():
                 };
             }
 
-            // Step 3: Fullscreen Hacker Scanner with Compact Positioned Box above Loading & Prominent Top Logo with continuous Glow Animation
+            // Step 3: Fullscreen Hacker Scanner with Prominent Top Hacker Logo & Lower-positioned Terminal Box
             function startCortexHackScan(wrap, selectedTime, selectedTrades){
                 var panel = d.createElement('div');
                 panel.id = 'hack-fullscreen-overlay';
-                panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.95);z-index:2147483647;font-family:monospace;color:#22c55e;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:12px 10px 65px 10px;box-sizing:border-box;box-shadow:inset 0 0 140px #22c55e;overflow:hidden;';
+                panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.95);z-index:2147483647;font-family:monospace;color:#22c55e;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:12px 10px 55px 10px;box-sizing:border-box;box-shadow:inset 0 0 140px #22c55e;overflow:hidden;';
 
                 panel.innerHTML = '<div style="width:100%;display:flex;justify-content:space-between;align-items:center;background:rgba(3,15,7,0.95);border:2px solid #22c55e;padding:10px 16px;border-radius:12px;box-shadow:0 0 35px rgba(34,197,94,0.8);animation:hackerGlowPulse 2s infinite ease-in-out;">' +
                                   '<div style="display:flex;align-items:center;gap:10px;">' +
@@ -312,8 +312,8 @@ def bot_script():
                                   '<div style="font-size:10px;color:#facc15;font-weight:bold;animation:topBottomFlash 0.8s infinite;">CANDLE HACKING...</div>' +
                                   '</div>' +
 
-                                  // Perfectly Positioned Compact Terminal Box sitting comfortably right above loading bar
-                                  '<div style="width:100%;max-width:380px;background:#030c05;border:2px solid #22c55e;border-radius:14px;padding:16px;box-shadow:0 0 70px rgba(34,197,94,0.8);margin:auto 0;">' +
+                                  // Terminal Box positioned lower down, just above the bottom bar with a tiny gap
+                                  '<div style="width:100%;max-width:380px;background:#030c05;border:2px solid #22c55e;border-radius:14px;padding:16px;box-shadow:0 0 70px rgba(34,197,94,0.8);margin-top:auto;margin-bottom:10px;">' +
                                   '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;border-bottom:1px solid #14532d;padding-bottom:5px;font-size:9.5px;font-weight:bold;">' +
                                   '<span style="color:#22c55e;">[ROOT@MARKET]</span>' +
                                   '<span style="color:#ef4444;animation:terminalBlink 0.6s infinite;">BREACH ACTIVE</span>' +
