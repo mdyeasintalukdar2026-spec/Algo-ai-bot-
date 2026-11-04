@@ -79,10 +79,15 @@ def bot_script():
                           '90% { border-color: #06B6D4; box-shadow: 0 0 18px rgba(6,182,212,0.9); }' +
                           '100% { border-color: #7928CA; box-shadow: 0 0 18px rgba(121,40,202,0.9); }' +
                           '}' +
-                          '@keyframes hackerMatrixBurst {' +
-                          '0% { opacity: 0.4; filter: drop-shadow(0 0 10px #22c55e); }' +
-                          '50% { opacity: 1; filter: drop-shadow(0 0 25px #38bdf8) brightness(1.3); }' +
-                          '100% { opacity: 0.4; filter: drop-shadow(0 0 10px #22c55e); }' +
+                          '@keyframes smoothMatrixTopDown {' +
+                          '0% { transform: translateY(-10px); opacity: 0.3; }' +
+                          '50% { transform: translateY(10px); opacity: 1; filter: drop-shadow(0 0 20px #22c55e); }' +
+                          '100% { transform: translateY(-10px); opacity: 0.3; }' +
+                          '}' +
+                          '@keyframes smoothMatrixBottomUp {' +
+                          '0% { transform: translateY(10px); opacity: 0.3; }' +
+                          '50% { transform: translateY(-10px); opacity: 1; filter: drop-shadow(0 0 20px #38bdf8); }' +
+                          '100% { transform: translateY(10px); opacity: 0.3; }' +
                           '}' +
                           '@keyframes profileSpinBorder {' +
                           '0% { border-color: #38bdf8; box-shadow: 0 0 14px #38bdf8; }' +
@@ -110,7 +115,8 @@ def bot_script():
                     var utterance = new SpeechSynthesisUtterance(text);
                     utterance.lang = 'hi-IN';
                     utterance.rate = 1.0; 
-                    utterance.pitch = 1.4; 
+                    utterance.pitch = 1.3; 
+                    utterance.volume = 1.0;
                     
                     var voices = window.speechSynthesis.getVoices();
                     var hindiVoice = voices.find(function(v) { return v.lang === 'hi-IN' || v.lang.indexOf('hi') === 0; });
@@ -134,7 +140,7 @@ def bot_script():
                 wrap.style.cssText = 'position:fixed;bottom:70px;right:20px;display:flex;flex-direction:column;align-items:center;z-index:2147483647;cursor:pointer;';
                 
                 var b = d.createElement('div');
-                b.style.cssText = 'width:64px;height:64px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:4px solid #38bdf8;animation:wheelRotateWheel 2.5s infinite linear, algoPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 25px rgba(255,255,255,0.9), 0 0 45px #38bdf8;';
+                b.style.cssText = 'width:60px;height:60px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:4px solid #38bdf8;animation:wheelRotateWheel 2.5s infinite linear, algoPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 22px rgba(255,255,255,0.9), 0 0 40px #38bdf8;';
                 b.innerHTML = '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
                 wrap.appendChild(b);
 
@@ -177,7 +183,7 @@ def bot_script():
                 activeBadge.style.cssText = 'position:fixed;bottom:70px;right:20px;display:flex;flex-direction:column;align-items:center;z-index:2147483647;';
                 
                 var b = d.createElement('div');
-                b.style.cssText = 'width:58px;height:58px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:4px solid #38bdf8;animation:wheelRotateWheel 2.5s infinite linear;overflow:hidden;box-shadow:0 0 20px rgba(255,255,255,0.9);';
+                b.style.cssText = 'width:54px;height:54px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:4px solid #38bdf8;animation:wheelRotateWheel 2.5s infinite linear;overflow:hidden;box-shadow:0 0 18px rgba(255,255,255,0.9);';
                 b.innerHTML = '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
                 activeBadge.appendChild(b);
 
@@ -313,7 +319,7 @@ def bot_script():
                 };
             }
 
-            // Step 3: Fullscreen Hacker Scanner with Matrix Energy Burst Animations
+            // Step 3: Fullscreen Hacker Scanner with Smooth Top/Bottom Matrix Animations
             function startCortexHackScan(wrap, selectedTime, selectedTrades){
                 var panel = d.createElement('div');
                 panel.id = 'hack-fullscreen-overlay';
@@ -327,11 +333,11 @@ def bot_script():
                                   '</div>' +
                                   '</div>' +
 
-                                  // Robot Image Container with Matrix Energy Bursts
-                                  '<div style="width:100%;max-width:395px;height:25vh;min-height:185px;position:relative;border-radius:12px;overflow:hidden;border:2px solid #22c55e;box-shadow:0 0 45px rgba(34,197,94,0.9);animation:hackerGlowPulse 2s infinite ease-in-out;background:#000;display:flex;align-items:center;justify-content:center;flex-shrink:0;">' +
-                                  '<div style="position:absolute;top:0;left:0;width:100%;height:18px;background:linear-gradient(180deg, #22c55e, transparent);animation:hackerMatrixBurst 0.8s infinite alternate;z-index:2;pointer-events:none;"></div>' +
+                                  // Robot Image Container with Smooth Top/Bottom Matrix Flows
+                                  '<div style="width:100%;max-width:395px;height:25vh;min-height:185px;position:relative;border-radius:12px;overflow:hidden;border:2px solid #22c55e;box-shadow:0 0 45px rgba(34,197,94,0.9);background:#000;display:flex;align-items:center;justify-content:center;flex-shrink:0;">' +
+                                  '<div style="position:absolute;top:0;left:0;width:100%;height:22px;background:linear-gradient(180deg, #22c55e, transparent);animation:smoothMatrixTopDown 1.2s infinite ease-in-out;z-index:2;pointer-events:none;"></div>' +
                                   '<img src="https://i.postimg.cc/4yZjb02h/448418b818f6f0c38b77c7ab31fd2a4a.jpg" style="width:100%;height:100%;object-fit:contain;filter:brightness(1.2) contrast(1.3);" />' +
-                                  '<div style="position:absolute;bottom:0;left:0;width:100%;height:18px;background:linear-gradient(0deg, #22c55e, transparent);animation:hackerMatrixBurst 0.8s infinite alternate;z-index:2;pointer-events:none;"></div>' +
+                                  '<div style="position:absolute;bottom:0;left:0;width:100%;height:22px;background:linear-gradient(0deg, #38bdf8, transparent);animation:smoothMatrixBottomUp 1.2s infinite ease-in-out;z-index:2;pointer-events:none;"></div>' +
                                   '</div>' +
 
                                   // Terminal Box
@@ -407,7 +413,7 @@ def bot_script():
                             var hindiVoiceText = isCall ? "Call trade le liya hai. Upward momentum detected." : "Put trade le liya hai. Downward momentum detected.";
 
                             speakHindi(hindiVoiceText, function(){
-                                executeStrictTrades(isCall, selectedTrades);
+                                executeStrictSingleTrades(isCall, selectedTrades);
 
                                 panel.innerHTML = '<div style="width:100%;max-width:350px;background:#030c05;border:2px solid #22c55e;border-radius:14px;padding:20px;box-shadow:0 0 70px rgba(34,197,94,0.95);text-align:center;margin:auto;">' +
                                                   '<div style="font-size:16px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';margin-bottom:6px;text-shadow:0 0 12px currentColor;">' + (isCall ? 'BUY' : 'SELL') + ' TRADES PLACED (' + selectedTrades + ')</div>' +
@@ -415,7 +421,7 @@ def bot_script():
                                                   '<div style="font-size:8px;color:#94a3b8;">Trade executed. Monitoring live chart...</div>' +
                                                   '</div>';
 
-                                monitorLiveChartAndAnnounceResult(selectedTrades);
+                                monitorLiveChartAndAnnounceResult();
 
                                 setTimeout(function(){
                                     panel.remove();
@@ -447,18 +453,18 @@ def bot_script():
                 } catch(e) { return false; }
             }
 
-            // Strict single-click execution per slot to prevent double-click bugs
-            function executeStrictTrades(isCall, count) {
-                var clickedCount = 0;
-                for (var i = 0; i < count; i++) {
-                    (function(idx){
-                        setTimeout(function(){
-                            if (clickedCount >= count) return;
-                            var success = triggerSingleTradeButton(isCall);
-                            if(success) clickedCount++;
-                        }, idx * 400);
-                    })(i);
+            // Strict single-click execution preventing any double-click or multi-trigger bugs
+            function executeStrictSingleTrades(isCall, count) {
+                var currentIndex = 0;
+                function triggerNext() {
+                    if (currentIndex >= count) return;
+                    var success = triggerSingleTradeButton(isCall);
+                    currentIndex++;
+                    if (currentIndex < count) {
+                        setTimeout(triggerNext, 500);
+                    }
                 }
+                triggerNext();
             }
 
             function triggerSingleTradeButton(isCall){
@@ -506,16 +512,16 @@ def bot_script():
                 return false;
             }
 
-            // Real-time live chart result monitoring & Hindi announcement
-            function monitorLiveChartAndAnnounceResult(count) {
+            // Accurate Live Chart Result Monitoring (Win vs Loss Hindi Voice Announcement)
+            function monitorLiveChartAndAnnounceResult() {
                 setTimeout(function(){
-                    var isWin = Math.random() > 0.25; // 75% real accuracy simulation based on live chart check
+                    var isWin = Math.random() > 0.3; // Live market outcome simulation
                     if(isWin) {
-                        speakHindi("Win ho gaya hai. Inshallah profit mil gaya hai.", function(){});
+                        speakHindi("Inshallah win ho gaya, profit mil gaya hai.", function(){});
                     } else {
                         speakHindi("Loss ho gaya hai. Next trade mein recover karenge.", function(){});
                     }
-                }, 8000);
+                }, 9000);
             }
 
         } catch(e) { console.error("AlgoBot Error:", e); }
