@@ -151,7 +151,6 @@ def bot_script():
                 createPatailaBot();
             }
 
-            // Step 1: Initial Circular Bot
             function createCircularBot(){
                 var wrap = d.getElementById('algo-floating-btn') || d.createElement('div');
                 wrap.id = 'algo-floating-btn';
@@ -192,7 +191,6 @@ def bot_script():
                 };
             }
 
-            // Step 2: Post-Verification Pataila (Oval) Bot Layout matching user screenshot
             function createPatailaBot(){
                 var wrap = d.getElementById('algo-floating-btn') || d.createElement('div');
                 wrap.id = 'algo-floating-btn';
