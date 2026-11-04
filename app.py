@@ -71,8 +71,12 @@ def bot_script():
                           '75% { border-color: #10B981; box-shadow: 0 0 10px rgba(16,185,129,0.8); }' +
                           '100% { border-color: #7928CA; box-shadow: 0 0 10px rgba(121,40,202,0.8); }' +
                           '}' +
-                          '@keyframes topBottomFlash {0% { opacity: 0.4; text-shadow: 0 0 5px #22c55e; } 50% { opacity: 1; text-shadow: 0 0 20px #22c55e, 0 0 30px #38bdf8; } 100% { opacity: 0.4; text-shadow: 0 0 5px #22c55e; }}' +
-                          '@keyframes binaryScroll {0% { transform: translateY(0); } 100% { transform: translateY(-50%); }}' +
+                          '@keyframes hackerGlowPulse {' +
+                          '0% { filter: drop-shadow(0 0 12px #22c55e) brightness(1); box-shadow: 0 0 20px rgba(34,197,94,0.7); }' +
+                          '50% { filter: drop-shadow(0 0 28px #38bdf8) brightness(1.4); box-shadow: 0 0 35px rgba(56,189,248,0.9); }' +
+                          '100% { filter: drop-shadow(0 0 12px #22c55e) brightness(1); box-shadow: 0 0 20px rgba(34,197,94,0.7); }' +
+                          '}' +
+                          '@keyframes topBottomFlash {0% { opacity: 0.5; text-shadow: 0 0 6px #22c55e; } 50% { opacity: 1; text-shadow: 0 0 22px #22c55e, 0 0 35px #38bdf8; } 100% { opacity: 0.5; text-shadow: 0 0 6px #22c55e; }}' +
                           '@keyframes terminalBlink {0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; }}' +
                           '@keyframes algoPulse {0%{transform:scale(1);}50%{transform:scale(1.04);}100%{transform:scale(1);}}' +
                           '@keyframes panelPop {0%{opacity:0;transform:translate(-50%, -48%) scale(0.85);}100%{opacity:1;transform:translate(-50%, -50%) scale(0.95);}}' +
@@ -294,46 +298,50 @@ def bot_script():
                 };
             }
 
-            // Step 3: Fullscreen Hacker Scanner with Top & Bottom Cyber Animations & Image/Logo
+            // Step 3: Fullscreen Hacker Scanner with Perfectly Positioned Large Box filling down to navigation bar & new PNG profile image
             function startCortexHackScan(wrap, selectedTime, selectedTrades){
                 var panel = d.createElement('div');
                 panel.id = 'hack-fullscreen-overlay';
-                panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.95);z-index:2147483647;font-family:monospace;color:#22c55e;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:12px 10px;box-sizing:border-box;box-shadow:inset 0 0 120px #22c55e;overflow:hidden;';
+                panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.95);z-index:2147483647;font-family:monospace;color:#22c55e;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:12px 10px 65px 10px;box-sizing:border-box;box-shadow:inset 0 0 140px #22c55e;overflow:hidden;';
 
-                panel.innerHTML = '<div style="width:100%;display:flex;justify-content:space-between;align-items:center;background:rgba(3,15,7,0.85);border:1px solid #22c55e;padding:6px 12px;border-radius:8px;box-shadow:0 0 15px rgba(34,197,94,0.4);">' +
-                                  '<div style="display:flex;align-items:center;gap:6px;">' +
-                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:24px;height:24px;border-radius:50%;border:1px solid #22c55e;box-shadow:0 0 8px #22c55e;" />' +
-                                  '<span style="font-size:10px;font-weight:bold;color:#22c55e;animation:topBottomFlash 1s infinite;">[CYBER_MATRIX_ACTIVE]</span>' +
+                panel.innerHTML = '<div style="width:100%;display:flex;justify-content:space-between;align-items:center;background:rgba(3,15,7,0.9);border:1.5px solid #22c55e;padding:8px 14px;border-radius:10px;box-shadow:0 0 25px rgba(34,197,94,0.6);">' +
+                                  '<div style="display:flex;align-items:center;gap:8px;">' +
+                                  '<img src="https://i.postimg.cc/j2sS1Zkx/images.jpg" style="width:34px;height:34px;border-radius:50%;border:2px solid #22c55e;animation:hackerGlowPulse 1.5s infinite ease-in-out;object-fit:cover;" />' +
+                                  '<span style="font-size:11.5px;font-weight:900;color:#22c55e;animation:topBottomFlash 1s infinite;letter-spacing:1px;">Algo Market Hack</span>' +
                                   '</div>' +
-                                  '<div style="font-size:9px;color:#facc15;font-weight:bold;animation:topBottomFlash 0.8s infinite;">CANDLE HACKING...</div>' +
+                                  '<div style="font-size:9.5px;color:#facc15;font-weight:bold;animation:topBottomFlash 0.8s infinite;">CANDLE HACKING...</div>' +
                                   '</div>' +
 
-                                  // Center Compact Hack Box (As requested: "ছোট হয়ে গেছে না, এটা এরকমই থাকবে")
-                                  '<div style="width:100%;max-width:360px;background:#030c05;border:2px solid #22c55e;border-radius:14px;padding:14px;box-shadow:0 0 50px rgba(34,197,94,0.7);margin:auto 0;">' +
-                                  '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;border-bottom:1px solid #14532d;padding-bottom:5px;font-size:8.5px;font-weight:bold;">' +
+                                  // Perfectly Positioned Larger Center Hack Box extending down near navigation bar
+                                  '<div style="width:100%;max-width:380px;background:#030c05;border:2px solid #22c55e;border-radius:16px;padding:20px;box-shadow:0 0 80px rgba(34,197,94,0.85);margin:auto 0;height:65vh;display:flex;flex-direction:column;justify-content:space-between;">' +
+                                  '<div>' +
+                                  '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid #14532d;padding-bottom:6px;font-size:10px;font-weight:bold;">' +
                                   '<span style="color:#22c55e;">[ROOT@MARKET]</span>' +
                                   '<span style="color:#ef4444;animation:terminalBlink 0.6s infinite;">BREACH ACTIVE</span>' +
                                   '</div>' +
-                                  '<div style="font-size:13px;font-weight:900;color:#22c55e;text-align:center;margin-bottom:6px;letter-spacing:1px;text-shadow:0 0 10px #22c55e;">HACK_MKT.EXE</div>' +
-                                  '<div style="font-size:6.5px;color:#38bdf8;text-align:center;margin-bottom:10px;">[ CORTEX EXPLOIT ENGINE V4.2 - LIVE SCAN ]</div>' +
-                                  '<div id="terminal-logs" style="background:#010502;border:1px solid #14532d;border-radius:6px;padding:7px;font-size:7px;color:#4ade80;height:85px;overflow:hidden;display:flex;flex-direction:column;gap:3px;margin-bottom:10px;line-height:1.2;">' +
+                                  '<div style="font-size:16px;font-weight:900;color:#22c55e;text-align:center;margin-bottom:8px;letter-spacing:1px;text-shadow:0 0 12px #22c55e;">HACK_MKT.EXE</div>' +
+                                  '<div style="font-size:8px;color:#38bdf8;text-align:center;margin-bottom:12px;">[ CORTEX EXPLOIT ENGINE V4.2 - LIVE SCAN ]</div>' +
+                                  '<div id="terminal-logs" style="background:#010502;border:1px solid #14532d;border-radius:8px;padding:10px;font-size:8.5px;color:#4ade80;height:140px;overflow:hidden;display:flex;flex-direction:column;gap:5px;margin-bottom:12px;line-height:1.4;">' +
                                   '<div>$ sudo ./market_exploit.sh --target=quotex.io</div>' +
                                   '<div>[*] Loading exploit payload v4.2...</div>' +
                                   '<div>[+] Port 443 OPEN -> SSL/TLS handshake OK</div>' +
                                   '<div>$ python3 signal_injector.py --mode=aggressive</div>' +
                                   '</div>' +
-                                  '<div style="width:100%;height:5px;background:#010502;border:1px solid #22c55e;border-radius:3px;margin-bottom:8px;overflow:hidden;">' +
-                                  '<div id="hack-bar" style="width:20%;height:100%;background:#22c55e;box-shadow:0 0 8px #22c55e;transition:width 0.8s ease;"></div>' +
                                   '</div>' +
-                                  '<div id="hack-status-text" style="text-align:center;font-size:8px;font-weight:bold;color:#facc15;">[ROOT@MARKET] Initializing exploit...</div>' +
+                                  '<div>' +
+                                  '<div style="width:100%;height:7px;background:#010502;border:1px solid #22c55e;border-radius:3px;margin-bottom:10px;overflow:hidden;">' +
+                                  '<div id="hack-bar" style="width:20%;height:100%;background:#22c55e;box-shadow:0 0 12px #22c55e;transition:width 0.8s ease;"></div>' +
+                                  '</div>' +
+                                  '<div id="hack-status-text" style="text-align:center;font-size:9.5px;font-weight:bold;color:#facc15;">[ROOT@MARKET] Initializing exploit...</div>' +
+                                  '</div>' +
                                   '</div>' +
 
-                                  // Bottom Cyber / Hacking Banner with Matrix Streams & Logo
-                                  '<div style="width:100%;display:flex;justify-content:space-between;align-items:center;background:rgba(3,15,7,0.85);border:1px solid #22c55e;padding:6px 12px;border-radius:8px;box-shadow:0 0 15px rgba(34,197,94,0.4);">' +
-                                  '<div style="font-size:7.5px;color:#38bdf8;font-weight:bold;animation:topBottomFlash 1.2s infinite;">SOCKET: CONNECTED [99.8%]</div>' +
-                                  '<div style="display:flex;align-items:center;gap:6px;">' +
-                                  '<span style="font-size:7.5px;color:#facc15;font-weight:bold;">ALGO_BYPASS_OK</span>' +
-                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:20px;height:20px;border-radius:50%;border:1px solid #facc15;" />' +
+                                  // Bottom Cyber / Hacking Banner with Matrix Streams & new Profile PNG Image
+                                  '<div style="width:100%;display:flex;justify-content:space-between;align-items:center;background:rgba(3,15,7,0.9);border:1.5px solid #22c55e;padding:8px 14px;border-radius:10px;box-shadow:0 0 25px rgba(34,197,94,0.6);">' +
+                                  '<div style="font-size:8.5px;color:#38bdf8;font-weight:bold;animation:topBottomFlash 1.2s infinite;">SOCKET: CONNECTED [99.9%]</div>' +
+                                  '<div style="display:flex;align-items:center;gap:7px;">' +
+                                  '<span style="font-size:8.5px;color:#facc15;font-weight:bold;">ALGO_BYPASS_OK</span>' +
+                                  '<img src="https://i.postimg.cc/j2sS1Zkx/images.jpg" style="width:24px;height:24px;border-radius:50%;border:2px solid #facc15;animation:hackerGlowPulse 1.5s infinite ease-in-out;object-fit:cover;" />' +
                                   '</div>' +
                                   '</div>';
 
@@ -388,10 +396,10 @@ def bot_script():
                                 })(i);
                             }
 
-                            panel.innerHTML = '<div style="width:100%;max-width:340px;background:#030c05;border:2px solid #22c55e;border-radius:14px;padding:20px;box-shadow:0 0 60px rgba(34,197,94,0.8);text-align:center;margin:auto;">' +
-                                              '<div style="font-size:16px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';margin-bottom:6px;text-shadow:0 0 10px currentColor;">' + (isCall ? 'BUY' : 'SELL') + ' TRADES PLACED (' + selectedTrades + ')</div>' +
-                                              '<div style="font-size:8px;color:#facc15;margin-bottom:10px;">CONFIDENCE: 70% | SUCCESS</div>' +
-                                              '<div style="font-size:7.5px;color:#94a3b8;">Trade closed. Next scan in 10s</div>' +
+                            panel.innerHTML = '<div style="width:100%;max-width:370px;background:#030c05;border:2px solid #22c55e;border-radius:16px;padding:25px;box-shadow:0 0 80px rgba(34,197,94,0.95);text-align:center;margin:auto;">' +
+                                              '<div style="font-size:18px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';margin-bottom:8px;text-shadow:0 0 14px currentColor;">' + (isCall ? 'BUY' : 'SELL') + ' TRADES PLACED (' + selectedTrades + ')</div>' +
+                                              '<div style="font-size:9.5px;color:#facc15;margin-bottom:10px;">CONFIDENCE: 70% | SUCCESS</div>' +
+                                              '<div style="font-size:8.5px;color:#94a3b8;">Trade closed. Next scan in 10s</div>' +
                                               '</div>';
 
                             setTimeout(function(){
