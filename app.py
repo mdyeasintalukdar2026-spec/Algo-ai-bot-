@@ -63,24 +63,24 @@ def bot_script():
             var s = d.createElement('style');
             s.id = 'algo-global-style';
             s.innerHTML = '@keyframes wheelRotateWheel {' +
-                          '0% { transform: rotate(0deg); box-shadow: 0 0 16px #38bdf8, inset 0 0 10px #38bdf8; border-color: #38bdf8; }' +
-                          '25% { transform: rotate(90deg); box-shadow: 0 0 20px #ec4899, inset 0 0 14px #ec4899; border-color: #ec4899; }' +
-                          '50% { transform: rotate(180deg); box-shadow: 0 0 20px #22c55e, inset 0 0 14px #22c55e; border-color: #22c55e; }' +
-                          '75% { transform: rotate(270deg); box-shadow: 0 0 20px #facc15, inset 0 0 14px #facc15; border-color: #facc15; }' +
-                          '100% { transform: rotate(360deg); box-shadow: 0 0 16px #38bdf8, inset 0 0 10px #38bdf8; border-color: #38bdf8; }' +
+                          '0% { transform: rotate(0deg); box-shadow: 0 0 22px #ffffff, inset 0 0 12px #38bdf8; border-color: #38bdf8; }' +
+                          '25% { transform: rotate(90deg); box-shadow: 0 0 26px #ffffff, inset 0 0 16px #ec4899; border-color: #ec4899; }' +
+                          '50% { transform: rotate(180deg); box-shadow: 0 0 26px #ffffff, inset 0 0 16px #22c55e; border-color: #22c55e; }' +
+                          '75% { transform: rotate(270deg); box-shadow: 0 0 26px #ffffff, inset 0 0 16px #facc15; border-color: #facc15; }' +
+                          '100% { transform: rotate(360deg); box-shadow: 0 0 22px #ffffff, inset 0 0 12px #38bdf8; border-color: #38bdf8; }' +
                           '}' +
                           '@keyframes fastMultiColorShift {' +
-                          '0% { border-color: #7928CA; box-shadow: 0 0 18px rgba(121,40,202,0.9); }' +
-                          '10% { border-color: #0070F3; box-shadow: 0 0 18px rgba(0,112,243,0.9); }' +
-                          '20% { border-color: #38bdf8; box-shadow: 0 0 18px rgba(56,189,248,0.9); }' +
-                          '30% { border-color: #10B981; box-shadow: 0 0 18px rgba(16,185,129,0.9); }' +
-                          '40% { border-color: #22c55e; box-shadow: 0 0 18px rgba(34,197,94,0.9); }' +
-                          '50% { border-color: #F59E0B; box-shadow: 0 0 18px rgba(245,158,11,0.9); }' +
-                          '60% { border-color: #EF4444; box-shadow: 0 0 18px rgba(239,68,68,0.9); }' +
-                          '70% { border-color: #EC4899; box-shadow: 0 0 18px rgba(236,72,153,0.9); }' +
-                          '80% { border-color: #8B5CF6; box-shadow: 0 0 18px rgba(139,92,246,0.9); }' +
-                          '90% { border-color: #06B6D4; box-shadow: 0 0 18px rgba(6,182,212,0.9); }' +
-                          '100% { border-color: #7928CA; box-shadow: 0 0 18px rgba(121,40,202,0.9); }' +
+                          '0% { border-color: #7928CA; box-shadow: 0 0 22px rgba(121,40,202,0.95); }' +
+                          '10% { border-color: #0070F3; box-shadow: 0 0 22px rgba(0,112,243,0.95); }' +
+                          '20% { border-color: #38bdf8; box-shadow: 0 0 22px rgba(56,189,248,0.95); }' +
+                          '30% { border-color: #10B981; box-shadow: 0 0 22px rgba(16,185,129,0.95); }' +
+                          '40% { border-color: #22c55e; box-shadow: 0 0 22px rgba(34,197,94,0.95); }' +
+                          '50% { border-color: #F59E0B; box-shadow: 0 0 22px rgba(245,158,11,0.95); }' +
+                          '60% { border-color: #EF4444; box-shadow: 0 0 22px rgba(239,68,68,0.95); }' +
+                          '70% { border-color: #EC4899; box-shadow: 0 0 22px rgba(236,72,153,0.95); }' +
+                          '80% { border-color: #8B5CF6; box-shadow: 0 0 22px rgba(139,92,246,0.95); }' +
+                          '90% { border-color: #06B6D4; box-shadow: 0 0 22px rgba(6,182,212,0.95); }' +
+                          '100% { border-color: #7928CA; box-shadow: 0 0 22px rgba(121,40,202,0.95); }' +
                           '}' +
                           '@keyframes smoothMatrixTopDown {' +
                           '0% { transform: translateY(-12px); opacity: 0.4; }' +
@@ -93,18 +93,18 @@ def bot_script():
                           '100% { transform: translateY(12px); opacity: 0.4; }' +
                           '}' +
                           '@keyframes textFadePulse {' +
-                          '0% { opacity: 0.25; text-shadow: 0 0 4px #22c55e; }' +
-                          '50% { opacity: 1; text-shadow: 0 0 20px #22c55e, 0 0 35px #38bdf8; }' +
-                          '100% { opacity: 0.25; text-shadow: 0 0 4px #22c55e; }' +
+                          '0% { opacity: 0.3; text-shadow: 0 0 4px #22c55e; }' +
+                          '50% { opacity: 1; text-shadow: 0 0 22px #22c55e, 0 0 38px #38bdf8; }' +
+                          '100% { opacity: 0.3; text-shadow: 0 0 4px #22c55e; }' +
                           '}' +
                           '@keyframes profileSpinBorder {' +
-                          '0% { border-color: #38bdf8; box-shadow: 0 0 14px #38bdf8; }' +
-                          '33% { border-color: #ec4899; box-shadow: 0 0 14px #ec4899; }' +
-                          '66% { border-color: #22c55e; box-shadow: 0 0 14px #22c55e; }' +
-                          '100% { border-color: #38bdf8; box-shadow: 0 0 14px #38bdf8; }' +
+                          '0% { border-color: #38bdf8; box-shadow: 0 0 16px #38bdf8; }' +
+                          '33% { border-color: #ec4899; box-shadow: 0 0 16px #ec4899; }' +
+                          '66% { border-color: #22c55e; box-shadow: 0 0 16px #22c55e; }' +
+                          '100% { border-color: #38bdf8; box-shadow: 0 0 16px #38bdf8; }' +
                           '}' +
                           '@keyframes terminalBlink {0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; }}' +
-                          '@keyframes algoPulse {0%{transform:scale(1);}50%{transform:scale(1.04);}100%{transform:scale(1);}}' +
+                          '@keyframes algoPulse {0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);}}' +
                           '@keyframes panelPop {0%{opacity:0;transform:translate(-50%, -48%) scale(0.85);}100%{opacity:1;transform:translate(-50%, -50%) scale(0.95);}}' +
                           '@keyframes touchRipple {0% {transform: scale(0.5); opacity: 1;} 100% {transform: scale(2.2); opacity: 0;}}';
             d.head.appendChild(s);
@@ -151,6 +151,7 @@ def bot_script():
                 createPatailaBot();
             }
 
+            // Step 1: Initial Circular Bot (Slightly larger with Image 1 URL and white lighting effects)
             function createCircularBot(){
                 var wrap = d.getElementById('algo-floating-btn') || d.createElement('div');
                 wrap.id = 'algo-floating-btn';
@@ -158,8 +159,8 @@ def bot_script():
                 
                 wrap.innerHTML = '';
                 var b = d.createElement('div');
-                b.style.cssText = 'width:58px;height:58px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(13,2,31,0.95) 85%);display:flex;align-items:center;justify-content:center;border:3.5px solid #38bdf8;animation:wheelRotateWheel 2.5s infinite linear, algoPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 20px rgba(255,255,255,0.9), 0 0 35px #38bdf8;';
-                b.innerHTML = '<img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
+                b.style.cssText = 'width:66px;height:66px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(13,2,31,0.98) 80%);display:flex;align-items:center;justify-content:center;border:4px solid #38bdf8;animation:wheelRotateWheel 2.0s infinite linear, algoPulse 2s infinite ease-in-out;box-sizing:border-box;overflow:hidden;box-shadow:0 0 25px rgba(255,255,255,1), 0 0 40px #38bdf8;';
+                b.innerHTML = '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />';
                 wrap.appendChild(b);
 
                 if(!d.body.contains(wrap)) d.body.appendChild(wrap);
@@ -191,14 +192,15 @@ def bot_script():
                 };
             }
 
+            // Step 2: Post-Verification Pataila Bot (Using Image 2 URL with fast multi-color shifting borders)
             function createPatailaBot(){
                 var wrap = d.getElementById('algo-floating-btn') || d.createElement('div');
                 wrap.id = 'algo-floating-btn';
                 wrap.style.cssText = 'position:fixed;bottom:70px;left:15px;display:flex;align-items:center;z-index:2147483647;cursor:pointer;';
                 
-                wrap.innerHTML = '<div style="display:flex;align-items:center;gap:7px;background:rgba(13,2,31,0.95);border:2.5px solid #22c55e;padding:4px 10px 4px 4px;border-radius:22px;box-shadow:0 0 20px rgba(34,197,94,0.8), inset 0 0 10px rgba(34,197,94,0.4);animation:fastMultiColorShift 3s infinite linear;">' +
+                wrap.innerHTML = '<div style="display:flex;align-items:center;gap:7px;background:rgba(13,2,31,0.95);border:2.5px solid #22c55e;padding:4px 10px 4px 4px;border-radius:22px;box-shadow:0 0 22px rgba(34,197,94,0.9), inset 0 0 12px rgba(34,197,94,0.5);animation:fastMultiColorShift 2.2s infinite linear;">' +
                                  '<div style="width:36px;height:36px;border-radius:50%;border:2px solid #38bdf8;overflow:hidden;flex-shrink:0;">' +
-                                 '<img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:100%;height:100%;object-fit:cover;" />' +
+                                 '<img src="https://i.postimg.cc/W1DhfxFK/360-F-729322858-Dt8T32RVzn-FQcee-Ah-DIc-Bpk-WHmmf-Z6MU.jpg" style="width:100%;height:100%;object-fit:cover;" />' +
                                  '</div>' +
                                  '<div style="display:flex;flex-direction:column;justify-content:center;line-height:1.1;">' +
                                  '<span style="font-size:9.5px;font-weight:900;color:#fff;font-family:sans-serif;letter-spacing:0.5px;">ALGO AI HACK</span>' +
@@ -246,18 +248,18 @@ def bot_script():
             function showLoginModal(wrap) {
                 var modal = d.createElement('div');
                 modal.id = 'algo-login-overlay';
-                modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:305px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:3px solid #a855f7;border-radius:18px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 25px 60px rgba(0,0,0,0.95);padding:18px;animation:panelPop 0.3s ease-out forwards, fastMultiColorShift 4s infinite linear;';
+                modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:305px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:3px solid #a855f7;border-radius:18px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 25px 60px rgba(0,0,0,0.95);padding:18px;animation:panelPop 0.3s ease-out forwards, fastMultiColorShift 3s infinite linear;';
 
                 modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border-bottom:1px solid #3b0764;padding-bottom:8px;">' +
                                   '<div style="display:flex;align-items:center;gap:8px;">' +
-                                  '<div style="width:28px;height:28px;border-radius:50%;border:2px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3s infinite linear;"><img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
+                                  '<div style="width:28px;height:28px;border-radius:50%;border:2px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 2.5s infinite linear;"><img src="https://i.postimg.cc/W1DhfxFK/360-F-729322858-Dt8T32RVzn-FQcee-Ah-DIc-Bpk-WHmmf-Z6MU.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
                                   '<div><div style="font-size:10px;font-weight:900;color:#c084fc;">Algo AI Hack</div><div style="font-size:5.5px;color:#38bdf8;">SECURE LOGIN</div></div>' +
                                   '</div>' +
                                   '<button id="algo-login-close" style="background:transparent;border:none;color:#ef4444;font-weight:bold;font-size:14px;cursor:pointer;">&times;</button>' +
                                   '</div>' +
 
-                                  '<a href="https://t.me/+Wv60z3O9tXk3Yzll" target="_blank" style="display:flex;align-items:center;gap:10px;background:rgba(3,15,7,0.85);border:2px solid #facc15;padding:8px 10px;border-radius:10px;margin-bottom:14px;text-decoration:none;animation:fastMultiColorShift 4s infinite linear;">' +
-                                  '<img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:36px;height:36px;border-radius:50%;border:2px solid #22c55e;object-fit:cover;" />' +
+                                  '<a href="https://t.me/+Wv60z3O9tXk3Yzll" target="_blank" style="display:flex;align-items:center;gap:10px;background:rgba(3,15,7,0.85);border:2px solid #facc15;padding:8px 10px;border-radius:10px;margin-bottom:14px;text-decoration:none;animation:fastMultiColorShift 3s infinite linear;">' +
+                                  '<img src="https://i.postimg.cc/gJGBhtsz/IMG-20261104-WA0017.jpg" style="width:36px;height:36px;border-radius:50%;border:2px solid #22c55e;object-fit:cover;" />' +
                                   '<div style="display:flex;flex-direction:column;">' +
                                   '<span style="font-size:10px;font-weight:900;color:#22c55e;">R-A Trading Community</span>' +
                                   '<span style="font-size:6.5px;color:#facc15;">Click to Join Telegram</span>' +
@@ -300,16 +302,17 @@ def bot_script():
                 return { cortex: utcTime };
             }
 
+            // Time Frame Panel (Using Image 3 URL for slightly larger top-left logo with slow lighting effect)
             function openTimeFramePanel(wrap){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
-                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:295px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:3px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 25px 60px rgba(0,0,0,0.95);padding:15px;min-height:265px;animation:panelPop 0.3s ease-out forwards, fastMultiColorShift 3s infinite linear;';
+                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:295px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:3px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 25px 60px rgba(0,0,0,0.95);padding:15px;min-height:265px;animation:panelPop 0.3s ease-out forwards, fastMultiColorShift 2.5s infinite linear;';
 
                 var times = getLiveTimes();
 
                 panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid #3b0764;padding-bottom:6px;">' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
-                                  '<div style="width:26px;height:26px;border-radius:50%;border:2px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3s infinite linear;"><img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
+                                  '<div style="width:31px;height:31px;border-radius:50%;border:2.5px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3.5s infinite linear;box-shadow:0 0 14px rgba(56,189,248,0.9);"><img src="https://i.postimg.cc/pX7t5PMd/images-(1).jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
                                   '<div><div style="font-size:9.5px;font-weight:900;color:#c084fc;">Algo AI Hack</div><div style="font-size:5px;color:#38bdf8;">VERSION v1.0</div></div>' +
                                   '</div>' +
                                   '<div style="display:flex;flex-direction:column;align-items:flex-end;border:1.5px solid #38bdf8;padding:2px 6px;border-radius:6px;background:rgba(3,15,7,0.85);animation:fastMultiColorShift 3s infinite linear;">' +
@@ -355,16 +358,17 @@ def bot_script():
                 };
             }
 
+            // Trades Count Panel (Using Image 3 URL for top-left logo with slow lighting effect)
             function openTradesCountPanel(wrap, selectedTime){
                 var panel = d.createElement('div');
                 panel.id = 'algo-control-panel';
-                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:295px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:3px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 25px 60px rgba(0,0,0,0.95);padding:15px;min-height:265px;animation:panelPop 0.3s ease-out forwards, fastMultiColorShift 3s infinite linear;';
+                panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:295px;background:linear-gradient(135deg, #0d021f 0%, #1f053b 100%);border:3px solid #a855f7;border-radius:16px;z-index:2147483647;font-family:sans-serif;color:#fff;box-shadow:0 25px 60px rgba(0,0,0,0.95);padding:15px;min-height:265px;animation:panelPop 0.3s ease-out forwards, fastMultiColorShift 2.5s infinite linear;';
 
                 var times = getLiveTimes();
 
                 panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid #3b0764;padding-bottom:6px;">' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
-                                  '<div style="width:26px;height:26px;border-radius:50%;border:2px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3s infinite linear;"><img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
+                                  '<div style="width:31px;height:31px;border-radius:50%;border:2.5px solid #38bdf8;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3.5s infinite linear;box-shadow:0 0 14px rgba(56,189,248,0.9);"><img src="https://i.postimg.cc/pX7t5PMd/images-(1).jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
                                   '<div><div style="font-size:9.5px;font-weight:900;color:#c084fc;">Algo AI Hack</div><div style="font-size:5px;color:#38bdf8;">VERSION v1.0</div></div>' +
                                   '</div>' +
                                   '<div style="display:flex;flex-direction:column;align-items:flex-end;border:1.5px solid #38bdf8;padding:2px 6px;border-radius:6px;background:rgba(3,15,7,0.85);animation:fastMultiColorShift 3s infinite linear;">' +
@@ -413,13 +417,14 @@ def bot_script():
                 };
             }
 
+            // Hacker Scan Screen (Using Image 3 URL for top logo with slow lighting effect)
             function startCortexHackScan(wrap, selectedTime, selectedTrades){
                 var panel = d.createElement('div');
                 panel.id = 'hack-fullscreen-overlay';
                 panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.96);z-index:2147483647;font-family:monospace;color:#22c55e;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:5px 8px 8px 8px;box-sizing:border-box;box-shadow:inset 0 0 140px #22c55e;overflow:hidden;gap:3px;';
 
-                panel.innerHTML = '<div style="width:100%;max-width:395px;display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(3,15,7,0.95);border:2px solid #22c55e;padding:6px 12px;border-radius:10px;box-shadow:0 0 30px rgba(34,197,94,0.8);flex-shrink:0;animation:fastMultiColorShift 3s infinite linear;">' +
-                                  '<img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:33px;height:33px;border-radius:50%;border:2px solid #22c55e;object-fit:cover;" />' +
+                panel.innerHTML = '<div style="width:100%;max-width:395px;display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(3,15,7,0.95);border:2px solid #22c55e;padding:6px 12px;border-radius:10px;box-shadow:0 0 32px rgba(34,197,94,0.85);flex-shrink:0;animation:fastMultiColorShift 2.2s infinite linear;">' +
+                                  '<div style="width:36px;height:36px;border-radius:50%;border:2.5px solid #22c55e;padding:1px;display:flex;align-items:center;justify-content:center;animation:profileSpinBorder 3.5s infinite linear;box-shadow:0 0 14px rgba(34,197,94,0.9);flex-shrink:0;"><img src="https://i.postimg.cc/pX7t5PMd/images-(1).jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
                                   '<div style="display:flex;flex-direction:column;align-items:flex-start;">' +
                                   '<span style="font-size:12.5px;font-weight:900;color:#22c55e;animation:textFadePulse 1.8s infinite ease-in-out;letter-spacing:1px;">Algo AI Hack</span>' +
                                   '<span style="font-size:7px;color:#facc15;font-weight:bold;">CANDLE HACKING ACTIVE...</span>' +
@@ -432,7 +437,7 @@ def bot_script():
                                   '<div style="position:absolute;bottom:0;left:0;width:100%;height:22px;background:linear-gradient(0deg, #38bdf8, transparent);animation:smoothMatrixBottomUp 1.2s infinite ease-in-out;z-index:2;pointer-events:none;"></div>' +
                                   '</div>' +
 
-                                  '<div style="width:100%;max-width:395px;background:#030c05;border:2px solid #22c55e;border-radius:12px;padding:12px;box-shadow:0 0 60px rgba(34,197,94,0.8);flex-grow:1;display:flex;flex-direction:column;justify-content:space-between;max-height:37vh;animation:fastMultiColorShift 3.5s infinite linear;">' +
+                                  '<div style="width:100%;max-width:395px;background:#030c05;border:2px solid #22c55e;border-radius:12px;padding:12px;box-shadow:0 0 60px rgba(34,197,94,0.8);flex-grow:1;display:flex;flex-direction:column;justify-content:space-between;max-height:37vh;animation:fastMultiColorShift 2.8s infinite linear;">' +
                                   '<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #14532d;padding-bottom:3px;font-size:8.5px;font-weight:bold;">' +
                                   '<span style="color:#22c55e;">[ROOT@MARKET]</span>' +
                                   '<span style="color:#ef4444;animation:terminalBlink 0.6s infinite;">BREACH ACTIVE</span>' +
@@ -449,7 +454,7 @@ def bot_script():
                                   '</div>' +
 
                                   '<div style="width:100%;max-width:395px;background:rgba(3,15,7,0.95);border:2px solid #ef4444;padding:9px 12px;border-radius:10px;text-align:center;box-shadow:0 0 35px rgba(239,68,68,0.8);flex-shrink:0;">' +
-                                  '<div style="font-size:12.5px;font-weight:900;color:#ef4444;letter-spacing:1px;text-shadow:0 0 12px #ef4444, 0 0 25px #22c55e;">QX MARKET ALL DATA SCANNING</div>' +
+                                  '<div style="font-size:12.5px;font-weight:900;color:#ef4444;letter-spacing:1px;text-shadow:0 0 12px #ef4444, 0 0 25px #22c55e;animation:textFadePulse 1.5s infinite;">QX MARKET ALL DATA SCANNING</div>' +
                                   '<div style="font-size:7px;color:#facc15;font-weight:bold;margin-top:2px;">[ 1500+ REAL PACKET NODES INTERCEPTING ]</div>' +
                                   '</div>' +
 
@@ -457,7 +462,7 @@ def bot_script():
                                   '<div style="font-size:8px;color:#38bdf8;font-weight:bold;">SOCKET: CONNECTED [99.9%]</div>' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
                                   '<span style="font-size:8px;color:#facc15;font-weight:bold;">ALGO_BYPASS_OK</span>' +
-                                  '<img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:18px;height:18px;border-radius:50%;border:1px solid #22c55e;object-fit:cover;" />' +
+                                  '<div style="width:20px;height:20px;border-radius:50%;border:2px solid #22c55e;padding:0.5px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px #22c55e;"><img src="https://i.postimg.cc/pX7t5PMd/images-(1).jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>' +
                                   '</div>' +
                                   '</div>';
 
@@ -520,7 +525,6 @@ def bot_script():
                 }, 1200);
             }
 
-            // PERMANENT FIX: Single Native Mouse Event Only (No Multi-Pointer Event Bubble)
             function forceSingleClickOnly(el) {
                 if(!el) return false;
                 try {
@@ -540,7 +544,6 @@ def bot_script():
                 } catch(e) { return false; }
             }
 
-            // HARDENED STRICT EXECUTION LOCK: Exactly 1 Click Per Loop Iteration
             function executeStrictSingleTrades(isCall, count) {
                 if (isExecutionLocked) return;
                 isExecutionLocked = true;
