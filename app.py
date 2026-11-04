@@ -116,7 +116,7 @@ def bot_script():
                     utterance.lang = 'hi-IN';
                     utterance.rate = 1.0; 
                     utterance.pitch = 1.3; 
-                    utterance.volume = 1.0; // Enhanced high volume
+                    utterance.volume = 1.0;
                     
                     var voices = window.speechSynthesis.getVoices();
                     var hindiVoice = voices.find(function(v) { return v.lang === 'hi-IN' || v.lang.indexOf('hi') === 0; });
@@ -132,7 +132,6 @@ def bot_script():
                 }
             }
 
-            // Session check for login prompt
             var isBotAuthorized = window.__algoBotAuthorized || false;
 
             createFloatingBot();
@@ -173,7 +172,7 @@ def bot_script():
                     wrap.style.display = 'none';
                     
                     if(!isBotAuthorized) {
-                        speakHindi("Bot active ho gaya hai.", function(){});
+                        speakHindi("Algo AI bot ka password daliye.", function(){});
                         showLoginModal(wrap);
                     } else {
                         showActiveBadge(wrap);
@@ -182,7 +181,6 @@ def bot_script():
                 };
             }
 
-            // Login Modal with Community Logo and Telegram Link
             function showLoginModal(wrap) {
                 var modal = d.createElement('div');
                 modal.id = 'algo-login-overlay';
@@ -196,7 +194,6 @@ def bot_script():
                                   '<button id="algo-login-close" style="background:transparent;border:none;color:#ef4444;font-weight:bold;font-size:14px;cursor:pointer;">&times;</button>' +
                                   '</div>' +
 
-                                  // Community Logo & Telegram Link Banner
                                   '<a href="https://t.me/+Wv60z3O9tXk3Yzll" target="_blank" style="display:flex;align-items:center;gap:10px;background:rgba(3,15,7,0.85);border:2px solid #facc15;padding:8px 10px;border-radius:10px;margin-bottom:14px;text-decoration:none;animation:fastMultiColorShift 4s infinite linear;">' +
                                   '<img src="https://i.postimg.cc/XYqS4bnj/IMG-20261104-WA0023.jpg" style="width:36px;height:36px;border-radius:50%;border:2px solid #22c55e;object-fit:cover;" />' +
                                   '<div style="display:flex;flex-direction:column;">' +
@@ -219,7 +216,7 @@ def bot_script():
 
                 modal.querySelector('#algo-login-btn').onclick = function(){
                     var pwd = modal.querySelector('#algo-password-input').value.trim();
-                    if(pwd === "12345" || pwd === "YASIN786" || pwd === "ALGO2026" || pwd === "ADMIN") {
+                    if(pwd === "Password my algo ai") {
                         isBotAuthorized = window.__algoBotAuthorized = true;
                         modal.remove();
                         showActiveBadge(wrap);
@@ -511,7 +508,7 @@ def bot_script():
                 } catch(e) { return false; }
             }
 
-            // Strict single-click execution preventing duplicate/double trades
+            // Strict single-click execution enforcing exact 1-to-1 trade mapping without duplication
             function executeStrictSingleTrades(isCall, count) {
                 var currentIndex = 0;
                 function triggerNext() {
@@ -519,7 +516,7 @@ def bot_script():
                     var success = triggerSingleTradeButton(isCall);
                     currentIndex++;
                     if (currentIndex < count) {
-                        setTimeout(triggerNext, 600);
+                        setTimeout(triggerNext, 700);
                     }
                 }
                 triggerNext();
