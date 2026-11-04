@@ -298,34 +298,34 @@ def bot_script():
                 };
             }
 
-            // Step 3: Fullscreen Hacker Scanner with QX MARKET ALL DATA SCANNING banner & bottom socket bar positioned at the very bottom
+            // Step 3: Fullscreen Hacker Scanner with precise 1% gap, 10% larger robot & terminal boxes, and perfectly aligned bottom socket bar
             function startCortexHackScan(wrap, selectedTime, selectedTrades){
                 var panel = d.createElement('div');
                 panel.id = 'hack-fullscreen-overlay';
-                panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.95);z-index:2147483647;font-family:monospace;color:#22c55e;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:10px 10px 10px 10px;box-sizing:border-box;box-shadow:inset 0 0 140px #22c55e;overflow:hidden;';
+                panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.95);z-index:2147483647;font-family:monospace;color:#22c55e;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:8px 8px 8px 8px;box-sizing:border-box;box-shadow:inset 0 0 140px #22c55e;overflow:hidden;';
 
-                panel.innerHTML = '<div style="width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:6px 12px;border-radius:10px;box-shadow:0 0 25px rgba(34,197,94,0.7);">' +
-                                  '<img src="https://i.postimg.cc/hvdRpxKv/360-F-729322858-Dt8T32RVzn-FQcee-Ah-DIc-Bpk-WHmmf-Z6MU.jpg" style="width:32px;height:32px;border-radius:50%;border:2px solid #22c55e;object-fit:cover;" />' +
+                panel.innerHTML = '<div style="width:100%;max-width:390px;display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:6px 12px;border-radius:10px;box-shadow:0 0 25px rgba(34,197,94,0.7);">' +
+                                  '<img src="https://i.postimg.cc/hvdRpxKv/360-F-729322858-Dt8T32RVzn-FQcee-Ah-DIc-Bpk-WHmmf-Z6MU.jpg" style="width:34px;height:34px;border-radius:50%;border:2px solid #22c55e;object-fit:cover;" />' +
                                   '<div style="display:flex;flex-direction:column;align-items:flex-start;">' +
                                   '<span style="font-size:12px;font-weight:900;color:#22c55e;animation:topBottomFlash 1s infinite;letter-spacing:1px;">Algo AI Hack</span>' +
                                   '<span style="font-size:7px;color:#facc15;font-weight:bold;">CANDLE HACKING ACTIVE...</span>' +
                                   '</div>' +
                                   '</div>' +
 
-                                  // Middle Robot Image Container
-                                  '<div style="width:100%;max-width:390px;height:140px;position:relative;border-radius:12px;overflow:hidden;border:2px solid #22c55e;box-shadow:0 0 35px rgba(34,197,94,0.8);animation:hackerGlowPulse 2s infinite ease-in-out;background:#000;display:flex;align-items:center;justify-content:center;">' +
+                                  // Robot Image Container (10% larger & shifted up with 1% gap)
+                                  '<div style="width:100%;max-width:390px;height:154px;position:relative;border-radius:12px;overflow:hidden;border:2px solid #22c55e;box-shadow:0 0 38px rgba(34,197,94,0.8);animation:hackerGlowPulse 2s infinite ease-in-out;background:#000;display:flex;align-items:center;justify-content:center;margin-top:2px;">' +
                                   '<img src="https://i.postimg.cc/4yZjb02h/448418b818f6f0c38b77c7ab31fd2a4a.jpg" style="width:100%;height:100%;object-fit:contain;filter:brightness(1.15) contrast(1.25);" />' +
                                   '</div>' +
 
-                                  // Terminal Box
-                                  '<div style="width:100%;max-width:390px;background:#030c05;border:2px solid #22c55e;border-radius:12px;padding:10px;box-shadow:0 0 50px rgba(34,197,94,0.7);">' +
-                                  '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;border-bottom:1px solid #14532d;padding-bottom:3px;font-size:8px;font-weight:bold;">' +
+                                  // Terminal Box (10% larger, filling gaps with 1% spacing)
+                                  '<div style="width:100%;max-width:390px;background:#030c05;border:2px solid #22c55e;border-radius:12px;padding:12px;box-shadow:0 0 55px rgba(34,197,94,0.75);margin-top:2px;">' +
+                                  '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;border-bottom:1px solid #14532d;padding-bottom:3px;font-size:8.5px;font-weight:bold;">' +
                                   '<span style="color:#22c55e;">[ROOT@MARKET]</span>' +
                                   '<span style="color:#ef4444;animation:terminalBlink 0.6s infinite;">BREACH ACTIVE</span>' +
                                   '</div>' +
-                                  '<div style="font-size:11px;font-weight:900;color:#22c55e;text-align:center;margin-bottom:3px;letter-spacing:1px;text-shadow:0 0 8px #22c55e;">HACK_MKT.EXE</div>' +
-                                  '<div style="font-size:6.5px;color:#38bdf8;text-align:center;margin-bottom:6px;">[ CORTEX EXPLOIT ENGINE V4.2 - LIVE SCAN ]</div>' +
-                                  '<div id="terminal-logs" style="background:#010502;border:1px solid #14532d;border-radius:6px;padding:6px;font-size:7.5px;color:#4ade80;height:65px;overflow:hidden;display:flex;flex-direction:column;gap:2px;margin-bottom:6px;line-height:1.2;">' +
+                                  '<div style="font-size:12px;font-weight:900;color:#22c55e;text-align:center;margin-bottom:3px;letter-spacing:1px;text-shadow:0 0 8px #22c55e;">HACK_MKT.EXE</div>' +
+                                  '<div style="font-size:7px;color:#38bdf8;text-align:center;margin-bottom:6px;">[ CORTEX EXPLOIT ENGINE V4.2 - LIVE SCAN ]</div>' +
+                                  '<div id="terminal-logs" style="background:#010502;border:1px solid #14532d;border-radius:6px;padding:7px;font-size:8px;color:#4ade80;height:70px;overflow:hidden;display:flex;flex-direction:column;gap:2px;margin-bottom:6px;line-height:1.2;">' +
                                   '<div>$ sudo ./market_exploit.sh --target=quotex.io</div>' +
                                   '<div>[*] Loading exploit payload v4.2...</div>' +
                                   '<div>[+] Port 443 OPEN -> SSL/TLS handshake OK</div>' +
@@ -334,17 +334,17 @@ def bot_script():
                                   '<div style="width:100%;height:4px;background:#010502;border:1px solid #22c55e;border-radius:3px;margin-bottom:4px;overflow:hidden;">' +
                                   '<div id="hack-bar" style="width:20%;height:100%;background:#22c55e;box-shadow:0 0 8px #22c55e;transition:width 0.8s ease;"></div>' +
                                   '</div>' +
-                                  '<div id="hack-status-text" style="text-align:center;font-size:7.5px;font-weight:bold;color:#facc15;">[ROOT@MARKET] Initializing exploit...</div>' +
+                                  '<div id="hack-status-text" style="text-align:center;font-size:8px;font-weight:bold;color:#facc15;">[ROOT@MARKET] Initializing exploit...</div>' +
                                   '</div>' +
 
-                                  // New QX Market All Data Scanning Banner with Hacker Animation Effect
-                                  '<div style="width:100%;max-width:390px;background:rgba(3,15,7,0.95);border:2px solid #ef4444;padding:8px 12px;border-radius:10px;text-align:center;box-shadow:0 0 35px rgba(239,68,68,0.8);animation:hackerGlowPulse 1.8s infinite ease-in-out;">' +
-                                  '<div style="font-size:11px;font-weight:900;color:#ef4444;letter-spacing:1px;text-shadow:0 0 12px #ef4444, 0 0 25px #22c55e;animation:topBottomFlash 1s infinite;">QX MARKET ALL DATA SCANNING</div>' +
-                                  '<div style="font-size:6.5px;color:#facc15;font-weight:bold;margin-top:2px;">[ DEEP NEURAL PACKET INTERCEPTION ACTIVE ]</div>' +
+                                  // QX Market All Data Scanning Banner (1-2% larger, shifted to fill bottom gaps)
+                                  '<div style="width:100%;max-width:390px;background:rgba(3,15,7,0.95);border:2px solid #ef4444;padding:8px 12px;border-radius:10px;text-align:center;box-shadow:0 0 35px rgba(239,68,68,0.8);animation:hackerGlowPulse 1.8s infinite ease-in-out;margin-top:2px;">' +
+                                  '<div style="font-size:11.5px;font-weight:900;color:#ef4444;letter-spacing:1px;text-shadow:0 0 12px #ef4444, 0 0 25px #22c55e;animation:topBottomFlash 1s infinite;">QX MARKET ALL DATA SCANNING</div>' +
+                                  '<div style="font-size:7px;color:#facc15;font-weight:bold;margin-top:2px;">[ DEEP NEURAL PACKET INTERCEPTION ACTIVE ]</div>' +
                                   '</div>' +
 
-                                  // Bottom Socket Bar positioned precisely at the very bottom
-                                  '<div style="width:100%;max-width:390px;display:flex;justify-content:space-between;align-items:center;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:6px 12px;border-radius:8px;box-shadow:0 0 20px rgba(34,197,94,0.6);">' +
+                                  // Bottom Socket Bar (lowered 1-2% to perfectly fill bottom margin)
+                                  '<div style="width:100%;max-width:390px;display:flex;justify-content:space-between;align-items:center;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:6px 12px;border-radius:8px;box-shadow:0 0 20px rgba(34,197,94,0.6);margin-top:2px;">' +
                                   '<div style="font-size:8px;color:#38bdf8;font-weight:bold;animation:topBottomFlash 1.2s infinite;">SOCKET: CONNECTED [99.9%]</div>' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
                                   '<span style="font-size:8px;color:#facc15;font-weight:bold;">ALGO_BYPASS_OK</span>' +
