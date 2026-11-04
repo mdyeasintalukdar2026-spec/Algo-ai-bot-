@@ -298,13 +298,13 @@ def bot_script():
                 };
             }
 
-            // Step 3: Fullscreen Hacker Scanner with precise 10% larger box, raised bottom bar, slightly shifted up robot image, and perfect gaps
+            // Step 3: Fullscreen Hacker Scanner with precise spacing, lifted bottom socket bar, and optimized box sizes
             function startCortexHackScan(wrap, selectedTime, selectedTrades){
                 var panel = d.createElement('div');
                 panel.id = 'hack-fullscreen-overlay';
-                panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.95);z-index:2147483647;font-family:monospace;color:#22c55e;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:10px 10px 22px 10px;box-sizing:border-box;box-shadow:inset 0 0 140px #22c55e;overflow:hidden;';
+                panel.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 8, 4, 0.95);z-index:2147483647;font-family:monospace;color:#22c55e;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;padding:10px 10px 12px 10px;gap:8px;box-sizing:border-box;box-shadow:inset 0 0 140px #22c55e;overflow-y:auto;';
 
-                panel.innerHTML = '<div style="width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:8px 14px;border-radius:10px;box-shadow:0 0 30px rgba(34,197,94,0.7);">' +
+                panel.innerHTML = '<div style="width:100%;max-width:390px;display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:8px 14px;border-radius:10px;box-shadow:0 0 30px rgba(34,197,94,0.7);">' +
                                   '<img src="https://i.postimg.cc/hvdRpxKv/360-F-729322858-Dt8T32RVzn-FQcee-Ah-DIc-Bpk-WHmmf-Z6MU.jpg" style="width:36px;height:36px;border-radius:50%;border:2px solid #22c55e;object-fit:cover;" />' +
                                   '<div style="display:flex;flex-direction:column;align-items:flex-start;">' +
                                   '<span style="font-size:13px;font-weight:900;color:#22c55e;animation:topBottomFlash 1s infinite;letter-spacing:1px;">Algo AI Hack</span>' +
@@ -312,13 +312,13 @@ def bot_script():
                                   '</div>' +
                                   '</div>' +
 
-                                  // Middle Robot Image Container shifted slightly higher with a neat gap
-                                  '<div style="width:100%;max-width:385px;height:150px;position:relative;border-radius:12px;overflow:hidden;border:2px solid #22c55e;box-shadow:0 0 40px rgba(34,197,94,0.8);animation:hackerGlowPulse 2s infinite ease-in-out;margin-top:4px;background:#000;display:flex;align-items:center;justify-content:center;">' +
+                                  // Middle Robot Image Container shifted up and sized to reach right under top header
+                                  '<div style="width:100%;max-width:390px;height:168px;position:relative;border-radius:12px;overflow:hidden;border:2px solid #22c55e;box-shadow:0 0 40px rgba(34,197,94,0.8);animation:hackerGlowPulse 2s infinite ease-in-out;background:#000;display:flex;align-items:center;justify-content:center;">' +
                                   '<img src="https://i.postimg.cc/4yZjb02h/448418b818f6f0c38b77c7ab31fd2a4a.jpg" style="width:100%;height:100%;object-fit:contain;filter:brightness(1.15) contrast(1.25);" />' +
                                   '</div>' +
 
-                                  // Terminal Box increased by ~10% with optimal spacing and gaps
-                                  '<div style="width:100%;max-width:385px;background:#030c05;border:2px solid #22c55e;border-radius:14px;padding:14px;box-shadow:0 0 65px rgba(34,197,94,0.75);margin-top:4px;margin-bottom:4px;">' +
+                                  // Terminal Box increased by ~5% with tight 1-2% gaps
+                                  '<div style="width:100%;max-width:390px;background:#030c05;border:2px solid #22c55e;border-radius:14px;padding:14px;box-shadow:0 0 65px rgba(34,197,94,0.75);">' +
                                   '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;border-bottom:1px solid #14532d;padding-bottom:5px;font-size:9px;font-weight:bold;">' +
                                   '<span style="color:#22c55e;">[ROOT@MARKET]</span>' +
                                   '<span style="color:#ef4444;animation:terminalBlink 0.6s infinite;">BREACH ACTIVE</span>' +
@@ -337,8 +337,8 @@ def bot_script():
                                   '<div id="hack-status-text" style="text-align:center;font-size:8.5px;font-weight:bold;color:#facc15;">[ROOT@MARKET] Initializing exploit...</div>' +
                                   '</div>' +
 
-                                  // Bottom Socket Bar raised 10% higher and made 3-4% bigger with clear gaps
-                                  '<div style="width:100%;max-width:385px;display:flex;justify-content:space-between;align-items:center;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:8px 14px;border-radius:10px;box-shadow:0 0 25px rgba(34,197,94,0.7);">' +
+                                  // Bottom Socket Bar lifted up significantly (~20%) and made clearer/larger
+                                  '<div style="width:100%;max-width:390px;display:flex;justify-content:space-between;align-items:center;background:rgba(3,15,7,0.95);border:1.5px solid #22c55e;padding:10px 14px;border-radius:10px;box-shadow:0 0 25px rgba(34,197,94,0.7);margin-top:2px;">' +
                                   '<div style="font-size:8.5px;color:#38bdf8;font-weight:bold;animation:topBottomFlash 1.2s infinite;">SOCKET: CONNECTED [99.9%]</div>' +
                                   '<div style="display:flex;align-items:center;gap:6px;">' +
                                   '<span style="font-size:8.5px;color:#facc15;font-weight:bold;">ALGO_BYPASS_OK</span>' +
